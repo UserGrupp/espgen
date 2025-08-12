@@ -1,0 +1,1103 @@
+/* ========================================
+   ARD HOME SERVER - STYLESHEET PRINCIPALE
+   ========================================
+   
+   Questo file contiene tutti gli stili per l'applicazione ARD Home Server.
+   Organizzato in sezioni per facilitare la manutenzione e la comprensione.
+   
+   SEZIONI:
+   1. FONT E TIPOGRAFIA
+   2. LAYOUT BASE E BODY
+   3. NAVBAR E NAVIGAZIONE
+   4. CONTAINER E LAYOUT PRINCIPALE
+   5. TABELLE E STICKY HEADERS
+   6. BOTTONI E CONTROLLI
+   7. FORM E INPUT
+   8. PAGINAZIONE
+   9. STATISTICHE E CARD
+   10. STATUS E NOTIFICHE
+   11. SEZIONI DI RICERCA
+   12. HOME PAGE E WELCOME
+   13. UTILITY PAGE
+   14. TAG OWNERS
+   15. FOOTER
+   16. RESPONSIVE DESIGN
+   ======================================== */
+
+/* ========================================
+   1. FONT E TIPOGRAFIA
+   ======================================== */
+
+/* Font uniforme per tutti gli elementi */
+/* * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size: 14px !important;
+} */
+
+/* Stili base del body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font principale dell'applicazione con fallback */
+    margin: 0; /* Rimuove i margini predefiniti del browser */
+    padding: 0; /* Rimuove il padding predefinito del browser */
+    padding-bottom: 80px; /* Spazio in fondo per la paginazione fissa */
+    background-color: #232323; /* Colore di sfondo scuro principale */
+    color: #ffffff; /* Colore del testo bianco per contrasto */
+    line-height: 1.6; /* Spaziatura verticale tra le righe per migliore leggibilità */
+}
+
+/* Titoli principali */
+h1 {
+    color: #ffffff; /* Colore bianco per i titoli principali */
+    text-align: center; /* Centra il testo del titolo */
+    margin-bottom: 35px; /* Spazio sotto il titolo per separazione */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    font-size: 2.2em; /* Dimensione grande per i titoli principali */
+    letter-spacing: -0.5px; /* Riduce leggermente lo spazio tra le lettere per un look più moderno */
+}
+
+/* ========================================
+   2. LAYOUT BASE E BODY
+   ======================================== */
+
+/* Container principale per tutte le pagine */
+.container {
+    max-width: 1200px; /* Larghezza massima del contenuto per schermi grandi */
+    margin: 0 auto; /* Centra il container orizzontalmente */
+    background-color: #2c2c2c; /* Colore di sfondo leggermente più chiaro del body */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Ombra profonda per effetto di elevazione */
+    overflow: hidden; /* Nasconde il contenuto che esce dai bordi arrotondati */
+    border: 1px solid #404040; /* Bordo sottile per definire i limiti del container */
+}
+
+/* ========================================
+   3. NAVBAR E NAVIGAZIONE
+   ======================================== */
+
+/* Barra di navigazione principale */
+.navbar {
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente diagonale per effetto moderno */
+    padding: 18px 0; /* Spazio verticale interno per la navbar */
+    margin-bottom: 10px;/*30px; /* Spazio sotto la navbar per separazione dal contenuto */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombra sottile per separazione visiva */
+    border-bottom: 1px solid #e0e0e0; /* Bordo inferiore per definire i limiti */
+    position: sticky; /* Rende la navbar "appiccicosa" durante lo scroll */
+    top: 0; /* Attacca la navbar alla parte superiore della finestra */
+    z-index: 1000; /* Assicura che la navbar sia sopra tutti gli altri elementi */
+}
+
+/* Container della navbar */
+.navbar-container {
+    max-width: 1200px; /* Larghezza massima per coerenza con il container principale */
+    margin: 0 auto; /* Centra il contenuto della navbar */
+    display: flex; /* Layout flessibile per posizionare logo e menu */
+    justify-content: space-between; /* Distribuisce logo e menu agli estremi */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+    padding: 0 30px; /* Spazio orizzontale interno per evitare che il contenuto tocchi i bordi */
+}
+
+/* Logo/Brand della navbar */
+.navbar-brand {
+    color: #ffffff; /* Colore bianco per il brand/logo */
+    font-size: 44px; /* Dimensione grande per il brand */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita dei link */
+    letter-spacing: 0.5px; /* Aumenta leggermente lo spazio tra le lettere per eleganza */
+}
+
+/* Menu di navigazione */
+.navbar-nav {
+    display: flex; /* Layout flessibile per allineare gli elementi del menu orizzontalmente */
+    list-style: none; /* Rimuove i punti elenco predefiniti */
+    margin: 0; /* Rimuove i margini predefiniti */
+    padding: 0; /* Rimuove il padding predefinito */
+}
+
+.navbar-nav li {
+    margin-left: 25px; /* Spazio tra gli elementi del menu per separazione */
+}
+
+/* Link del menu di navigazione */
+.navbar-nav a {
+    color: #ffffff; /* Colore bianco per i link del menu */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita */
+    padding: 10px 16px; /* Spazio interno per area cliccabile più grande */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    font-weight: 500; /* Peso del font medio per i link */
+    font-size: 22px; /* Dimensione del font per le voci della navbar */
+    position: relative; /* Posizione relativa per eventuali elementi assoluti figli */
+}
+
+.navbar-nav a:hover {
+    background-color: rgba(255,255,255,0.1); /* Sfondo semi-trasparente al passaggio del mouse */
+    transform: translateY(-1px); /* Effetto di sollevamento leggero al hover */
+}
+
+.navbar-nav a.active {
+    background-color: #007bff; /* Colore blu per il link attivo */
+    box-shadow: 0 2px 8px rgba(0,123,255,0.3); /* Ombra blu per enfasi */
+}
+
+/* ========================================
+   4. TABELLE E STICKY HEADERS
+   ======================================== */
+
+/* Tabelle base */
+table {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    border-collapse: collapse; /* Rimuove gli spazi tra le celle della tabella */
+    margin: 0; /* Rimuove i margini predefiniti */
+}
+
+th, td {
+    padding: 16px 20px; /* Spazio interno per le celle per migliore leggibilità */
+    text-align: left; /* Allineamento del testo a sinistra */
+    border-bottom: 1px solid #e9ecef; /* Bordo inferiore sottile per separare le righe */
+}
+
+th {
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente per gli header delle tabelle */
+    color: #ffffff; /* Colore bianco per il testo degli header */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    font-size: 0.95em; /* Dimensione leggermente più piccola per gli header */
+    letter-spacing: 0.3px; /* Spazio tra le lettere per migliore leggibilità */
+    text-transform: uppercase; /* Trasforma il testo in maiuscolo per gli header */
+}
+
+tr:nth-child(even) {
+    background-color: #333333; /* Colore di sfondo alternato per le righe pari (effetto zebra) */
+}
+
+tr:hover {
+    background-color: #404040; /* Colore di sfondo al passaggio del mouse */
+    transition: background-color 0.2s ease; /* Transizione fluida per il cambio di colore */
+}
+
+/* Container per tabelle con sticky header */
+.table-container {
+    position: relative; /* Posizione relativa per il posizionamento degli elementi figli */
+    max-height: calc(100vh - 300px); /* Altezza massima dinamica che si adatta alla finestra */
+    overflow-y: auto; /* Abilita lo scroll verticale quando il contenuto supera l'altezza */
+    border: 1px solid #404040; /* Bordo per definire i limiti del container */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+    margin-bottom: 100px; /* Spazio extra in fondo per la paginazione fissa */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra profonda per effetto di elevazione */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+/* Header sticky delle tabelle */
+.table-container thead {
+    position: sticky; /* Rende l'header "appiccicoso" durante lo scroll */
+    top: 0; /* Attacca l'header alla parte superiore del container */
+    z-index: 10; /* Assicura che l'header sia sopra il contenuto della tabella */
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente di sfondo per l'header */
+}
+
+.table-container thead th {
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente per le celle dell'header */
+    color: #ffffff; /* Colore bianco per il testo dell'header */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    padding: 16px 20px; /* Spazio interno per le celle dell'header */
+    text-align: left; /* Allineamento del testo a sinistra */
+    border-bottom: 2px solid #007bff; /* Bordo inferiore blu per separazione dall'header */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Ombra sottile per effetto di elevazione */
+    font-size: 0.95em; /* Dimensione leggermente più piccola per gli header */
+    letter-spacing: 0.3px; /* Spazio tra le lettere per migliore leggibilità */
+    text-transform: uppercase; /* Trasforma il testo in maiuscolo per gli header */
+}
+
+.table-container tbody td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #404040;
+    background-color: #2c2c2c;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #333333;
+}
+
+.table-container tbody tr:hover {
+    background-color: #404040;
+    transition: background-color 0.2s ease;
+}
+
+/* Scrollbar personalizzata per le tabelle */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ========================================
+   5. BOTTONI E CONTROLLI
+   ======================================== */
+.server-btn{ color: white; /* Testo bianco per contrasto */
+    padding: 12px 24px; /* Spazio interno per area cliccabile confortevole */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    margin-bottom: 25px; /* Spazio sotto il bottone per separazione */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(0,123,255,0.3); /* Ombra blu per effetto di elevazione */ }
+/* Bottoni di refresh/aggiornamento */
+.refresh-btn {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradiente blu per i bottoni di refresh */
+    color: white; /* Testo bianco per contrasto */
+    padding: 12px 24px; /* Spazio interno per area cliccabile confortevole */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    margin-bottom: 25px; /* Spazio sotto il bottone per separazione */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(0,123,255,0.3); /* Ombra blu per effetto di elevazione */
+}
+
+.refresh-btn:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%); /* Gradiente più scuro al hover */
+    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(0,123,255,0.4); /* Ombra più intensa al hover */
+}
+
+/* Bottoni di navigazione (torna indietro) */
+.back-btn {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%); /* Gradiente grigio per i bottoni di navigazione */
+    color: white; /* Testo bianco per contrasto */
+    padding: 12px 24px; /* Spazio interno per area cliccabile confortevole */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita dei link */
+    display: inline-block; /* Permette di applicare padding e margin come un blocco */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(108,117,125,0.3); /* Ombra grigia per effetto di elevazione */
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #545b62 0%, #3d4449 100%); /* Gradiente più scuro al hover */
+    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(108,117,125,0.4); /* Ombra più intensa al hover */
+}
+
+/* Bottoni di salvataggio */
+.save-btn {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); /* Gradiente verde per i bottoni di salvataggio */
+    color: white; /* Testo bianco per contrasto */
+    padding: 14px 28px; /* Spazio interno leggermente più grande per enfasi */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    margin-right: 15px; /* Spazio a destra per separazione da altri bottoni */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(40,167,69,0.3); /* Ombra verde per effetto di elevazione */
+}
+
+.save-btn:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #155724 100%); /* Gradiente più scuro al hover */
+    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(40,167,69,0.4); /* Ombra più intensa al hover */
+}
+
+/* Bottoni di reset/eliminazione */
+.reset-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); /* Gradiente rosso per i bottoni di reset/eliminazione */
+    color: white; /* Testo bianco per contrasto */
+    padding: 14px 28px; /* Spazio interno leggermente più grande per enfasi */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(220,53,69,0.3); /* Ombra rossa per effetto di elevazione */
+}
+
+.reset-btn:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%); /* Gradiente più scuro al hover */
+    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(220,53,69,0.4); /* Ombra più intensa al hover */
+}
+
+/* ========================================
+   6. FORM E INPUT
+   ======================================== */
+
+/* Sezione di ricerca */
+.search-section {
+    margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+    display: flex; /* Layout flessibile per allineare input e bottoni orizzontalmente */
+    gap: 15px; /* Spazio tra gli elementi della sezione di ricerca */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+}
+
+/* Input di ricerca */
+.search-input {
+    flex: 1; /* Occupa tutto lo spazio disponibile rimanente */
+    padding: 14px 18px; /* Spazio interno per confortevole digitazione */
+    border: 2px solid #404040; /* Bordo scuro per l'input */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    font-size: 16px; /* Dimensione del font per leggibilità */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    background-color: #333333; /* Colore di sfondo scuro per l'input */
+    color: #ffffff; /* Colore del testo bianco per contrasto */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ombra sottile per effetto di profondità */
+}
+
+.search-input:focus {
+    outline: none; /* Rimuove l'outline predefinito del browser */
+    border-color: #007bff; /* Cambia il colore del bordo al blu quando è in focus */
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1); /* Ombra blu per indicare il focus */
+}
+
+/* Bottoni per pulire la ricerca */
+.clear-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); /* Gradiente rosso per i bottoni di pulizia */
+    color: white; /* Testo bianco per contrasto */
+    padding: 14px 18px; /* Spazio interno per area cliccabile confortevole */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    font-size: 14px; /* Dimensione del font leggermente più piccola */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 8px rgba(220,53,69,0.3); /* Ombra rossa per effetto di elevazione */
+}
+
+.clear-btn:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%); /* Gradiente più scuro al hover */
+    transform: translateY(-1px); /* Effetto di sollevamento leggero al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(220,53,69,0.4); /* Ombra più intensa al hover */
+}
+
+/* Righe nascoste per la ricerca */
+.hidden-row {
+    display: none; /* Nasconde completamente le righe che non corrispondono alla ricerca */
+}
+
+/* ========================================
+   7. PAGINAZIONE
+   ======================================== */
+
+/* Container della paginazione */
+.pagination {
+    text-align: center; /* Centra il contenuto della paginazione */
+    padding: 5px; /* Spazio interno minimo per la paginazione compatta */
+    background-color: #333333; /* Colore di sfondo scuro per la paginazione */
+    border-top: 1px solid #404040; /* Bordo superiore per separazione dal contenuto */
+    position: fixed; /* Posizione fissa rispetto alla finestra del browser */
+    bottom: 0; /* Attacca la paginazione al fondo della finestra */
+    left: 0; /* Estende la paginazione dal bordo sinistro */
+    right: 0; /* Estende la paginazione al bordo destro */
+    z-index: 1000; /* Assicura che la paginazione sia sopra tutti gli altri elementi */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3); /* Ombra verso l'alto per separazione visiva */
+    margin: 0; /* Rimuove i margini predefiniti */
+}
+
+/* Select per il numero di elementi per pagina */
+.pagination select {
+    margin-right: 15px; /* Spazio a destra per separazione dagli altri elementi */
+    padding: 10px 15px; /* Spazio interno per confortevole selezione */
+    border: 2px solid #404040; /* Bordo scuro per il select */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    font-size: 14px; /* Dimensione del font per leggibilità */
+    background-color: #2c2c2c; /* Colore di sfondo scuro per il select */
+    color: #ffffff; /* Colore del testo bianco per contrasto */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+}
+
+.pagination select:focus {
+    outline: none; /* Rimuove l'outline predefinito del browser */
+    border-color: #007bff; /* Cambia il colore del bordo al blu quando è in focus */
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1); /* Ombra blu per indicare il focus */
+}
+
+/* Bottoni della paginazione */
+.pagination button {
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente scuro per i bottoni di paginazione */
+    color: white; /* Testo bianco per contrasto */
+    padding: 10px 18px; /* Spazio interno per area cliccabile confortevole */
+    border: none; /* Rimuove il bordo predefinito */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    margin: 0 8px; /* Spazio orizzontale tra i bottoni */
+    font-weight: 500; /* Peso del font medio per enfasi */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Ombra sottile per effetto di elevazione */
+}
+
+.pagination button:hover {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradiente blu al hover */
+    transform: translateY(-1px); /* Effetto di sollevamento leggero al passaggio del mouse */
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3); /* Ombra blu più intensa al hover */
+}
+
+/* Testo della paginazione */
+.pagination span {
+    margin: 0 15px; /* Spazio orizzontale per separazione */
+    color: #b0b0b0; /* Colore grigio chiaro per il testo informativo */
+    font-weight: 500; /* Peso del font medio per leggibilità */
+}
+
+/* ========================================
+   8. STATISTICHE E CARD
+   ======================================== */
+
+/* Griglia per le statistiche */
+.stats-grid {
+    display: grid; /* Layout a griglia per organizzare le card delle statistiche */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colonne adattive con larghezza minima di 250px */
+    gap: 10;/*25px; /* Spazio tra le card delle statistiche */
+    padding:15px; /*30px; /* Spazio interno per separazione dal bordo */
+    background: linear-gradient(135deg, #333333 0%, #404040 100%); /* Gradiente di sfondo per la griglia */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+}
+
+/* Card per le statistiche */
+.stat-card {
+    background: linear-gradient(135deg, #2c2c2c 0%, #333333 100%); /* Gradiente di sfondo per le card delle statistiche */
+    padding: 5px; /* Spazio interno per il contenuto della card */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra profonda per effetto di elevazione */
+    text-align: center; /* Centra il contenuto della card */
+    border: 1px solid #404040; /* Bordo sottile per definire i limiti della card */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Ombra più intensa al hover */
+}
+
+/* Valore della statistica */
+.stat-value {
+    font-size: 2.5em; /* Dimensione grande per enfatizzare il valore numerico */
+    font-weight: 700; /* Peso del font bold per maggiore impatto visivo */
+    color: #ffffff; /* Colore bianco per contrasto sul fondo scuro */
+    margin-bottom: 15px; /* Spazio sotto il valore per separazione dall'etichetta */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Ombra del testo per profondità */
+}
+
+/* Etichetta della statistica */
+.stat-label {
+    color: #b0b0b0; /* Colore grigio chiaro per l'etichetta descrittiva */
+    font-size: 1em; /* Dimensione standard per l'etichetta */
+    font-weight: 500; /* Peso del font medio per leggibilità */
+    text-transform: uppercase; /* Trasforma il testo in maiuscolo per enfasi */
+    letter-spacing: 0.5px; /* Spazio tra le lettere per eleganza */
+}
+
+/* ========================================
+   9. STATUS E NOTIFICHE
+   ======================================== */
+
+/* Messaggi di stato */
+.status {
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    padding: 6px 12px; /* Spazio interno per i badge di stato */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    font-size: 0.9em; /* Dimensione leggermente più piccola per i badge */
+    text-transform: uppercase; /* Trasforma il testo in maiuscolo per enfasi */
+    letter-spacing: 0.3px; /* Spazio tra le lettere per migliore leggibilità */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombra sottile per effetto di elevazione */
+}
+
+/* Status per spese */
+.status.spesa {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); /* Gradiente rosso per indicare spese */
+    color: #ffffff; /* Testo bianco per contrasto */
+}
+
+/* Status per accrediti */
+.status.accredito {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); /* Gradiente verde per indicare accrediti */
+    color: #ffffff; /* Testo bianco per contrasto */
+}
+
+/* Status per azzeramenti */
+.status.azzeramento {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); /* Gradiente giallo per indicare azzeramenti */
+    color: #232323; /* Testo scuro per contrasto sul fondo giallo */
+}
+
+/* Status per dispositivi online */
+.status.online {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); /* Gradiente verde per dispositivi online */
+    color: #ffffff; /* Testo bianco per contrasto */
+}
+
+/* Status per dispositivi offline */
+.status.offline {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); /* Gradiente rosso per dispositivi offline */
+    color: #ffffff; /* Testo bianco per contrasto */
+}
+
+/* Status per errori */
+.status.error {
+    background: linear-gradient(135deg, #fd7e14 0%, #e55a00 100%); /* Gradiente arancione per errori */
+    color: #ffffff; /* Testo bianco per contrasto */
+}
+
+/* Messaggi di notifica */
+.status-message {
+    padding: 15px; /* Spazio interno per i messaggi di notifica */
+    margin: 15px 0; /* Spazio verticale per separazione */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    text-align: center; /* Centra il testo del messaggio */
+    font-weight: 500; /* Peso del font medio per leggibilità */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Ombra sottile per effetto di elevazione */
+}
+
+/* Messaggi di successo */
+.status-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); /* Gradiente verde chiaro per successo */
+    color: #155724; /* Colore verde scuro per il testo */
+    border: 1px solid #c3e6cb; /* Bordo verde per definire i limiti */
+}
+
+/* Messaggi di errore */
+.status-error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); /* Gradiente rosso chiaro per errori */
+    color: #721c24; /* Colore rosso scuro per il testo */
+    border: 1px solid #f5c6cb; /* Bordo rosso per definire i limiti */
+}
+
+/* Messaggi quando non ci sono dati */
+.no-data {
+    text-align: center; /* Centra il messaggio */
+    padding: 50px; /* Spazio interno ampio per enfasi */
+    color: #b0b0b0; /* Colore grigio chiaro per il messaggio */
+    font-style: italic; /* Stile corsivo per indicare assenza di dati */
+    font-size: 1.1em; /* Dimensione leggermente più grande per visibilità */
+}
+
+/* Notifiche di backup */
+.backup-notice {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); /* Gradiente giallo chiaro per notifiche */
+    color: #856404; /* Colore giallo scuro per il testo */
+    padding: 15px 20px; /* Spazio interno per il contenuto */
+    border: 1px solid #ffeaa7; /* Bordo giallo per definire i limiti */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    margin-bottom: 25px; /* Spazio sotto per separazione */
+    text-align: center; /* Centra il testo della notifica */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    box-shadow: 0 2px 8px rgba(255,193,7,0.2); /* Ombra gialla per effetto di elevazione */
+}
+
+/* ========================================
+   10. ELEMENTI SPECIFICI PER SPESE
+   ======================================== */
+
+/* Stili per spese */
+.spesa {
+    color: #dc3545; /* Colore rosso per indicare spese */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+}
+
+/* Informazioni proprietario tag */
+.tag-owner-info {
+    background: linear-gradient(135deg, #333333 0%, #404040 100%); /* Gradiente di sfondo per le info del proprietario */
+    border: 1px solid #007bff; /* Bordo blu per evidenziare le informazioni */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    padding: 25px; /* Spazio interno per il contenuto */
+    margin: 25px 0; /* Spazio verticale per separazione */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra profonda per effetto di elevazione */
+}
+
+.tag-owner-info h3 {
+    color: #ffffff; /* Colore bianco per il titolo */
+    margin-top: 0; /* Rimuove il margine superiore predefinito */
+    margin-bottom: 20px; /* Spazio sotto il titolo per separazione */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    font-size: 1.3em; /* Dimensione grande per il titolo */
+    border-bottom: 2px solid #007bff; /* Bordo inferiore blu per separazione */
+    padding-bottom: 10px; /* Spazio sotto il titolo per il bordo */
+    font-size: large;
+}
+
+.owner-details p {
+    margin: 12px 0; /* Spazio verticale per separare i paragrafi */
+    color: #ffffff; /* Colore bianco per il testo */
+    font-size: 25px; /* 1.05em; /* Dimensione leggermente più grande per leggibilità */
+}
+
+.owner-details strong {
+    color: #007bff; /* Colore blu per enfatizzare le informazioni importanti */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+}
+
+/* Link UID */
+.uid-link {
+    color: #007bff; /* Colore blu per i link UID */
+    text-decoration: none; /* Rimuove la sottolineatura predefinita */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    padding: 4px 8px; /* Spazio interno per area cliccabile più grande */
+    border-radius: 4px; /* Angoli arrotondati per un look moderno */
+}
+
+.uid-link:hover {
+    color: #0056b3; /* Colore blu più scuro al hover */
+    background-color: rgba(0,123,255,0.2); /* Sfondo semi-trasparente al hover */
+    text-decoration: none; /* Mantiene l'assenza di sottolineatura */
+    transform: translateY(-1px); /* Effetto di sollevamento leggero al hover */
+}
+
+.nominativo {
+    color: #b0b0b0; /* Colore grigio chiaro per il nominativo */
+    font-size: 0.9em; /* Dimensione leggermente più piccola */
+    margin-top: 5px; /* Spazio sopra per separazione */
+    display: block; /* Rende l'elemento un blocco per occupare tutta la larghezza */
+    font-weight: 500; /* Peso del font medio per leggibilità */
+}
+
+/* ========================================
+   11. HOME PAGE E WELCOME
+   ======================================== */
+
+/* Sezione di benvenuto */
+.welcome-section {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%);
+    color: white;
+    margin-bottom: 40px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.welcome-section h1 {
+    font-size: 3em;
+    margin-bottom: 25px;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: -1px;
+}
+
+.welcome-section p {
+    font-size: 1.3em;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Griglia per le statistiche rapide */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 30px;
+}
+
+/* Card per le statistiche rapide */
+.quick-stat-card {
+    background: linear-gradient(135deg, #2c2c2c 0%, #333333 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #404040;
+}
+
+.quick-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.quick-stat-icon {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.quick-stat-value {
+    font-size: 3em;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.quick-stat-label {
+    color: #b0b0b0;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Card di navigazione */
+.nav-card {
+    cursor: pointer;
+    background: linear-gradient(135deg, #2c2c2c 0%, #333333 100%);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid #404040;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.nav-card h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.nav-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.nav-card .icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+/* ========================================
+   12. UTILITY PAGE
+   ======================================== */
+
+/* Sezioni della pagina utility */
+.utility-section {
+    background: linear-gradient(135deg, #2c2c2c 0%, #333333 100%); /* Gradiente di sfondo per le sezioni utility */
+    margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+    padding: 30px; /* Spazio interno per il contenuto della sezione */
+    border-radius: 12px; /* Angoli arrotondati per un look moderno */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Ombra per effetto di elevazione */
+    border: 1px solid #404040; /* Bordo sottile per definire i limiti della sezione */
+}
+
+.utility-section h2 {
+    color: #ffffff; /* Colore bianco per il titolo della sezione */
+    margin-top: 0; /* Rimuove il margine superiore predefinito */
+    margin-bottom: 25px; /* Spazio sotto il titolo per separazione */
+    border-bottom: 2px solid #007bff; /* Bordo inferiore blu per enfasi */
+    padding-bottom: 15px; /* Spazio sotto il bordo per separazione */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    font-size: 1.5em; /* Dimensione del font per il titolo */
+}
+
+/* Griglia per le impostazioni */
+.settings-grid {
+    display: grid; /* Layout a griglia per organizzare gli elementi delle impostazioni */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Colonne adattive con larghezza minima di 350px */
+    gap: 25px; /* Spazio tra gli elementi delle impostazioni */
+    margin-bottom: 25px; /* Spazio sotto la griglia per separazione */
+}
+
+/* Elementi delle impostazioni */
+.setting-item {
+    background: linear-gradient(135deg, #333333 0%, #404040 100%); /* Gradiente di sfondo per gli elementi */
+    padding: 20px; /* Spazio interno per il contenuto dell'elemento */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    border-left: 4px solid #007bff; /* Bordo sinistro blu per enfasi */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Ombra sottile per effetto di elevazione */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+}
+
+.setting-item:hover {
+    transform: translateY(-2px); /* Effetto di sollevamento al passaggio del mouse */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra più intensa al hover */
+}
+
+.setting-item label {
+    display: block; /* Rende l'etichetta un elemento a blocco */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    margin-bottom: 8px; /* Spazio sotto l'etichetta per separazione */
+    color: #ffffff; /* Colore bianco per l'etichetta */
+    font-size: 1.05em; /* Dimensione del font per l'etichetta */
+}
+
+.setting-item input, .setting-item select {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    padding: 12px; /* Spazio interno per confortevole inserimento */
+    border: 2px solid #404040; /* Bordo scuro per i campi di input */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    font-size: 14px; /* Dimensione del font per leggibilità */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+    background-color: #2c2c2c; /* Colore di sfondo scuro per i campi */
+    color: #ffffff; /* Colore bianco per il testo inserito */
+}
+
+.setting-item input:focus, .setting-item select:focus {
+    outline: none; /* Rimuove l'outline predefinito del browser */
+    border-color: #007bff; /* Cambia il colore del bordo al blu quando è in focus */
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1); /* Ombra blu per indicare il focus */
+}
+
+.setting-item input[type="checkbox"] {
+    width: auto; /* Larghezza automatica per le checkbox */
+    margin-right: 10px; /* Spazio a destra della checkbox per separazione dal testo */
+}
+
+/* Gruppi di bottoni */
+.button-group {
+    display: flex; /* Layout flessibile per allineare i bottoni orizzontalmente */
+    gap: 15px; /* Spazio tra i bottoni */
+    margin: 20px 0; /* Spazio sopra e sotto il gruppo di bottoni */
+}
+
+/* Gruppi di checkbox */
+.checkbox-group {
+    display: flex; /* Layout flessibile per allineare checkbox e testo */
+    align-items: center; /* Allinea verticalmente al centro */
+    gap: 10px; /* Spazio tra checkbox e testo */
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px; /* Larghezza fissa per la checkbox */
+    height: 20px; /* Altezza fissa per la checkbox */
+}
+
+/* Box informativi */
+.info-box {
+    background: linear-gradient(135deg, #e7f3ff 0%, #d1ecf1 100%); /* Gradiente chiaro per i box informativi */
+    border: 1px solid #b3d9ff; /* Bordo blu chiaro per definire i limiti */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    padding: 20px; /* Spazio interno per il contenuto informativo */
+    margin-top: 20px; /* Spazio sopra il box per separazione */
+    color: #0c5460; /* Colore del testo scuro per contrasto sul fondo chiaro */
+}
+
+.info-box h4 {
+    margin-top: 0; /* Rimuove il margine superiore predefinito */
+    color: #0066cc; /* Colore blu per il titolo del box informativo */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+}
+
+.info-box ul {
+    margin: 10px 0; /* Spazio sopra e sotto la lista */
+    padding-left: 20px; /* Spazio a sinistra per l'indentazione della lista */
+}
+
+.info-box li {
+    margin-bottom: 8px; /* Spazio sotto ogni elemento della lista */
+    color: #0c5460; /* Colore del testo scuro per contrasto sul fondo chiaro */
+    line-height: 1.5; /* Altezza della riga per migliorare la leggibilità */
+}
+
+/* Sezioni disabilitate */
+.disabled-section {
+    opacity: 0.6; /* Riduce l'opacità per indicare che la sezione è disabilitata */
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* Gradiente chiaro per sezioni disabilitate */
+    border: 1px solid #dee2e6; /* Bordo grigio chiaro per definire i limiti */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    padding: 15px; /* Spazio interno per il contenuto */
+    margin-top: 10px; /* Spazio sopra la sezione per separazione */
+}
+
+.disabled-label {
+    color: #6c757d !important; /* Colore grigio per etichette disabilitate */
+    font-weight: normal !important; /* Peso del font normale per etichette disabilitate */
+}
+
+.disabled-text {
+    color: #dc3545 !important; /* Colore rosso per testo di avviso disabilitato */
+    font-weight: bold; /* Peso del font bold per enfasi */
+}
+
+input[disabled] {
+    background-color: #e9ecef; /* Colore di sfondo grigio chiaro per input disabilitati */
+    color: #6c757d; /* Colore del testo grigio per input disabilitati */
+    cursor: not-allowed; /* Cambia il cursore per indicare che non è interattivo */
+}
+
+/* Tabella delle statistiche */
+.stats-table {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    margin-top: 20px; /* Spazio sopra la tabella per separazione */
+    border-radius: 8px; /* Angoli arrotondati per un look moderno */
+    overflow: hidden; /* Nasconde il contenuto che esce dai bordi arrotondati */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombra per effetto di elevazione */
+}
+
+.stats-table th {
+    background: linear-gradient(135deg, #232323 0%, #2c2c2c 100%); /* Gradiente scuro per le intestazioni */
+    color: white; /* Colore bianco per il testo delle intestazioni */
+    padding: 16px 20px; /* Spazio interno per le intestazioni */
+    text-align: left; /* Allinea il testo a sinistra */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    font-size: 0.95em; /* Dimensione del font per le intestazioni */
+    letter-spacing: 0.3px; /* Spaziatura tra le lettere per migliorare la leggibilità */
+    text-transform: uppercase; /* Trasforma il testo in maiuscolo */
+}
+
+.stats-table td {
+    padding: 16px 20px; /* Spazio interno per le celle */
+    border-bottom: 1px solid #404040; /* Bordo inferiore per separare le righe */
+    background-color: #2c2c2c; /* Colore di sfondo scuro per le celle */
+    color: #ffffff; /* Colore bianco per il testo delle celle */
+}
+
+.stats-table tr:nth-child(even) {
+    background-color: #333333; /* Colore di sfondo alternato per le righe pari */
+}
+
+/* ========================================
+   13. TAG OWNERS
+   ======================================== */
+
+/* Righe auto-assignate */
+.auto-assigned {
+    background: linear-gradient(135deg, #333333 0%, #404040 100%) !important; /* Gradiente scuro per righe auto-assignate */
+    border-left: 4px solid #ffc107; /* Bordo sinistro giallo per identificare le righe auto-assignate */
+}
+
+.auto-assigned:hover {
+    background: linear-gradient(135deg, #404040 0%, #505050 100%) !important; /* Gradiente più chiaro al hover */
+}
+
+.auto-assigned td {
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    color: #ffffff; /* Colore bianco per il testo */
+}
+
+/* Campi di modifica */
+.edit-field {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    padding: 12px; /* Spazio interno per confortevole inserimento */
+    border: 2px solid #404040; /* Bordo scuro per i campi di modifica */
+    border-radius: 6px; /* Angoli arrotondati per un look moderno */
+    font-size: 14px; /* Dimensione del font per leggibilità */
+    font-family: inherit; /* Eredita il font dal parent */
+    background-color: #2c2c2c; /* Colore di sfondo scuro per i campi */
+    color: #ffffff; /* Colore bianco per il testo inserito */
+    transition: all 0.3s ease; /* Transizione fluida per tutti i cambiamenti di stato */
+}
+
+.edit-field:focus {
+    outline: none; /* Rimuove l'outline predefinito del browser */
+    border-color: #007bff; /* Cambia il colore del bordo al blu quando è in focus */
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1); /* Ombra blu per indicare il focus */
+}
+
+/* Pulsanti di azione */
+.action-buttons {
+    display: flex; /* Layout flessibile per allineare i pulsanti */
+    flex-direction: column; /* Dispone i pulsanti verticalmente */
+    gap: 8px; /* Spazio tra i pulsanti */
+    align-items: center; /* Allinea i pulsanti al centro */
+}
+
+/* ========================================
+   14. ELEMENTI AGGIUNTIVI
+   ======================================== */
+
+/* Titoli di sezione */
+.section-title {
+    padding: 20px; /* Spazio interno per il titolo */
+    margin: 0; /* Rimuove i margini predefiniti */
+    color: #ffffff; /* Colore bianco per il titolo */
+    font-size: 1.5em; /* Dimensione del font per il titolo */
+    font-weight: 600; /* Peso del font semi-bold per enfasi */
+    border-bottom: 2px solid #007bff; /* Bordo inferiore blu per enfasi */
+}
+
+/* Informazioni backup */
+.backup-info {
+    padding: 0 20px; /* Spazio interno orizzontale per le informazioni backup */
+    color: #b0b0b0; /* Colore grigio chiaro per le informazioni backup */
+    font-size: 0.9em; /* Dimensione del font ridotta per le informazioni */
+    margin-bottom: 10px; /* Spazio sotto le informazioni per separazione */
+    font-style: italic; /* Stile corsivo per enfatizzare le informazioni */
+}
+
+/* ========================================
+   15. FOOTER
+   ======================================== */
+
+/* Footer della pagina */
+.footer {
+    text-align: center; /* Centra il contenuto del footer */
+    color: #b0b0b0; /* Colore grigio chiaro per il testo del footer */
+    margin-top: 40px; /* Spazio sopra il footer per separazione */
+    padding: 20px; /* Spazio interno per il contenuto del footer */
+    opacity: 0.8; /* Leggera trasparenza per effetto visivo */
+    font-size: 0.9em; /* Dimensione del font ridotta per il footer */
+}
+
+/* ========================================
+   16. RESPONSIVE DESIGN
+   ======================================== */
+
+/* Media queries per dispositivi mobili */
+@media (max-width: 768px) {
+    /* Navbar responsive */
+    .navbar-container {
+        flex-direction: column; /* Dispone gli elementi della navbar verticalmente */
+        gap: 15px; /* Spazio tra gli elementi della navbar */
+    }
+    
+    .navbar-nav {
+        flex-wrap: wrap; /* Permette il wrap degli elementi della navbar */
+        justify-content: center; /* Centra gli elementi della navbar */
+    }
+    
+    .navbar-nav li {
+        margin: 5px; /* Spazio ridotto tra gli elementi della navbar */
+    }
+    
+    /* Griglie responsive */
+    .stats-grid {
+        grid-template-columns: 1fr; /* Una sola colonna per le statistiche su mobile */
+    }
+    
+    .quick-stats {
+        grid-template-columns: 1fr; /* Una sola colonna per le statistiche rapide su mobile */
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr; /* Una sola colonna per le impostazioni su mobile */
+    }
+    
+    /* Sezione di ricerca responsive */
+    .search-section {
+        flex-direction: column; /* Dispone gli elementi di ricerca verticalmente */
+        gap: 10px; /* Spazio tra gli elementi di ricerca */
+    }
+    
+    /* Tabelle responsive */
+    .table-container {
+        margin: 10px; /* Spazio ridotto per le tabelle su mobile */
+        max-height: 300px; /* Altezza massima ridotta per le tabelle su mobile */
+    }
+} 
