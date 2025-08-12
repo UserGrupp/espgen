@@ -7,6 +7,7 @@ import { on } from "events";
 
 
 import { userLogger, logUserAction } from './middleware/logger';
+import { basicAuth } from './middleware/auth';
 import logsRouter from './routes/logs';
 import { database, SensorRecord, TagOwner } from './database';
 import { generateBaseHTML, generateSearchSection, generateSearchScript, generatePagination, generateStickyHeaderScript, generatePaginationScript, generateAutoRefreshScript, disattivaScript, checkServer } from './helpers';
@@ -19,8 +20,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path')
+// Autenticazione per tutte le rotte (inclusi asset statici e homepage)
+app.use(basicAuth);
+
 app.use(express.static(path.join(__dirname, '../public')))
-let test: boolean = false;
+let test: boolean = true;
 let server;
 if (test)
 //***** ******************TEST**********************+

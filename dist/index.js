@@ -19,6 +19,7 @@ const SCENARIO = 2; // Backup delle Statistiche (attivo)
 exports.attivaServer = true;
 const fs = require('fs');
 const logger_1 = require("./middleware/logger");
+const auth_1 = require("./middleware/auth");
 const logs_1 = __importDefault(require("./routes/logs"));
 const database_1 = require("./database");
 const helpers_1 = require("./helpers");
@@ -28,6 +29,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
+// Autenticazione per tutte le rotte (inclusi asset statici e homepage)
+app.use(auth_1.basicAuth);
 app.use(express.static(path.join(__dirname, '../public')));
 let test = true;
 let server;

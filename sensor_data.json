@@ -13446,5 +13446,45 @@
     "credito_precedente": 0.1,
     "credito_attuale": 5.1,
     "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755019513,
+    "datetime": "12-08-2025 19:25:13",
+    "credito_precedente": 5.1,
+    "credito_attuale": 4.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755019525,
+    "datetime": "12-08-2025 19:25:25",
+    "credito_precedente": 1.6,
+    "credito_attuale": 1.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755019536,
+    "datetime": "12-08-2025 19:25:36",
+    "credito_precedente": 4.8,
+    "credito_attuale": 4.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755019551,
+    "datetime": "12-08-2025 19:25:51",
+    "credito_precedente": 1.3,
+    "credito_attuale": 1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755029173,
+    "datetime": "12-08-2025 22:06:13",
+    "credito_precedente": 4.5,
+    "credito_attuale": 4.2,
+    "status": "spesa"
   }
 ]
