@@ -815,3 +815,35 @@ export function generateSearchScript(searchId: string, clearFunction: string): s
     }
   `;
 } 
+
+export function resetDatabaseScript(btnid: string, resetFunction: string): string {
+    return `
+       function ${resetFunction}() {
+          if (!confirm('⚠️ Sei sicuro di voler azzerare TUTTO il database? Questa operazione è IRREVERSIBILE!')) return;
+          const btn = document.getElementById("${btnid}");
+          btn.disabled = true;
+          btn.textContent = 'Azzero...';
+          fetch('/api/reset-db', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert('Database azzerato con successo!');
+              location.reload();
+            } else {
+              alert('Errore: ' + (data.message || 'Impossibile azzerare il database.'));
+              btn.disabled = false;
+              btn.textContent = 'Azzera Database';
+            }
+          })
+          .catch(error => {
+            alert('Errore: ' + error);
+            btn.disabled = false;
+            btn.textContent = 'Azzera Database';
+          });
+        }
+        window.${resetFunction} = ${resetFunction};
+    `
+} 

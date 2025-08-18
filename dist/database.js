@@ -1301,6 +1301,31 @@ class Database {
             });
         });
     }
+    // Elimina tutti i dati da tutte le tabelle e resetta gli autoincrementali
+    resetAllTables() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                this.db.serialize(() => {
+                    this.db.run('DELETE FROM sensor_data');
+                    this.db.run('DELETE FROM user_logs');
+                    this.db.run('DELETE FROM tag_owners');
+                    this.db.run('DELETE FROM spending_summary');
+                    this.db.run('DELETE FROM spending_monthly_stats');
+                    // Reset autoincrementali
+                    this.db.run("DELETE FROM sqlite_sequence WHERE name='sensor_data'");
+                    this.db.run("DELETE FROM sqlite_sequence WHERE name='user_logs'");
+                    this.db.run("DELETE FROM sqlite_sequence WHERE name='spending_monthly_stats'");
+                    // Non serve per tag_owners/spending_summary (no autoincrement)
+                    this.db.run('VACUUM', (err) => {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve();
+                    });
+                });
+            });
+        });
+    }
     // Chiudi connessione database
     close() {
         this.db.close();

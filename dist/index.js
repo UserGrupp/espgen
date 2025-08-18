@@ -338,7 +338,7 @@ function generateSensorDataTable(records, tagOwnersMap, pagination) {
     ${(0, helpers_1.generateSearchScript)('searchInput', 'clearSearch')}
     ${(0, helpers_1.disattivaScript)('btn-a', 'disattiva')}
     ${(0, helpers_1.checkServer)('btn-a', 'checkServer')}
-    
+    ${(0, helpers_1.resetDatabaseScript)('btn-reset-db', 'resetDatabase')}
   `;
     // Contenuto della pagina
     const content = `
@@ -346,9 +346,8 @@ function generateSensorDataTable(records, tagOwnersMap, pagination) {
     <div class="container">
         <h1>📊 Raccolta Dati</h1>
         ${(0, helpers_1.generateSearchSection)('searchInput', '🔍 Cerca per UID o nominativo proprietario...', 'clearSearch()')}
-        
-      <!--  <button class="refresh-btn" onclick="toggleAutoRefresh()">🔄 Aggiorna Dati</button> -->
-      <button id='btn-a' class="server-btn" onclick="disattiva()"> Disattiva/Attiva</button> 
+        <button id='btn-a' class="server-btn" onclick="disattiva()"> Disattiva/Attiva</button>
+        <button id='btn-reset-db' class="danger-btn" onclick="resetDatabase()">🗑️ Azzera Database</button>
         <div class="table-container">
             <table>
                 <thead>
@@ -675,6 +674,11 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
         tagOwners.forEach(owner => {
             tagOwnersMap.set(owner.uid, owner);
         });
+        // Calcola i totali GLOBALI (indipendenti dalla paginazione)
+        const globalTotalSpent = stats.reduce((sum, stat) => sum + stat.totalSpent, 0);
+        const globalTotalOperations = stats.reduce((sum, stat) => sum + stat.totalOperations, 0);
+        const globalTotalSpendingOperations = stats.reduce((sum, stat) => sum + stat.spendingOperations, 0);
+        const globalTotalAccrediti = stats.reduce((sum, stat) => sum + stat.totalAccrediti, 0);
         // Calcola la paginazione
         const total = stats.length;
         const totalPages = Math.ceil(total / limit);
@@ -687,6 +691,11 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
             limit,
             total,
             totalPages
+        }, {
+            totalSpent: globalTotalSpent,
+            totalOperations: globalTotalOperations,
+            totalSpendingOperations: globalTotalSpendingOperations,
+            totalAccrediti: globalTotalAccrediti
         });
         res.send(html);
     }
@@ -799,7 +808,7 @@ function generateSpendingDashboard(spendingData, pagination) {
                         <th>Credito Precedente</th>
                         <th>Credito Attuale</th>
                         <th>Valore Operaz.</th>
-                        <th>Status</th>
+                        <th>Operazione</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -812,7 +821,7 @@ function generateSpendingDashboard(spendingData, pagination) {
     return (0, helpers_1.generateBaseHTML)(`Dashboard Spese - UID ${spendingData.uid}`, 'spending-dashboard', content, additionalStyles, additionalScripts);
 }
 // Funzione per generare la dashboard generale delle spese
-function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination) {
+function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globalTotals) {
     const tableRows = stats.map(stat => {
         // Controlla se esiste un proprietario per questo UID
         const tagOwner = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(stat.uid);
@@ -836,10 +845,10 @@ function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination) {
       </tr>
     `;
     }).join('');
-    const totalSpent = stats.reduce((sum, stat) => sum + stat.totalSpent, 0);
-    const totalOperations = stats.reduce((sum, stat) => sum + stat.totalOperations, 0);
-    const totalSpendingOperations = stats.reduce((sum, stat) => sum + stat.spendingOperations, 0);
-    const totalAccrediti = stats.reduce((sum, stat) => sum + stat.totalAccrediti, 0);
+    const totalSpent = globalTotals ? globalTotals.totalSpent : stats.reduce((sum, stat) => sum + stat.totalSpent, 0);
+    const totalOperations = globalTotals ? globalTotals.totalOperations : stats.reduce((sum, stat) => sum + stat.totalOperations, 0);
+    const totalSpendingOperations = globalTotals ? globalTotals.totalSpendingOperations : stats.reduce((sum, stat) => sum + stat.spendingOperations, 0);
+    const totalAccrediti = globalTotals ? globalTotals.totalAccrediti : stats.reduce((sum, stat) => sum + stat.totalAccrediti, 0);
     // Stili aggiuntivi specifici per questa pagina
     const additionalStyles = ``;
     // Script aggiuntivi specifici per questa pagina
@@ -1881,5 +1890,16 @@ app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, 
             success: false,
             message: 'Errore nel recupero del proprietario'
         });
+    }
+}));
+// Endpoint per azzerare tutte le tabelle del database (e reset autoincrementali)
+app.post('/api/reset-db', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield database_1.database.resetAllTables();
+        res.json({ success: true });
+    }
+    catch (error) {
+        console.error('Errore reset database:', error);
+        res.status(500).json({ success: false, message: 'Errore nel reset del database' });
     }
 }));

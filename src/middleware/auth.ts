@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 // Autenticazione Basic HTTP per proteggere tutte le rotte
 // Usa variabili d'ambiente ADMIN_USER e ADMIN_PASSWORD, con default sicuri
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'changeme';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'esp32';
 
 export function basicAuth(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers['authorization'];

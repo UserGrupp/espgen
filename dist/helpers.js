@@ -1,7 +1,7 @@
 "use strict";
 // === FUNZIONI HELPER PER PARTI COMUNI ===
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateSearchScript = exports.checkServer = exports.disattivaScript = exports.generateSearchSection = exports.generateBaseHTML = exports.generateAutoRefreshScript = exports.generateStickyHeaderScript = exports.generatePaginationScript = exports.generatePagination = exports.generateCSSLink = exports.generateNavbar = void 0;
+exports.resetDatabaseScript = exports.generateSearchScript = exports.checkServer = exports.disattivaScript = exports.generateSearchSection = exports.generateBaseHTML = exports.generateAutoRefreshScript = exports.generateStickyHeaderScript = exports.generatePaginationScript = exports.generatePagination = exports.generateCSSLink = exports.generateNavbar = void 0;
 // Funzione per generare la navbar comune
 function generateNavbar(activePage) {
     const pages = [
@@ -803,3 +803,35 @@ function generateSearchScript(searchId, clearFunction) {
   `;
 }
 exports.generateSearchScript = generateSearchScript;
+function resetDatabaseScript(btnid, resetFunction) {
+    return `
+       function ${resetFunction}() {
+          if (!confirm('⚠️ Sei sicuro di voler azzerare TUTTO il database? Questa operazione è IRREVERSIBILE!')) return;
+          const btn = document.getElementById("${btnid}");
+          btn.disabled = true;
+          btn.textContent = 'Azzero...';
+          fetch('/api/reset-db', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert('Database azzerato con successo!');
+              location.reload();
+            } else {
+              alert('Errore: ' + (data.message || 'Impossibile azzerare il database.'));
+              btn.disabled = false;
+              btn.textContent = 'Azzera Database';
+            }
+          })
+          .catch(error => {
+            alert('Errore: ' + error);
+            btn.disabled = false;
+            btn.textContent = 'Azzera Database';
+          });
+        }
+        window.${resetFunction} = ${resetFunction};
+    `;
+}
+exports.resetDatabaseScript = resetDatabaseScript;

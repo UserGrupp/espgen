@@ -13486,5 +13486,4893 @@
     "credito_precedente": 4.5,
     "credito_attuale": 4.2,
     "status": "spesa"
+  },
+  {
+    "uid": "TEST_1_1184",
+    "timestamp": 1755030895,
+    "datetime": "12-08-2025 22:34:55",
+    "credito_precedente": 3,
+    "credito_attuale": -1.84,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_6372",
+    "timestamp": 1755030899,
+    "datetime": "12-08-2025 22:34:59",
+    "credito_precedente": 29.1,
+    "credito_attuale": 25.07,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_2175",
+    "timestamp": 1755030900,
+    "datetime": "12-08-2025 22:35:00",
+    "credito_precedente": 81.82,
+    "credito_attuale": 88.22,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_3156",
+    "timestamp": 1755030905,
+    "datetime": "12-08-2025 22:35:05",
+    "credito_precedente": 20.74,
+    "credito_attuale": 27.22,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_5001",
+    "timestamp": 1755030907,
+    "datetime": "12-08-2025 22:35:07",
+    "credito_precedente": 6.23,
+    "credito_attuale": 3.69,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_6173",
+    "timestamp": 1755030909,
+    "datetime": "12-08-2025 22:35:09",
+    "credito_precedente": 26.95,
+    "credito_attuale": 32.09,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_3788",
+    "timestamp": 1755030911,
+    "datetime": "12-08-2025 22:35:11",
+    "credito_precedente": 27.3,
+    "credito_attuale": 30.59,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_8754",
+    "timestamp": 1755030913,
+    "datetime": "12-08-2025 22:35:13",
+    "credito_precedente": 22.71,
+    "credito_attuale": 25.32,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_12_5178",
+    "timestamp": 1755030918,
+    "datetime": "12-08-2025 22:35:18",
+    "credito_precedente": 18.14,
+    "credito_attuale": 26.05,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_9423",
+    "timestamp": 1755030920,
+    "datetime": "12-08-2025 22:35:20",
+    "credito_precedente": 93.83,
+    "credito_attuale": 103.73,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_14_1843",
+    "timestamp": 1755030923,
+    "datetime": "12-08-2025 22:35:23",
+    "credito_precedente": 93.12,
+    "credito_attuale": 94.68,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_3627",
+    "timestamp": 1755030925,
+    "datetime": "12-08-2025 22:35:25",
+    "credito_precedente": 54.21,
+    "credito_attuale": 59.65,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_3271",
+    "timestamp": 1755030928,
+    "datetime": "12-08-2025 22:35:28",
+    "credito_precedente": 31.22,
+    "credito_attuale": 27.56,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_2205",
+    "timestamp": 1755030930,
+    "datetime": "12-08-2025 22:35:30",
+    "credito_precedente": 96.72,
+    "credito_attuale": 106.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_18_3249",
+    "timestamp": 1755030933,
+    "datetime": "12-08-2025 22:35:33",
+    "credito_precedente": 24.84,
+    "credito_attuale": 26.65,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_19_1433",
+    "timestamp": 1755030935,
+    "datetime": "12-08-2025 22:35:35",
+    "credito_precedente": 91.46,
+    "credito_attuale": 95.67,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_2300",
+    "timestamp": 1755030937,
+    "datetime": "12-08-2025 22:35:37",
+    "credito_precedente": 29.11,
+    "credito_attuale": 28.09,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_21_8728",
+    "timestamp": 1755030939,
+    "datetime": "12-08-2025 22:35:39",
+    "credito_precedente": 31.33,
+    "credito_attuale": 31.63,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_22_6891",
+    "timestamp": 1755030942,
+    "datetime": "12-08-2025 22:35:42",
+    "credito_precedente": 19.12,
+    "credito_attuale": 21.07,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_3390",
+    "timestamp": 1755030944,
+    "datetime": "12-08-2025 22:35:44",
+    "credito_precedente": 64.09,
+    "credito_attuale": 61.62,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_24_8589",
+    "timestamp": 1755030947,
+    "datetime": "12-08-2025 22:35:47",
+    "credito_precedente": 27.54,
+    "credito_attuale": 35.69,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_25_5822",
+    "timestamp": 1755030949,
+    "datetime": "12-08-2025 22:35:49",
+    "credito_precedente": 66.13,
+    "credito_attuale": 68.83,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_7603",
+    "timestamp": 1755030952,
+    "datetime": "12-08-2025 22:35:52",
+    "credito_precedente": 79.4,
+    "credito_attuale": 84.39,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_7523",
+    "timestamp": 1755030954,
+    "datetime": "12-08-2025 22:35:54",
+    "credito_precedente": 23.87,
+    "credito_attuale": 20.47,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_9962",
+    "timestamp": 1755030957,
+    "datetime": "12-08-2025 22:35:57",
+    "credito_precedente": 95.89,
+    "credito_attuale": 95.94,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_3396",
+    "timestamp": 1755030959,
+    "datetime": "12-08-2025 22:35:59",
+    "credito_precedente": 75.01,
+    "credito_attuale": 71.71,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_9430",
+    "timestamp": 1755030962,
+    "datetime": "12-08-2025 22:36:02",
+    "credito_precedente": 41.93,
+    "credito_attuale": 44.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_6233",
+    "timestamp": 1755030964,
+    "datetime": "12-08-2025 22:36:04",
+    "credito_precedente": 51.16,
+    "credito_attuale": 58.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_2140",
+    "timestamp": 1755030967,
+    "datetime": "12-08-2025 22:36:07",
+    "credito_precedente": 83.28,
+    "credito_attuale": 88.39,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_33_7516",
+    "timestamp": 1755030969,
+    "datetime": "12-08-2025 22:36:09",
+    "credito_precedente": 70.1,
+    "credito_attuale": 78.18,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_34_5745",
+    "timestamp": 1755030972,
+    "datetime": "12-08-2025 22:36:12",
+    "credito_precedente": 79.95,
+    "credito_attuale": 78.07,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_9844",
+    "timestamp": 1755030975,
+    "datetime": "12-08-2025 22:36:15",
+    "credito_precedente": 44.51,
+    "credito_attuale": 48.15,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_36_6461",
+    "timestamp": 1755030978,
+    "datetime": "12-08-2025 22:36:18",
+    "credito_precedente": 81.89,
+    "credito_attuale": 85.09,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_9264",
+    "timestamp": 1755030980,
+    "datetime": "12-08-2025 22:36:20",
+    "credito_precedente": 49.27,
+    "credito_attuale": 50.59,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_3858",
+    "timestamp": 1755030983,
+    "datetime": "12-08-2025 22:36:23",
+    "credito_precedente": 87.37,
+    "credito_attuale": 94.86,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_39_1746",
+    "timestamp": 1755030986,
+    "datetime": "12-08-2025 22:36:26",
+    "credito_precedente": 78.3,
+    "credito_attuale": 79.42,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_2_1571",
+    "timestamp": 1755030896,
+    "datetime": "12-08-2025 22:34:56",
+    "credito_precedente": 37.65,
+    "credito_attuale": 44.28,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_3788",
+    "timestamp": 1755030911,
+    "datetime": "12-08-2025 22:35:11",
+    "credito_precedente": 27.3,
+    "credito_attuale": 30.59,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_6908",
+    "timestamp": 1755030991,
+    "datetime": "12-08-2025 22:36:31",
+    "credito_precedente": 6.48,
+    "credito_attuale": 16.14,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_1732",
+    "timestamp": 1755030995,
+    "datetime": "12-08-2025 22:36:35",
+    "credito_precedente": 5.65,
+    "credito_attuale": 12.02,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_1645",
+    "timestamp": 1755030999,
+    "datetime": "12-08-2025 22:36:39",
+    "credito_precedente": 99.43,
+    "credito_attuale": 96.86,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_44_6240",
+    "timestamp": 1755031002,
+    "datetime": "12-08-2025 22:36:42",
+    "credito_precedente": 26.11,
+    "credito_attuale": 22.56,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_1089",
+    "timestamp": 1755031006,
+    "datetime": "12-08-2025 22:36:46",
+    "credito_precedente": 37.66,
+    "credito_attuale": 43.98,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_3110",
+    "timestamp": 1755031013,
+    "datetime": "12-08-2025 22:36:53",
+    "credito_precedente": 7.79,
+    "credito_attuale": 14.1,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_48_4165",
+    "timestamp": 1755031016,
+    "datetime": "12-08-2025 22:36:56",
+    "credito_precedente": 22.2,
+    "credito_attuale": 17.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_49_8919",
+    "timestamp": 1755031020,
+    "datetime": "12-08-2025 22:37:00",
+    "credito_precedente": 46.81,
+    "credito_attuale": 54.88,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_50_8820",
+    "timestamp": 1755031022,
+    "datetime": "12-08-2025 22:37:02",
+    "credito_precedente": 52.17,
+    "credito_attuale": 51.52,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755031024,
+    "datetime": "12-08-2025 22:37:04",
+    "credito_precedente": 4.2,
+    "credito_attuale": 3.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755031060,
+    "datetime": "12-08-2025 22:37:40",
+    "credito_precedente": 1,
+    "credito_attuale": 0.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_1571",
+    "timestamp": 1755030896,
+    "datetime": "12-08-2025 22:34:56",
+    "credito_precedente": 37.65,
+    "credito_attuale": 44.28,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_5_5120",
+    "timestamp": 1755030902,
+    "datetime": "12-08-2025 22:35:02",
+    "credito_precedente": 76.81,
+    "credito_attuale": 77.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_3788",
+    "timestamp": 1755030911,
+    "datetime": "12-08-2025 22:35:11",
+    "credito_precedente": 27.3,
+    "credito_attuale": 30.59,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_11_5151",
+    "timestamp": 1755030915,
+    "datetime": "12-08-2025 22:35:15",
+    "credito_precedente": 66,
+    "credito_attuale": 75.8,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_6908",
+    "timestamp": 1755030991,
+    "datetime": "12-08-2025 22:36:31",
+    "credito_precedente": 6.48,
+    "credito_attuale": 16.14,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_1732",
+    "timestamp": 1755030995,
+    "datetime": "12-08-2025 22:36:35",
+    "credito_precedente": 5.65,
+    "credito_attuale": 12.02,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_1645",
+    "timestamp": 1755030999,
+    "datetime": "12-08-2025 22:36:39",
+    "credito_precedente": 99.43,
+    "credito_attuale": 96.86,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_6776",
+    "timestamp": 1755033652,
+    "datetime": "12-08-2025 23:20:52",
+    "credito_precedente": 7.52,
+    "credito_attuale": 4.53,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_3429",
+    "timestamp": 1755033656,
+    "datetime": "12-08-2025 23:20:56",
+    "credito_precedente": 68.96,
+    "credito_attuale": 68.48,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_5_9728",
+    "timestamp": 1755033659,
+    "datetime": "12-08-2025 23:20:59",
+    "credito_precedente": 98.52,
+    "credito_attuale": 108.5,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_3802",
+    "timestamp": 1755033663,
+    "datetime": "12-08-2025 23:21:03",
+    "credito_precedente": 16.92,
+    "credito_attuale": 18.95,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_5323",
+    "timestamp": 1755033667,
+    "datetime": "12-08-2025 23:21:07",
+    "credito_precedente": 20.36,
+    "credito_attuale": 17.57,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_9524",
+    "timestamp": 1755033672,
+    "datetime": "12-08-2025 23:21:12",
+    "credito_precedente": 2.77,
+    "credito_attuale": 2.31,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_13_1714",
+    "timestamp": 1755033676,
+    "datetime": "12-08-2025 23:21:16",
+    "credito_precedente": 69.99,
+    "credito_attuale": 71.68,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_7417",
+    "timestamp": 1755033681,
+    "datetime": "12-08-2025 23:21:21",
+    "credito_precedente": 34.75,
+    "credito_attuale": 34.78,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_4148",
+    "timestamp": 1755033686,
+    "datetime": "12-08-2025 23:21:26",
+    "credito_precedente": 70.38,
+    "credito_attuale": 67.29,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_1524",
+    "timestamp": 1755033688,
+    "datetime": "12-08-2025 23:21:28",
+    "credito_precedente": 46.45,
+    "credito_attuale": 42.61,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_2758",
+    "timestamp": 1755033694,
+    "datetime": "12-08-2025 23:21:34",
+    "credito_precedente": 15.36,
+    "credito_attuale": 11.71,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_4097",
+    "timestamp": 1755033700,
+    "datetime": "12-08-2025 23:21:40",
+    "credito_precedente": 76.87,
+    "credito_attuale": 78.38,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_3039",
+    "timestamp": 1755033705,
+    "datetime": "12-08-2025 23:21:45",
+    "credito_precedente": 84.12,
+    "credito_attuale": 79.81,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_5463",
+    "timestamp": 1755033708,
+    "datetime": "12-08-2025 23:21:48",
+    "credito_precedente": 63.73,
+    "credito_attuale": 64.04,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_2824",
+    "timestamp": 1755033710,
+    "datetime": "12-08-2025 23:21:50",
+    "credito_precedente": 66.26,
+    "credito_attuale": 75.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_7876",
+    "timestamp": 1755033714,
+    "datetime": "12-08-2025 23:21:54",
+    "credito_precedente": 50.89,
+    "credito_attuale": 59.23,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_28_6890",
+    "timestamp": 1755033718,
+    "datetime": "12-08-2025 23:21:58",
+    "credito_precedente": 13.47,
+    "credito_attuale": 22.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_29_5277",
+    "timestamp": 1755033722,
+    "datetime": "12-08-2025 23:22:02",
+    "credito_precedente": 44.01,
+    "credito_attuale": 44.37,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_4954",
+    "timestamp": 1755033726,
+    "datetime": "12-08-2025 23:22:06",
+    "credito_precedente": 1.37,
+    "credito_attuale": 8.89,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_5574",
+    "timestamp": 1755033733,
+    "datetime": "12-08-2025 23:22:13",
+    "credito_precedente": 79.95,
+    "credito_attuale": 78.15,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_33_8212",
+    "timestamp": 1755033736,
+    "datetime": "12-08-2025 23:22:16",
+    "credito_precedente": 35.27,
+    "credito_attuale": 37.22,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_1276",
+    "timestamp": 1755033741,
+    "datetime": "12-08-2025 23:22:21",
+    "credito_precedente": 82.23,
+    "credito_attuale": 78.96,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_6814",
+    "timestamp": 1755033745,
+    "datetime": "12-08-2025 23:22:25",
+    "credito_precedente": 76.91,
+    "credito_attuale": 85.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_1821",
+    "timestamp": 1755033749,
+    "datetime": "12-08-2025 23:22:29",
+    "credito_precedente": 12.95,
+    "credito_attuale": 9.28,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_4385",
+    "timestamp": 1755033753,
+    "datetime": "12-08-2025 23:22:33",
+    "credito_precedente": 69.94,
+    "credito_attuale": 68.35,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_38_4559",
+    "timestamp": 1755033756,
+    "datetime": "12-08-2025 23:22:36",
+    "credito_precedente": 84.92,
+    "credito_attuale": 86.9,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_7845",
+    "timestamp": 1755033760,
+    "datetime": "12-08-2025 23:22:40",
+    "credito_precedente": 59.66,
+    "credito_attuale": 69.01,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_40_1286",
+    "timestamp": 1755033764,
+    "datetime": "12-08-2025 23:22:44",
+    "credito_precedente": 6.63,
+    "credito_attuale": 6.71,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_41_2424",
+    "timestamp": 1755033768,
+    "datetime": "12-08-2025 23:22:48",
+    "credito_precedente": 70.02,
+    "credito_attuale": 77.35,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_42_6416",
+    "timestamp": 1755033772,
+    "datetime": "12-08-2025 23:22:52",
+    "credito_precedente": 58.73,
+    "credito_attuale": 66.3,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_1630",
+    "timestamp": 1755033775,
+    "datetime": "12-08-2025 23:22:55",
+    "credito_precedente": 74,
+    "credito_attuale": 77.32,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_9693",
+    "timestamp": 1755033780,
+    "datetime": "12-08-2025 23:23:00",
+    "credito_precedente": 9.3,
+    "credito_attuale": 11.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_6266",
+    "timestamp": 1755033784,
+    "datetime": "12-08-2025 23:23:04",
+    "credito_precedente": 5.74,
+    "credito_attuale": 8.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_3813",
+    "timestamp": 1755033791,
+    "datetime": "12-08-2025 23:23:11",
+    "credito_precedente": 27.79,
+    "credito_attuale": 33.92,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_3380",
+    "timestamp": 1755033792,
+    "datetime": "12-08-2025 23:23:12",
+    "credito_precedente": 54.93,
+    "credito_attuale": 51.89,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_3275",
+    "timestamp": 1755033797,
+    "datetime": "12-08-2025 23:23:17",
+    "credito_precedente": 96.17,
+    "credito_attuale": 94.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_46_2936",
+    "timestamp": 1755033788,
+    "datetime": "12-08-2025 23:23:08",
+    "credito_precedente": 51.36,
+    "credito_attuale": 56.11,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_49_9691",
+    "timestamp": 1755033794,
+    "datetime": "12-08-2025 23:23:14",
+    "credito_precedente": 14.34,
+    "credito_attuale": 15.69,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_1154",
+    "timestamp": 1755034562,
+    "datetime": "12-08-2025 23:36:02",
+    "credito_precedente": 88.53,
+    "credito_attuale": 94.97,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_6046",
+    "timestamp": 1755034573,
+    "datetime": "12-08-2025 23:36:13",
+    "credito_precedente": 31.71,
+    "credito_attuale": 27.12,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_8885",
+    "timestamp": 1755034584,
+    "datetime": "12-08-2025 23:36:24",
+    "credito_precedente": 56.76,
+    "credito_attuale": 58.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_4_4893",
+    "timestamp": 1755034596,
+    "datetime": "12-08-2025 23:36:36",
+    "credito_precedente": 75.81,
+    "credito_attuale": 80.57,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_5_3677",
+    "timestamp": 1755034607,
+    "datetime": "12-08-2025 23:36:47",
+    "credito_precedente": 31.92,
+    "credito_attuale": 34.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_6_7833",
+    "timestamp": 1755034618,
+    "datetime": "12-08-2025 23:36:58",
+    "credito_precedente": 85.2,
+    "credito_attuale": 82.87,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_1330",
+    "timestamp": 1755034629,
+    "datetime": "12-08-2025 23:37:09",
+    "credito_precedente": 50.33,
+    "credito_attuale": 51.99,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_9838",
+    "timestamp": 1755034641,
+    "datetime": "12-08-2025 23:37:21",
+    "credito_precedente": 3.61,
+    "credito_attuale": 13.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_8141",
+    "timestamp": 1755034652,
+    "datetime": "12-08-2025 23:37:32",
+    "credito_precedente": 11.56,
+    "credito_attuale": 9.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_10_7032",
+    "timestamp": 1755034664,
+    "datetime": "12-08-2025 23:37:44",
+    "credito_precedente": 31.68,
+    "credito_attuale": 33.69,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_11_5577",
+    "timestamp": 1755034675,
+    "datetime": "12-08-2025 23:37:55",
+    "credito_precedente": 78.97,
+    "credito_attuale": 85.12,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_12_6541",
+    "timestamp": 1755034686,
+    "datetime": "12-08-2025 23:38:06",
+    "credito_precedente": 28.9,
+    "credito_attuale": 25.92,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_13_9442",
+    "timestamp": 1755034698,
+    "datetime": "12-08-2025 23:38:18",
+    "credito_precedente": 10.96,
+    "credito_attuale": 14.63,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_14_4648",
+    "timestamp": 1755034709,
+    "datetime": "12-08-2025 23:38:29",
+    "credito_precedente": 26.3,
+    "credito_attuale": 22.78,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_9713",
+    "timestamp": 1755034721,
+    "datetime": "12-08-2025 23:38:41",
+    "credito_precedente": 76.57,
+    "credito_attuale": 73.29,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_5784",
+    "timestamp": 1755034733,
+    "datetime": "12-08-2025 23:38:53",
+    "credito_precedente": 93.39,
+    "credito_attuale": 95.43,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_17_3025",
+    "timestamp": 1755034744,
+    "datetime": "12-08-2025 23:39:04",
+    "credito_precedente": 68.28,
+    "credito_attuale": 77.08,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_9868",
+    "timestamp": 1755034756,
+    "datetime": "12-08-2025 23:39:16",
+    "credito_precedente": 92.97,
+    "credito_attuale": 94.77,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_1759",
+    "timestamp": 1755034768,
+    "datetime": "12-08-2025 23:39:28",
+    "credito_precedente": 25.39,
+    "credito_attuale": 20.44,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_20_2351",
+    "timestamp": 1755034779,
+    "datetime": "12-08-2025 23:39:39",
+    "credito_precedente": 69.92,
+    "credito_attuale": 74.54,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_21_9530",
+    "timestamp": 1755034791,
+    "datetime": "12-08-2025 23:39:51",
+    "credito_precedente": 92.13,
+    "credito_attuale": 97.64,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_2948",
+    "timestamp": 1755034803,
+    "datetime": "12-08-2025 23:40:03",
+    "credito_precedente": 55.97,
+    "credito_attuale": 62.03,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_23_6765",
+    "timestamp": 1755034815,
+    "datetime": "12-08-2025 23:40:15",
+    "credito_precedente": 89.95,
+    "credito_attuale": 96.27,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_2902",
+    "timestamp": 1755034827,
+    "datetime": "12-08-2025 23:40:27",
+    "credito_precedente": 24.79,
+    "credito_attuale": 33.35,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_25_2673",
+    "timestamp": 1755034839,
+    "datetime": "12-08-2025 23:40:39",
+    "credito_precedente": 71.73,
+    "credito_attuale": 77.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_1387",
+    "timestamp": 1755034851,
+    "datetime": "12-08-2025 23:40:51",
+    "credito_precedente": 6.64,
+    "credito_attuale": 2.26,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_7687",
+    "timestamp": 1755034863,
+    "datetime": "12-08-2025 23:41:03",
+    "credito_precedente": 20.99,
+    "credito_attuale": 29,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_6820",
+    "timestamp": 1755034875,
+    "datetime": "12-08-2025 23:41:15",
+    "credito_precedente": 10.96,
+    "credito_attuale": 15.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_8466",
+    "timestamp": 1755034887,
+    "datetime": "12-08-2025 23:41:27",
+    "credito_precedente": 86.04,
+    "credito_attuale": 85.71,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_30_5714",
+    "timestamp": 1755034899,
+    "datetime": "12-08-2025 23:41:39",
+    "credito_precedente": 2.53,
+    "credito_attuale": 0.03,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_9244",
+    "timestamp": 1755034911,
+    "datetime": "12-08-2025 23:41:51",
+    "credito_precedente": 37.75,
+    "credito_attuale": 41.13,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_32_8246",
+    "timestamp": 1755034923,
+    "datetime": "12-08-2025 23:42:03",
+    "credito_precedente": 24.3,
+    "credito_attuale": 32.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_5595",
+    "timestamp": 1755034935,
+    "datetime": "12-08-2025 23:42:15",
+    "credito_precedente": 32.17,
+    "credito_attuale": 27.96,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_8734",
+    "timestamp": 1755034947,
+    "datetime": "12-08-2025 23:42:27",
+    "credito_precedente": 59.01,
+    "credito_attuale": 56.69,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_8486",
+    "timestamp": 1755034959,
+    "datetime": "12-08-2025 23:42:39",
+    "credito_precedente": 97.28,
+    "credito_attuale": 99.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_1115",
+    "timestamp": 1755034971,
+    "datetime": "12-08-2025 23:42:51",
+    "credito_precedente": 42.57,
+    "credito_attuale": 51.83,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_1761",
+    "timestamp": 1755034984,
+    "datetime": "12-08-2025 23:43:04",
+    "credito_precedente": 20.25,
+    "credito_attuale": 21.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_38_4664",
+    "timestamp": 1755034996,
+    "datetime": "12-08-2025 23:43:16",
+    "credito_precedente": 89.07,
+    "credito_attuale": 90.53,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_1736",
+    "timestamp": 1755035008,
+    "datetime": "12-08-2025 23:43:28",
+    "credito_precedente": 39.94,
+    "credito_attuale": 37.91,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_40_1352",
+    "timestamp": 1755035021,
+    "datetime": "12-08-2025 23:43:41",
+    "credito_precedente": 40.14,
+    "credito_attuale": 49.43,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_5632",
+    "timestamp": 1755035033,
+    "datetime": "12-08-2025 23:43:53",
+    "credito_precedente": 46.08,
+    "credito_attuale": 43.94,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_5254",
+    "timestamp": 1755035046,
+    "datetime": "12-08-2025 23:44:06",
+    "credito_precedente": 61.93,
+    "credito_attuale": 69.47,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_43_4237",
+    "timestamp": 1755035058,
+    "datetime": "12-08-2025 23:44:18",
+    "credito_precedente": 94.45,
+    "credito_attuale": 102.37,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_44_2100",
+    "timestamp": 1755035071,
+    "datetime": "12-08-2025 23:44:31",
+    "credito_precedente": 29.76,
+    "credito_attuale": 33.26,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_45_3148",
+    "timestamp": 1755035084,
+    "datetime": "12-08-2025 23:44:44",
+    "credito_precedente": 89.19,
+    "credito_attuale": 98.09,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_6430",
+    "timestamp": 1755035096,
+    "datetime": "12-08-2025 23:44:56",
+    "credito_precedente": 12.86,
+    "credito_attuale": 11.78,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_47_2656",
+    "timestamp": 1755035109,
+    "datetime": "12-08-2025 23:45:09",
+    "credito_precedente": 93.81,
+    "credito_attuale": 98.22,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_48_2143",
+    "timestamp": 1755035122,
+    "datetime": "12-08-2025 23:45:22",
+    "credito_precedente": 53.18,
+    "credito_attuale": 53.59,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_49_3585",
+    "timestamp": 1755035135,
+    "datetime": "12-08-2025 23:45:35",
+    "credito_precedente": 35.83,
+    "credito_attuale": 35.64,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_9770",
+    "timestamp": 1755035147,
+    "datetime": "12-08-2025 23:45:47",
+    "credito_precedente": 68.17,
+    "credito_attuale": 73.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_6486",
+    "timestamp": 1755036189,
+    "datetime": "13-08-2025 00:03:09",
+    "credito_precedente": 26.24,
+    "credito_attuale": 21.86,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_5238",
+    "timestamp": 1755036192,
+    "datetime": "13-08-2025 00:03:12",
+    "credito_precedente": 96.52,
+    "credito_attuale": 95.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_6080",
+    "timestamp": 1755036195,
+    "datetime": "13-08-2025 00:03:15",
+    "credito_precedente": 53.7,
+    "credito_attuale": 61.76,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_4_5852",
+    "timestamp": 1755036198,
+    "datetime": "13-08-2025 00:03:18",
+    "credito_precedente": 85.95,
+    "credito_attuale": 83.64,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_5_3852",
+    "timestamp": 1755036202,
+    "datetime": "13-08-2025 00:03:22",
+    "credito_precedente": 23.48,
+    "credito_attuale": 24.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_6_3102",
+    "timestamp": 1755036205,
+    "datetime": "13-08-2025 00:03:25",
+    "credito_precedente": 18.24,
+    "credito_attuale": 22.19,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_7_8717",
+    "timestamp": 1755036208,
+    "datetime": "13-08-2025 00:03:28",
+    "credito_precedente": 64.31,
+    "credito_attuale": 66.56,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_8_1653",
+    "timestamp": 1755036211,
+    "datetime": "13-08-2025 00:03:31",
+    "credito_precedente": 28.89,
+    "credito_attuale": 38.24,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_7394",
+    "timestamp": 1755036215,
+    "datetime": "13-08-2025 00:03:35",
+    "credito_precedente": 69.01,
+    "credito_attuale": 78.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_3699",
+    "timestamp": 1755036218,
+    "datetime": "13-08-2025 00:03:38",
+    "credito_precedente": 65.56,
+    "credito_attuale": 71.72,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_7593",
+    "timestamp": 1755036222,
+    "datetime": "13-08-2025 00:03:42",
+    "credito_precedente": 65.3,
+    "credito_attuale": 60.81,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_12_4056",
+    "timestamp": 1755036225,
+    "datetime": "13-08-2025 00:03:45",
+    "credito_precedente": 80.43,
+    "credito_attuale": 86.41,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_4204",
+    "timestamp": 1755036229,
+    "datetime": "13-08-2025 00:03:49",
+    "credito_precedente": 89.53,
+    "credito_attuale": 86.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_14_1490",
+    "timestamp": 1755036232,
+    "datetime": "13-08-2025 00:03:52",
+    "credito_precedente": 87.76,
+    "credito_attuale": 95.41,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_4330",
+    "timestamp": 1755036236,
+    "datetime": "13-08-2025 00:03:56",
+    "credito_precedente": 55.09,
+    "credito_attuale": 64.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_16_4509",
+    "timestamp": 1755036239,
+    "datetime": "13-08-2025 00:03:59",
+    "credito_precedente": 71.13,
+    "credito_attuale": 66.54,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_8417",
+    "timestamp": 1755036242,
+    "datetime": "13-08-2025 00:04:02",
+    "credito_precedente": 9.67,
+    "credito_attuale": 10.57,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_18_1108",
+    "timestamp": 1755036246,
+    "datetime": "13-08-2025 00:04:06",
+    "credito_precedente": 72.75,
+    "credito_attuale": 82.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_8437",
+    "timestamp": 1755036250,
+    "datetime": "13-08-2025 00:04:10",
+    "credito_precedente": 97.98,
+    "credito_attuale": 94.23,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_20_2056",
+    "timestamp": 1755036254,
+    "datetime": "13-08-2025 00:04:14",
+    "credito_precedente": 54.39,
+    "credito_attuale": 54.94,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_21_9165",
+    "timestamp": 1755036257,
+    "datetime": "13-08-2025 00:04:17",
+    "credito_precedente": 36.43,
+    "credito_attuale": 44.49,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_7615",
+    "timestamp": 1755036261,
+    "datetime": "13-08-2025 00:04:21",
+    "credito_precedente": 84.99,
+    "credito_attuale": 89.04,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_7224",
+    "timestamp": 1755036264,
+    "datetime": "13-08-2025 00:04:24",
+    "credito_precedente": 14.63,
+    "credito_attuale": 14.8,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_24_4997",
+    "timestamp": 1755036268,
+    "datetime": "13-08-2025 00:04:28",
+    "credito_precedente": 75.44,
+    "credito_attuale": 79.91,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_25_1294",
+    "timestamp": 1755036271,
+    "datetime": "13-08-2025 00:04:31",
+    "credito_precedente": 78.3,
+    "credito_attuale": 74.39,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_26_3759",
+    "timestamp": 1755036275,
+    "datetime": "13-08-2025 00:04:35",
+    "credito_precedente": 3.65,
+    "credito_attuale": 10.55,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_2964",
+    "timestamp": 1755036279,
+    "datetime": "13-08-2025 00:04:39",
+    "credito_precedente": 85.15,
+    "credito_attuale": 90.01,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_2648",
+    "timestamp": 1755036283,
+    "datetime": "13-08-2025 00:04:43",
+    "credito_precedente": 21.12,
+    "credito_attuale": 27.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_9118",
+    "timestamp": 1755036287,
+    "datetime": "13-08-2025 00:04:47",
+    "credito_precedente": 67.3,
+    "credito_attuale": 72.62,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_30_8406",
+    "timestamp": 1755036291,
+    "datetime": "13-08-2025 00:04:51",
+    "credito_precedente": 84.93,
+    "credito_attuale": 93.11,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_7471",
+    "timestamp": 1755036295,
+    "datetime": "13-08-2025 00:04:55",
+    "credito_precedente": 19.17,
+    "credito_attuale": 21.61,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_32_4620",
+    "timestamp": 1755036298,
+    "datetime": "13-08-2025 00:04:58",
+    "credito_precedente": 24.15,
+    "credito_attuale": 30.78,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_33_1880",
+    "timestamp": 1755036303,
+    "datetime": "13-08-2025 00:05:03",
+    "credito_precedente": 42.24,
+    "credito_attuale": 46.82,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_9816",
+    "timestamp": 1755036306,
+    "datetime": "13-08-2025 00:05:06",
+    "credito_precedente": 96.12,
+    "credito_attuale": 102.74,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_7345",
+    "timestamp": 1755036311,
+    "datetime": "13-08-2025 00:05:11",
+    "credito_precedente": 7.54,
+    "credito_attuale": 13.08,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_1753",
+    "timestamp": 1755036315,
+    "datetime": "13-08-2025 00:05:15",
+    "credito_precedente": 56.42,
+    "credito_attuale": 64.47,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_1110",
+    "timestamp": 1755036319,
+    "datetime": "13-08-2025 00:05:19",
+    "credito_precedente": 19.3,
+    "credito_attuale": 15.53,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_4239",
+    "timestamp": 1755036324,
+    "datetime": "13-08-2025 00:05:24",
+    "credito_precedente": 35.77,
+    "credito_attuale": 31.24,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_39_6744",
+    "timestamp": 1755036328,
+    "datetime": "13-08-2025 00:05:28",
+    "credito_precedente": 24.59,
+    "credito_attuale": 23.93,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_40_1703",
+    "timestamp": 1755036332,
+    "datetime": "13-08-2025 00:05:32",
+    "credito_precedente": 98.03,
+    "credito_attuale": 105,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_6633",
+    "timestamp": 1755036336,
+    "datetime": "13-08-2025 00:05:36",
+    "credito_precedente": 89.98,
+    "credito_attuale": 97.24,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_42_3246",
+    "timestamp": 1755036340,
+    "datetime": "13-08-2025 00:05:40",
+    "credito_precedente": 72.69,
+    "credito_attuale": 82.55,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_7342",
+    "timestamp": 1755036344,
+    "datetime": "13-08-2025 00:05:44",
+    "credito_precedente": 77.67,
+    "credito_attuale": 78.54,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_3968",
+    "timestamp": 1755036348,
+    "datetime": "13-08-2025 00:05:48",
+    "credito_precedente": 12.64,
+    "credito_attuale": 13.3,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_3251",
+    "timestamp": 1755036353,
+    "datetime": "13-08-2025 00:05:53",
+    "credito_precedente": 32.5,
+    "credito_attuale": 38.74,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_46_4889",
+    "timestamp": 1755036357,
+    "datetime": "13-08-2025 00:05:57",
+    "credito_precedente": 12.82,
+    "credito_attuale": 19.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_47_3970",
+    "timestamp": 1755036361,
+    "datetime": "13-08-2025 00:06:01",
+    "credito_precedente": 74.01,
+    "credito_attuale": 80.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_3495",
+    "timestamp": 1755036365,
+    "datetime": "13-08-2025 00:06:05",
+    "credito_precedente": 82.1,
+    "credito_attuale": 78.52,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_49_6538",
+    "timestamp": 1755036370,
+    "datetime": "13-08-2025 00:06:10",
+    "credito_precedente": 45.25,
+    "credito_attuale": 47.64,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_50_1272",
+    "timestamp": 1755036374,
+    "datetime": "13-08-2025 00:06:14",
+    "credito_precedente": 83.21,
+    "credito_attuale": 86.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_1_7529",
+    "timestamp": 1755037116,
+    "datetime": "13-08-2025 00:18:36",
+    "credito_precedente": 47.95,
+    "credito_attuale": 52.41,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_4754",
+    "timestamp": 1755037118,
+    "datetime": "13-08-2025 00:18:38",
+    "credito_precedente": 14.44,
+    "credito_attuale": 14.64,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_6427",
+    "timestamp": 1755037119,
+    "datetime": "13-08-2025 00:18:39",
+    "credito_precedente": 95,
+    "credito_attuale": 91.66,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_4613",
+    "timestamp": 1755037120,
+    "datetime": "13-08-2025 00:18:40",
+    "credito_precedente": 35.29,
+    "credito_attuale": 36.23,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_6680",
+    "timestamp": 1755037125,
+    "datetime": "13-08-2025 00:18:45",
+    "credito_precedente": 62.56,
+    "credito_attuale": 71.63,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_9223",
+    "timestamp": 1755037126,
+    "datetime": "13-08-2025 00:18:46",
+    "credito_precedente": 79.67,
+    "credito_attuale": 78.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_9997",
+    "timestamp": 1755037131,
+    "datetime": "13-08-2025 00:18:51",
+    "credito_precedente": 16.3,
+    "credito_attuale": 12.17,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_5973",
+    "timestamp": 1755037132,
+    "datetime": "13-08-2025 00:18:52",
+    "credito_precedente": 13.15,
+    "credito_attuale": 8.24,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_12_8328",
+    "timestamp": 1755037137,
+    "datetime": "13-08-2025 00:18:57",
+    "credito_precedente": 67.52,
+    "credito_attuale": 69.25,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_4733",
+    "timestamp": 1755037138,
+    "datetime": "13-08-2025 00:18:58",
+    "credito_precedente": 3.87,
+    "credito_attuale": 5.75,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_15_4886",
+    "timestamp": 1755037144,
+    "datetime": "13-08-2025 00:19:04",
+    "credito_precedente": 72.94,
+    "credito_attuale": 82.27,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_16_2359",
+    "timestamp": 1755037145,
+    "datetime": "13-08-2025 00:19:05",
+    "credito_precedente": 19.87,
+    "credito_attuale": 16.84,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_5652",
+    "timestamp": 1755037151,
+    "datetime": "13-08-2025 00:19:11",
+    "credito_precedente": 83.61,
+    "credito_attuale": 91.29,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_19_1646",
+    "timestamp": 1755037152,
+    "datetime": "13-08-2025 00:19:12",
+    "credito_precedente": 93.59,
+    "credito_attuale": 98.55,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_2556",
+    "timestamp": 1755037159,
+    "datetime": "13-08-2025 00:19:19",
+    "credito_precedente": 82.56,
+    "credito_attuale": 84.29,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_2949",
+    "timestamp": 1755037161,
+    "datetime": "13-08-2025 00:19:21",
+    "credito_precedente": 85.2,
+    "credito_attuale": 91.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_3246",
+    "timestamp": 1755037163,
+    "datetime": "13-08-2025 00:19:23",
+    "credito_precedente": 82.83,
+    "credito_attuale": 91.57,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_9785",
+    "timestamp": 1755037164,
+    "datetime": "13-08-2025 00:19:24",
+    "credito_precedente": 28.16,
+    "credito_attuale": 30.24,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_3311",
+    "timestamp": 1755037166,
+    "datetime": "13-08-2025 00:19:26",
+    "credito_precedente": 88.47,
+    "credito_attuale": 96.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_28_1786",
+    "timestamp": 1755037171,
+    "datetime": "13-08-2025 00:19:31",
+    "credito_precedente": 97.22,
+    "credito_attuale": 101.58,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_9406",
+    "timestamp": 1755037173,
+    "datetime": "13-08-2025 00:19:33",
+    "credito_precedente": 99.59,
+    "credito_attuale": 109.15,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_30_1897",
+    "timestamp": 1755037175,
+    "datetime": "13-08-2025 00:19:35",
+    "credito_precedente": 10.47,
+    "credito_attuale": 19.51,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_7092",
+    "timestamp": 1755037176,
+    "datetime": "13-08-2025 00:19:36",
+    "credito_precedente": 59.18,
+    "credito_attuale": 54.89,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_4862",
+    "timestamp": 1755037181,
+    "datetime": "13-08-2025 00:19:41",
+    "credito_precedente": 78.97,
+    "credito_attuale": 87.75,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_36_2486",
+    "timestamp": 1755037188,
+    "datetime": "13-08-2025 00:19:48",
+    "credito_precedente": 20.06,
+    "credito_attuale": 15.1,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_37_5470",
+    "timestamp": 1755037190,
+    "datetime": "13-08-2025 00:19:50",
+    "credito_precedente": 96.06,
+    "credito_attuale": 105.18,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_7114",
+    "timestamp": 1755037192,
+    "datetime": "13-08-2025 00:19:52",
+    "credito_precedente": 71.94,
+    "credito_attuale": 74.66,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_6337",
+    "timestamp": 1755037194,
+    "datetime": "13-08-2025 00:19:54",
+    "credito_precedente": 85.13,
+    "credito_attuale": 81.21,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_40_1410",
+    "timestamp": 1755037196,
+    "datetime": "13-08-2025 00:19:56",
+    "credito_precedente": 25.49,
+    "credito_attuale": 24.81,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_7333",
+    "timestamp": 1755037197,
+    "datetime": "13-08-2025 00:19:57",
+    "credito_precedente": 68.15,
+    "credito_attuale": 74.24,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_42_6749",
+    "timestamp": 1755037199,
+    "datetime": "13-08-2025 00:19:59",
+    "credito_precedente": 61.7,
+    "credito_attuale": 58.23,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_43_2345",
+    "timestamp": 1755037200,
+    "datetime": "13-08-2025 00:20:00",
+    "credito_precedente": 27.79,
+    "credito_attuale": 35.23,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_7696",
+    "timestamp": 1755037204,
+    "datetime": "13-08-2025 00:20:04",
+    "credito_precedente": 20.83,
+    "credito_attuale": 25.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_5294",
+    "timestamp": 1755037206,
+    "datetime": "13-08-2025 00:20:06",
+    "credito_precedente": 20.58,
+    "credito_attuale": 25.21,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_2630",
+    "timestamp": 1755037209,
+    "datetime": "13-08-2025 00:20:09",
+    "credito_precedente": 44.41,
+    "credito_attuale": 52.26,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_2903",
+    "timestamp": 1755037211,
+    "datetime": "13-08-2025 00:20:11",
+    "credito_precedente": 97.6,
+    "credito_attuale": 99.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_49_2824",
+    "timestamp": 1755037214,
+    "datetime": "13-08-2025 00:20:14",
+    "credito_precedente": 28,
+    "credito_attuale": 28.61,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_34_1745",
+    "timestamp": 1755037184,
+    "datetime": "13-08-2025 00:19:44",
+    "credito_precedente": 95.05,
+    "credito_attuale": 101.97,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_1987",
+    "timestamp": 1755037186,
+    "datetime": "13-08-2025 00:19:46",
+    "credito_precedente": 14.51,
+    "credito_attuale": 20.83,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_7053",
+    "timestamp": 1755037202,
+    "datetime": "13-08-2025 00:20:02",
+    "credito_precedente": 80.62,
+    "credito_attuale": 82.76,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_7696",
+    "timestamp": 1755037204,
+    "datetime": "13-08-2025 00:20:04",
+    "credito_precedente": 20.83,
+    "credito_attuale": 25.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_5294",
+    "timestamp": 1755037206,
+    "datetime": "13-08-2025 00:20:06",
+    "credito_precedente": 20.58,
+    "credito_attuale": 25.21,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_2630",
+    "timestamp": 1755037209,
+    "datetime": "13-08-2025 00:20:09",
+    "credito_precedente": 44.41,
+    "credito_attuale": 52.26,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_2903",
+    "timestamp": 1755037211,
+    "datetime": "13-08-2025 00:20:11",
+    "credito_precedente": 97.6,
+    "credito_attuale": 99.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_3639",
+    "timestamp": 1755037215,
+    "datetime": "13-08-2025 00:20:15",
+    "credito_precedente": 22.98,
+    "credito_attuale": 29.54,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_1_9279",
+    "timestamp": 1755038577,
+    "datetime": "13-08-2025 00:42:57",
+    "credito_precedente": 45.47,
+    "credito_attuale": 49.31,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_9389",
+    "timestamp": 1755038578,
+    "datetime": "13-08-2025 00:42:58",
+    "credito_precedente": 36.77,
+    "credito_attuale": 45.72,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_7731",
+    "timestamp": 1755038579,
+    "datetime": "13-08-2025 00:42:59",
+    "credito_precedente": 96.04,
+    "credito_attuale": 93.85,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_4_4372",
+    "timestamp": 1755038580,
+    "datetime": "13-08-2025 00:43:00",
+    "credito_precedente": 54.6,
+    "credito_attuale": 51.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_5_8303",
+    "timestamp": 1755038581,
+    "datetime": "13-08-2025 00:43:01",
+    "credito_precedente": 63.02,
+    "credito_attuale": 59.75,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_6_4011",
+    "timestamp": 1755038582,
+    "datetime": "13-08-2025 00:43:02",
+    "credito_precedente": 66.12,
+    "credito_attuale": 67.24,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_7_9621",
+    "timestamp": 1755038583,
+    "datetime": "13-08-2025 00:43:03",
+    "credito_precedente": 64.34,
+    "credito_attuale": 64.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_1103",
+    "timestamp": 1755038585,
+    "datetime": "13-08-2025 00:43:05",
+    "credito_precedente": 39.4,
+    "credito_attuale": 40.78,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_7155",
+    "timestamp": 1755038586,
+    "datetime": "13-08-2025 00:43:06",
+    "credito_precedente": 81.34,
+    "credito_attuale": 78.53,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_1268",
+    "timestamp": 1755038587,
+    "datetime": "13-08-2025 00:43:07",
+    "credito_precedente": 79.3,
+    "credito_attuale": 89.26,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_11_7679",
+    "timestamp": 1755038588,
+    "datetime": "13-08-2025 00:43:08",
+    "credito_precedente": 7.71,
+    "credito_attuale": 13.03,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_12_8781",
+    "timestamp": 1755038589,
+    "datetime": "13-08-2025 00:43:09",
+    "credito_precedente": 10.74,
+    "credito_attuale": 18.87,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_4024",
+    "timestamp": 1755038590,
+    "datetime": "13-08-2025 00:43:10",
+    "credito_precedente": 33.06,
+    "credito_attuale": 35.6,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_14_2119",
+    "timestamp": 1755038591,
+    "datetime": "13-08-2025 00:43:11",
+    "credito_precedente": 99.64,
+    "credito_attuale": 106.85,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_15_9740",
+    "timestamp": 1755038592,
+    "datetime": "13-08-2025 00:43:12",
+    "credito_precedente": 31.84,
+    "credito_attuale": 27.26,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_16_7719",
+    "timestamp": 1755038593,
+    "datetime": "13-08-2025 00:43:13",
+    "credito_precedente": 77.92,
+    "credito_attuale": 79.02,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_9259",
+    "timestamp": 1755038594,
+    "datetime": "13-08-2025 00:43:14",
+    "credito_precedente": 9.85,
+    "credito_attuale": 8.12,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_5722",
+    "timestamp": 1755038595,
+    "datetime": "13-08-2025 00:43:15",
+    "credito_precedente": 18.35,
+    "credito_attuale": 27.14,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_19_7879",
+    "timestamp": 1755038596,
+    "datetime": "13-08-2025 00:43:16",
+    "credito_precedente": 77.38,
+    "credito_attuale": 85.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_9428",
+    "timestamp": 1755038597,
+    "datetime": "13-08-2025 00:43:17",
+    "credito_precedente": 48.67,
+    "credito_attuale": 45.33,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_21_1948",
+    "timestamp": 1755038598,
+    "datetime": "13-08-2025 00:43:18",
+    "credito_precedente": 49.4,
+    "credito_attuale": 56.61,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_4629",
+    "timestamp": 1755038599,
+    "datetime": "13-08-2025 00:43:19",
+    "credito_precedente": 8.51,
+    "credito_attuale": 13.07,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_8150",
+    "timestamp": 1755038600,
+    "datetime": "13-08-2025 00:43:20",
+    "credito_precedente": 10.89,
+    "credito_attuale": 9.88,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_9109",
+    "timestamp": 1755038601,
+    "datetime": "13-08-2025 00:43:21",
+    "credito_precedente": 51.29,
+    "credito_attuale": 54.74,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_2356",
+    "timestamp": 1755038602,
+    "datetime": "13-08-2025 00:43:22",
+    "credito_precedente": 53.26,
+    "credito_attuale": 63.12,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_26_8267",
+    "timestamp": 1755038603,
+    "datetime": "13-08-2025 00:43:23",
+    "credito_precedente": 90.48,
+    "credito_attuale": 99.81,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_5887",
+    "timestamp": 1755038604,
+    "datetime": "13-08-2025 00:43:24",
+    "credito_precedente": 22.88,
+    "credito_attuale": 21.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_6424",
+    "timestamp": 1755038605,
+    "datetime": "13-08-2025 00:43:25",
+    "credito_precedente": 29.89,
+    "credito_attuale": 39.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_29_9815",
+    "timestamp": 1755038607,
+    "datetime": "13-08-2025 00:43:27",
+    "credito_precedente": 15.85,
+    "credito_attuale": 16.84,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_4767",
+    "timestamp": 1755038608,
+    "datetime": "13-08-2025 00:43:28",
+    "credito_precedente": 3.7,
+    "credito_attuale": 13.26,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_4470",
+    "timestamp": 1755038609,
+    "datetime": "13-08-2025 00:43:29",
+    "credito_precedente": 2.75,
+    "credito_attuale": 2.54,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_32_6803",
+    "timestamp": 1755038610,
+    "datetime": "13-08-2025 00:43:30",
+    "credito_precedente": 83.5,
+    "credito_attuale": 92.15,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_8374",
+    "timestamp": 1755038611,
+    "datetime": "13-08-2025 00:43:31",
+    "credito_precedente": 23.15,
+    "credito_attuale": 27.16,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_34_3397",
+    "timestamp": 1755038612,
+    "datetime": "13-08-2025 00:43:32",
+    "credito_precedente": 21.4,
+    "credito_attuale": 27,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_7295",
+    "timestamp": 1755038613,
+    "datetime": "13-08-2025 00:43:33",
+    "credito_precedente": 4.94,
+    "credito_attuale": 3.85,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_36_8815",
+    "timestamp": 1755038614,
+    "datetime": "13-08-2025 00:43:34",
+    "credito_precedente": 48.79,
+    "credito_attuale": 55.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_9152",
+    "timestamp": 1755038615,
+    "datetime": "13-08-2025 00:43:35",
+    "credito_precedente": 31,
+    "credito_attuale": 29.73,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_8584",
+    "timestamp": 1755038616,
+    "datetime": "13-08-2025 00:43:36",
+    "credito_precedente": 39.31,
+    "credito_attuale": 40.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_1332",
+    "timestamp": 1755038617,
+    "datetime": "13-08-2025 00:43:37",
+    "credito_precedente": 57.39,
+    "credito_attuale": 64.64,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_40_6298",
+    "timestamp": 1755038618,
+    "datetime": "13-08-2025 00:43:38",
+    "credito_precedente": 76.23,
+    "credito_attuale": 79.68,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_41_9954",
+    "timestamp": 1755038619,
+    "datetime": "13-08-2025 00:43:39",
+    "credito_precedente": 53.24,
+    "credito_attuale": 52.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_42_7322",
+    "timestamp": 1755038620,
+    "datetime": "13-08-2025 00:43:40",
+    "credito_precedente": 13.42,
+    "credito_attuale": 9.39,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_7797",
+    "timestamp": 1755038621,
+    "datetime": "13-08-2025 00:43:41",
+    "credito_precedente": 75.3,
+    "credito_attuale": 78.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_7923",
+    "timestamp": 1755038622,
+    "datetime": "13-08-2025 00:43:42",
+    "credito_precedente": 32.37,
+    "credito_attuale": 40.05,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_2603",
+    "timestamp": 1755038623,
+    "datetime": "13-08-2025 00:43:43",
+    "credito_precedente": 13.7,
+    "credito_attuale": 15.09,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_3394",
+    "timestamp": 1755038624,
+    "datetime": "13-08-2025 00:43:44",
+    "credito_precedente": 30.08,
+    "credito_attuale": 27.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_47_8267",
+    "timestamp": 1755038625,
+    "datetime": "13-08-2025 00:43:45",
+    "credito_precedente": 66.7,
+    "credito_attuale": 62.68,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_6985",
+    "timestamp": 1755038626,
+    "datetime": "13-08-2025 00:43:46",
+    "credito_precedente": 4.88,
+    "credito_attuale": 7.11,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_49_9521",
+    "timestamp": 1755038627,
+    "datetime": "13-08-2025 00:43:47",
+    "credito_precedente": 32.48,
+    "credito_attuale": 31.55,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_2510",
+    "timestamp": 1755038628,
+    "datetime": "13-08-2025 00:43:48",
+    "credito_precedente": 86.01,
+    "credito_attuale": 93.31,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_8309",
+    "timestamp": 1755039092,
+    "datetime": "13-08-2025 00:51:32",
+    "credito_precedente": 75.01,
+    "credito_attuale": 74.68,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_2_3748",
+    "timestamp": 1755039093,
+    "datetime": "13-08-2025 00:51:33",
+    "credito_precedente": 38.7,
+    "credito_attuale": 48.32,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_3_7758",
+    "timestamp": 1755039094,
+    "datetime": "13-08-2025 00:51:34",
+    "credito_precedente": 63.68,
+    "credito_attuale": 71.83,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_5643",
+    "timestamp": 1755039095,
+    "datetime": "13-08-2025 00:51:35",
+    "credito_precedente": 52.81,
+    "credito_attuale": 57.86,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_5_5310",
+    "timestamp": 1755039097,
+    "datetime": "13-08-2025 00:51:37",
+    "credito_precedente": 11.19,
+    "credito_attuale": 17.28,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_5511",
+    "timestamp": 1755039098,
+    "datetime": "13-08-2025 00:51:38",
+    "credito_precedente": 68.15,
+    "credito_attuale": 63.83,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_7507",
+    "timestamp": 1755039099,
+    "datetime": "13-08-2025 00:51:39",
+    "credito_precedente": 49.72,
+    "credito_attuale": 45.31,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_2463",
+    "timestamp": 1755039100,
+    "datetime": "13-08-2025 00:51:40",
+    "credito_precedente": 23.82,
+    "credito_attuale": 23.77,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_8776",
+    "timestamp": 1755039101,
+    "datetime": "13-08-2025 00:51:41",
+    "credito_precedente": 39.58,
+    "credito_attuale": 45.57,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_8274",
+    "timestamp": 1755039102,
+    "datetime": "13-08-2025 00:51:42",
+    "credito_precedente": 45.04,
+    "credito_attuale": 40.39,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_3506",
+    "timestamp": 1755039103,
+    "datetime": "13-08-2025 00:51:43",
+    "credito_precedente": 30.16,
+    "credito_attuale": 39.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_12_4457",
+    "timestamp": 1755039104,
+    "datetime": "13-08-2025 00:51:44",
+    "credito_precedente": 78.08,
+    "credito_attuale": 78.39,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_13_3826",
+    "timestamp": 1755039105,
+    "datetime": "13-08-2025 00:51:45",
+    "credito_precedente": 79.37,
+    "credito_attuale": 85.34,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_14_5013",
+    "timestamp": 1755039106,
+    "datetime": "13-08-2025 00:51:46",
+    "credito_precedente": 70.85,
+    "credito_attuale": 79.35,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_8449",
+    "timestamp": 1755039107,
+    "datetime": "13-08-2025 00:51:47",
+    "credito_precedente": 84.89,
+    "credito_attuale": 85.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_1632",
+    "timestamp": 1755039108,
+    "datetime": "13-08-2025 00:51:48",
+    "credito_precedente": 65.03,
+    "credito_attuale": 74.14,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_17_2815",
+    "timestamp": 1755039109,
+    "datetime": "13-08-2025 00:51:49",
+    "credito_precedente": 64.25,
+    "credito_attuale": 63.37,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_3616",
+    "timestamp": 1755039110,
+    "datetime": "13-08-2025 00:51:50",
+    "credito_precedente": 7.66,
+    "credito_attuale": 9.43,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_7031",
+    "timestamp": 1755039111,
+    "datetime": "13-08-2025 00:51:51",
+    "credito_precedente": 71.53,
+    "credito_attuale": 79.24,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_6164",
+    "timestamp": 1755039112,
+    "datetime": "13-08-2025 00:51:52",
+    "credito_precedente": 32.62,
+    "credito_attuale": 35.54,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_21_5272",
+    "timestamp": 1755039113,
+    "datetime": "13-08-2025 00:51:53",
+    "credito_precedente": 82.03,
+    "credito_attuale": 77.06,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_22_3232",
+    "timestamp": 1755039114,
+    "datetime": "13-08-2025 00:51:54",
+    "credito_precedente": 90.23,
+    "credito_attuale": 92.48,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_9228",
+    "timestamp": 1755039115,
+    "datetime": "13-08-2025 00:51:55",
+    "credito_precedente": 78.66,
+    "credito_attuale": 84.72,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_7800",
+    "timestamp": 1755039116,
+    "datetime": "13-08-2025 00:51:56",
+    "credito_precedente": 52.81,
+    "credito_attuale": 55.28,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_8998",
+    "timestamp": 1755039117,
+    "datetime": "13-08-2025 00:51:57",
+    "credito_precedente": 84.75,
+    "credito_attuale": 90.35,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_7111",
+    "timestamp": 1755039119,
+    "datetime": "13-08-2025 00:51:59",
+    "credito_precedente": 94.79,
+    "credito_attuale": 98.48,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_3868",
+    "timestamp": 1755039120,
+    "datetime": "13-08-2025 00:52:00",
+    "credito_precedente": 17.06,
+    "credito_attuale": 16.67,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_8915",
+    "timestamp": 1755039121,
+    "datetime": "13-08-2025 00:52:01",
+    "credito_precedente": 4.83,
+    "credito_attuale": 10.13,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_7124",
+    "timestamp": 1755039122,
+    "datetime": "13-08-2025 00:52:02",
+    "credito_precedente": 16.19,
+    "credito_attuale": 17.62,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_4442",
+    "timestamp": 1755039123,
+    "datetime": "13-08-2025 00:52:03",
+    "credito_precedente": 82.18,
+    "credito_attuale": 84.58,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_1746",
+    "timestamp": 1755039124,
+    "datetime": "13-08-2025 00:52:04",
+    "credito_precedente": 33.58,
+    "credito_attuale": 39.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_3542",
+    "timestamp": 1755039125,
+    "datetime": "13-08-2025 00:52:05",
+    "credito_precedente": 51.4,
+    "credito_attuale": 54.18,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_6234",
+    "timestamp": 1755039126,
+    "datetime": "13-08-2025 00:52:06",
+    "credito_precedente": 13.71,
+    "credito_attuale": 10.19,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_34_6992",
+    "timestamp": 1755039127,
+    "datetime": "13-08-2025 00:52:07",
+    "credito_precedente": 75.98,
+    "credito_attuale": 79.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_3671",
+    "timestamp": 1755039128,
+    "datetime": "13-08-2025 00:52:08",
+    "credito_precedente": 4.38,
+    "credito_attuale": 3.94,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_36_4333",
+    "timestamp": 1755039129,
+    "datetime": "13-08-2025 00:52:09",
+    "credito_precedente": 92.31,
+    "credito_attuale": 92.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_37_2088",
+    "timestamp": 1755039130,
+    "datetime": "13-08-2025 00:52:10",
+    "credito_precedente": 72.8,
+    "credito_attuale": 71.91,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_9739",
+    "timestamp": 1755039131,
+    "datetime": "13-08-2025 00:52:11",
+    "credito_precedente": 11,
+    "credito_attuale": 11.25,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_39_2695",
+    "timestamp": 1755039132,
+    "datetime": "13-08-2025 00:52:12",
+    "credito_precedente": 35.83,
+    "credito_attuale": 34.62,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_40_8109",
+    "timestamp": 1755039133,
+    "datetime": "13-08-2025 00:52:13",
+    "credito_precedente": 3.53,
+    "credito_attuale": 13.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_7441",
+    "timestamp": 1755039134,
+    "datetime": "13-08-2025 00:52:14",
+    "credito_precedente": 71.24,
+    "credito_attuale": 71.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_4096",
+    "timestamp": 1755039135,
+    "datetime": "13-08-2025 00:52:15",
+    "credito_precedente": 26.21,
+    "credito_attuale": 33.39,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_43_1613",
+    "timestamp": 1755039136,
+    "datetime": "13-08-2025 00:52:16",
+    "credito_precedente": 93.21,
+    "credito_attuale": 95.26,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_44_4240",
+    "timestamp": 1755039137,
+    "datetime": "13-08-2025 00:52:17",
+    "credito_precedente": 59.28,
+    "credito_attuale": 64.71,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_45_2339",
+    "timestamp": 1755039138,
+    "datetime": "13-08-2025 00:52:18",
+    "credito_precedente": 2.86,
+    "credito_attuale": 8.18,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_46_2667",
+    "timestamp": 1755039139,
+    "datetime": "13-08-2025 00:52:19",
+    "credito_precedente": 15.71,
+    "credito_attuale": 17.73,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_47_4337",
+    "timestamp": 1755039140,
+    "datetime": "13-08-2025 00:52:20",
+    "credito_precedente": 40.39,
+    "credito_attuale": 49.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_6931",
+    "timestamp": 1755039142,
+    "datetime": "13-08-2025 00:52:22",
+    "credito_precedente": 67.77,
+    "credito_attuale": 71.1,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_49_6899",
+    "timestamp": 1755039143,
+    "datetime": "13-08-2025 00:52:23",
+    "credito_precedente": 14.96,
+    "credito_attuale": 22.78,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_50_9723",
+    "timestamp": 1755039144,
+    "datetime": "13-08-2025 00:52:24",
+    "credito_precedente": 40.07,
+    "credito_attuale": 39.91,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_9_3289",
+    "timestamp": 1755039330,
+    "datetime": "13-08-2025 00:55:30",
+    "credito_precedente": 80.68,
+    "credito_attuale": 78.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_5259",
+    "timestamp": 1755039331,
+    "datetime": "13-08-2025 00:55:31",
+    "credito_precedente": 27.91,
+    "credito_attuale": 36.13,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_1744",
+    "timestamp": 1755039332,
+    "datetime": "13-08-2025 00:55:32",
+    "credito_precedente": 67.72,
+    "credito_attuale": 63.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_12_9399",
+    "timestamp": 1755039333,
+    "datetime": "13-08-2025 00:55:33",
+    "credito_precedente": 97.41,
+    "credito_attuale": 97.58,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_2000",
+    "timestamp": 1755039334,
+    "datetime": "13-08-2025 00:55:34",
+    "credito_precedente": 80.21,
+    "credito_attuale": 89.11,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_14_5190",
+    "timestamp": 1755039335,
+    "datetime": "13-08-2025 00:55:35",
+    "credito_precedente": 85.21,
+    "credito_attuale": 89.87,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_3731",
+    "timestamp": 1755039336,
+    "datetime": "13-08-2025 00:55:36",
+    "credito_precedente": 67.07,
+    "credito_attuale": 73.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_3463",
+    "timestamp": 1755039337,
+    "datetime": "13-08-2025 00:55:37",
+    "credito_precedente": 59.79,
+    "credito_attuale": 69.62,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_7319",
+    "timestamp": 1755039338,
+    "datetime": "13-08-2025 00:55:38",
+    "credito_precedente": 71.31,
+    "credito_attuale": 69.48,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_18_3106",
+    "timestamp": 1755039339,
+    "datetime": "13-08-2025 00:55:39",
+    "credito_precedente": 55.65,
+    "credito_attuale": 64.63,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_19_6181",
+    "timestamp": 1755039340,
+    "datetime": "13-08-2025 00:55:40",
+    "credito_precedente": 50.02,
+    "credito_attuale": 47.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_2468",
+    "timestamp": 1755039341,
+    "datetime": "13-08-2025 00:55:41",
+    "credito_precedente": 36.39,
+    "credito_attuale": 35.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_21_2081",
+    "timestamp": 1755039343,
+    "datetime": "13-08-2025 00:55:43",
+    "credito_precedente": 45.74,
+    "credito_attuale": 42.81,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_1556",
+    "timestamp": 1755039344,
+    "datetime": "13-08-2025 00:55:44",
+    "credito_precedente": 55.3,
+    "credito_attuale": 62.77,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_23_5936",
+    "timestamp": 1755039345,
+    "datetime": "13-08-2025 00:55:45",
+    "credito_precedente": 81.87,
+    "credito_attuale": 90.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_24_9883",
+    "timestamp": 1755039346,
+    "datetime": "13-08-2025 00:55:46",
+    "credito_precedente": 95.83,
+    "credito_attuale": 105.42,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_8966",
+    "timestamp": 1755039347,
+    "datetime": "13-08-2025 00:55:47",
+    "credito_precedente": 34.44,
+    "credito_attuale": 44.25,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_6441",
+    "timestamp": 1755039348,
+    "datetime": "13-08-2025 00:55:48",
+    "credito_precedente": 13.91,
+    "credito_attuale": 14.41,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_27_1522",
+    "timestamp": 1755039349,
+    "datetime": "13-08-2025 00:55:49",
+    "credito_precedente": 99.08,
+    "credito_attuale": 100.38,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_28_8622",
+    "timestamp": 1755039350,
+    "datetime": "13-08-2025 00:55:50",
+    "credito_precedente": 8.35,
+    "credito_attuale": 16.51,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_2764",
+    "timestamp": 1755039351,
+    "datetime": "13-08-2025 00:55:51",
+    "credito_precedente": 51.45,
+    "credito_attuale": 47.91,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_8869",
+    "timestamp": 1755039352,
+    "datetime": "13-08-2025 00:55:52",
+    "credito_precedente": 37.51,
+    "credito_attuale": 39,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_4859",
+    "timestamp": 1755039353,
+    "datetime": "13-08-2025 00:55:53",
+    "credito_precedente": 3.66,
+    "credito_attuale": 6.94,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_7575",
+    "timestamp": 1755039354,
+    "datetime": "13-08-2025 00:55:54",
+    "credito_precedente": 36.87,
+    "credito_attuale": 38.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_8443",
+    "timestamp": 1755039355,
+    "datetime": "13-08-2025 00:55:55",
+    "credito_precedente": 14.07,
+    "credito_attuale": 15.02,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_6926",
+    "timestamp": 1755039356,
+    "datetime": "13-08-2025 00:55:56",
+    "credito_precedente": 13.51,
+    "credito_attuale": 12.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_35_6715",
+    "timestamp": 1755039357,
+    "datetime": "13-08-2025 00:55:57",
+    "credito_precedente": 35.51,
+    "credito_attuale": 30.55,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_36_8204",
+    "timestamp": 1755039358,
+    "datetime": "13-08-2025 00:55:58",
+    "credito_precedente": 80.04,
+    "credito_attuale": 82.66,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_37_3120",
+    "timestamp": 1755039359,
+    "datetime": "13-08-2025 00:55:59",
+    "credito_precedente": 28.67,
+    "credito_attuale": 38.12,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_38_4739",
+    "timestamp": 1755039360,
+    "datetime": "13-08-2025 00:56:00",
+    "credito_precedente": 86.76,
+    "credito_attuale": 85.71,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_39_8147",
+    "timestamp": 1755039361,
+    "datetime": "13-08-2025 00:56:01",
+    "credito_precedente": 75.62,
+    "credito_attuale": 84.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_40_4843",
+    "timestamp": 1755039362,
+    "datetime": "13-08-2025 00:56:02",
+    "credito_precedente": 54.47,
+    "credito_attuale": 57.07,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_41_1453",
+    "timestamp": 1755039363,
+    "datetime": "13-08-2025 00:56:03",
+    "credito_precedente": 92.78,
+    "credito_attuale": 93.76,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_42_5240",
+    "timestamp": 1755039364,
+    "datetime": "13-08-2025 00:56:04",
+    "credito_precedente": 71.54,
+    "credito_attuale": 72.46,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_4312",
+    "timestamp": 1755039365,
+    "datetime": "13-08-2025 00:56:05",
+    "credito_precedente": 45.86,
+    "credito_attuale": 45.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_9615",
+    "timestamp": 1755039367,
+    "datetime": "13-08-2025 00:56:07",
+    "credito_precedente": 5.91,
+    "credito_attuale": 2.67,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_45_2809",
+    "timestamp": 1755039368,
+    "datetime": "13-08-2025 00:56:08",
+    "credito_precedente": 14.11,
+    "credito_attuale": 18.82,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_46_6920",
+    "timestamp": 1755039369,
+    "datetime": "13-08-2025 00:56:09",
+    "credito_precedente": 34.61,
+    "credito_attuale": 39.86,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_6963",
+    "timestamp": 1755039370,
+    "datetime": "13-08-2025 00:56:10",
+    "credito_precedente": 70.3,
+    "credito_attuale": 67.68,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_48_9587",
+    "timestamp": 1755039371,
+    "datetime": "13-08-2025 00:56:11",
+    "credito_precedente": 81.28,
+    "credito_attuale": 87.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_49_2818",
+    "timestamp": 1755039372,
+    "datetime": "13-08-2025 00:56:12",
+    "credito_precedente": 93.41,
+    "credito_attuale": 90.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_8016",
+    "timestamp": 1755039373,
+    "datetime": "13-08-2025 00:56:13",
+    "credito_precedente": 82.96,
+    "credito_attuale": 84.7,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_8864",
+    "timestamp": 1755039322,
+    "datetime": "13-08-2025 00:55:22",
+    "credito_precedente": 20.4,
+    "credito_attuale": 24.63,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_7848",
+    "timestamp": 1755039323,
+    "datetime": "13-08-2025 00:55:23",
+    "credito_precedente": 91.99,
+    "credito_attuale": 97.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_7383",
+    "timestamp": 1755039324,
+    "datetime": "13-08-2025 00:55:24",
+    "credito_precedente": 43.48,
+    "credito_attuale": 45.69,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_3346",
+    "timestamp": 1755039325,
+    "datetime": "13-08-2025 00:55:25",
+    "credito_precedente": 21.14,
+    "credito_attuale": 18.16,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_5_2860",
+    "timestamp": 1755039326,
+    "datetime": "13-08-2025 00:55:26",
+    "credito_precedente": 85.92,
+    "credito_attuale": 83.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_6173",
+    "timestamp": 1755039327,
+    "datetime": "13-08-2025 00:55:27",
+    "credito_precedente": 84.04,
+    "credito_attuale": 81.01,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_5151",
+    "timestamp": 1755039328,
+    "datetime": "13-08-2025 00:55:28",
+    "credito_precedente": 22.66,
+    "credito_attuale": 20.12,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_3459",
+    "timestamp": 1755039329,
+    "datetime": "13-08-2025 00:55:29",
+    "credito_precedente": 42.08,
+    "credito_attuale": 37.19,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755107442,
+    "datetime": "13-08-2025 19:50:42",
+    "credito_precedente": 0.6,
+    "credito_attuale": 0.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755107471,
+    "datetime": "13-08-2025 19:51:11",
+    "credito_precedente": 3.6,
+    "credito_attuale": 3.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755109457,
+    "datetime": "13-08-2025 20:24:17",
+    "credito_precedente": 0.3,
+    "credito_attuale": 0,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755109466,
+    "datetime": "13-08-2025 20:24:26",
+    "credito_precedente": 3.3,
+    "credito_attuale": 3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755109484,
+    "datetime": "13-08-2025 20:24:44",
+    "credito_precedente": 3,
+    "credito_attuale": 2.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755109508,
+    "datetime": "13-08-2025 20:25:08",
+    "credito_precedente": 2.7,
+    "credito_attuale": 2.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755111722,
+    "datetime": "13-08-2025 21:02:02",
+    "credito_precedente": 2.4,
+    "credito_attuale": 2.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755113622,
+    "datetime": "13-08-2025 21:33:42",
+    "credito_precedente": 5,
+    "credito_attuale": 4.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755113654,
+    "datetime": "13-08-2025 21:34:14",
+    "credito_precedente": 2.1,
+    "credito_attuale": 1.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755113098,
+    "datetime": "13-08-2025 21:24:58",
+    "credito_precedente": 0,
+    "credito_attuale": 5,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755113734,
+    "datetime": "13-08-2025 21:35:34",
+    "credito_precedente": 4.7,
+    "credito_attuale": 4.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755113743,
+    "datetime": "13-08-2025 21:35:43",
+    "credito_precedente": 1.8,
+    "credito_attuale": 1.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755116072,
+    "datetime": "13-08-2025 22:14:32",
+    "credito_precedente": 1.5,
+    "credito_attuale": 1.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755116084,
+    "datetime": "13-08-2025 22:14:44",
+    "credito_precedente": 1.2,
+    "credito_attuale": 0.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755116129,
+    "datetime": "13-08-2025 22:15:29",
+    "credito_precedente": 0.9,
+    "credito_attuale": 0.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755113846,
+    "datetime": "13-08-2025 21:37:26",
+    "credito_precedente": 4.4,
+    "credito_attuale": 4.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755113900,
+    "datetime": "13-08-2025 21:38:20",
+    "credito_precedente": 4.1,
+    "credito_attuale": 3.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_1_7045",
+    "timestamp": 1755114390,
+    "datetime": "13-08-2025 21:46:30",
+    "credito_precedente": 23.75,
+    "credito_attuale": 32.59,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_1291",
+    "timestamp": 1755114391,
+    "datetime": "13-08-2025 21:46:31",
+    "credito_precedente": 54.96,
+    "credito_attuale": 62.25,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_2050",
+    "timestamp": 1755114392,
+    "datetime": "13-08-2025 21:46:32",
+    "credito_precedente": 25.9,
+    "credito_attuale": 33.45,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_8404",
+    "timestamp": 1755114394,
+    "datetime": "13-08-2025 21:46:34",
+    "credito_precedente": 74.87,
+    "credito_attuale": 84.47,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_5_6603",
+    "timestamp": 1755114395,
+    "datetime": "13-08-2025 21:46:35",
+    "credito_precedente": 63.11,
+    "credito_attuale": 68.04,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_7929",
+    "timestamp": 1755114396,
+    "datetime": "13-08-2025 21:46:36",
+    "credito_precedente": 29.99,
+    "credito_attuale": 33.37,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_7_3921",
+    "timestamp": 1755114397,
+    "datetime": "13-08-2025 21:46:37",
+    "credito_precedente": 39.06,
+    "credito_attuale": 36.34,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_8_6779",
+    "timestamp": 1755114398,
+    "datetime": "13-08-2025 21:46:38",
+    "credito_precedente": 77.01,
+    "credito_attuale": 85.66,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_2147",
+    "timestamp": 1755114399,
+    "datetime": "13-08-2025 21:46:39",
+    "credito_precedente": 55.3,
+    "credito_attuale": 52.53,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_5926",
+    "timestamp": 1755114400,
+    "datetime": "13-08-2025 21:46:40",
+    "credito_precedente": 30.09,
+    "credito_attuale": 25.17,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_3128",
+    "timestamp": 1755114401,
+    "datetime": "13-08-2025 21:46:41",
+    "credito_precedente": 30.35,
+    "credito_attuale": 27.67,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_12_5796",
+    "timestamp": 1755114402,
+    "datetime": "13-08-2025 21:46:42",
+    "credito_precedente": 78.35,
+    "credito_attuale": 74.84,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_4474",
+    "timestamp": 1755114403,
+    "datetime": "13-08-2025 21:46:43",
+    "credito_precedente": 58.35,
+    "credito_attuale": 55.84,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_14_6500",
+    "timestamp": 1755114404,
+    "datetime": "13-08-2025 21:46:44",
+    "credito_precedente": 38.05,
+    "credito_attuale": 40.12,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_7457",
+    "timestamp": 1755114405,
+    "datetime": "13-08-2025 21:46:45",
+    "credito_precedente": 4.59,
+    "credito_attuale": 3.27,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_2022",
+    "timestamp": 1755114406,
+    "datetime": "13-08-2025 21:46:46",
+    "credito_precedente": 56.16,
+    "credito_attuale": 60.65,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_8240",
+    "timestamp": 1755114407,
+    "datetime": "13-08-2025 21:46:47",
+    "credito_precedente": 23.37,
+    "credito_attuale": 27.79,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_18_3970",
+    "timestamp": 1755114408,
+    "datetime": "13-08-2025 21:46:48",
+    "credito_precedente": 13.28,
+    "credito_attuale": 11.96,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_3998",
+    "timestamp": 1755114409,
+    "datetime": "13-08-2025 21:46:49",
+    "credito_precedente": 63.48,
+    "credito_attuale": 68.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_20_6642",
+    "timestamp": 1755114410,
+    "datetime": "13-08-2025 21:46:50",
+    "credito_precedente": 38.84,
+    "credito_attuale": 37.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_21_7239",
+    "timestamp": 1755114411,
+    "datetime": "13-08-2025 21:46:51",
+    "credito_precedente": 39.28,
+    "credito_attuale": 42.37,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_1897",
+    "timestamp": 1755114412,
+    "datetime": "13-08-2025 21:46:52",
+    "credito_precedente": 80.36,
+    "credito_attuale": 90.27,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_23_1680",
+    "timestamp": 1755114413,
+    "datetime": "13-08-2025 21:46:53",
+    "credito_precedente": 62.89,
+    "credito_attuale": 63.09,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_9714",
+    "timestamp": 1755114414,
+    "datetime": "13-08-2025 21:46:54",
+    "credito_precedente": 24.15,
+    "credito_attuale": 23.11,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_9837",
+    "timestamp": 1755114415,
+    "datetime": "13-08-2025 21:46:55",
+    "credito_precedente": 72.11,
+    "credito_attuale": 75.02,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_6064",
+    "timestamp": 1755114417,
+    "datetime": "13-08-2025 21:46:57",
+    "credito_precedente": 50.09,
+    "credito_attuale": 56.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_27_6293",
+    "timestamp": 1755114418,
+    "datetime": "13-08-2025 21:46:58",
+    "credito_precedente": 11.53,
+    "credito_attuale": 16.76,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_3760",
+    "timestamp": 1755114419,
+    "datetime": "13-08-2025 21:46:59",
+    "credito_precedente": 85.71,
+    "credito_attuale": 80.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_4073",
+    "timestamp": 1755114420,
+    "datetime": "13-08-2025 21:47:00",
+    "credito_precedente": 38.86,
+    "credito_attuale": 37.34,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_6285",
+    "timestamp": 1755114421,
+    "datetime": "13-08-2025 21:47:01",
+    "credito_precedente": 18.75,
+    "credito_attuale": 19.5,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_3513",
+    "timestamp": 1755114422,
+    "datetime": "13-08-2025 21:47:02",
+    "credito_precedente": 18.24,
+    "credito_attuale": 25.93,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_4807",
+    "timestamp": 1755114423,
+    "datetime": "13-08-2025 21:47:03",
+    "credito_precedente": 13.26,
+    "credito_attuale": 16.57,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_4885",
+    "timestamp": 1755114424,
+    "datetime": "13-08-2025 21:47:04",
+    "credito_precedente": 12.18,
+    "credito_attuale": 9.62,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_7542",
+    "timestamp": 1755114425,
+    "datetime": "13-08-2025 21:47:05",
+    "credito_precedente": 91.82,
+    "credito_attuale": 93.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_1758",
+    "timestamp": 1755114426,
+    "datetime": "13-08-2025 21:47:06",
+    "credito_precedente": 2.9,
+    "credito_attuale": 1.71,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_7043",
+    "timestamp": 1755114427,
+    "datetime": "13-08-2025 21:47:07",
+    "credito_precedente": 70.51,
+    "credito_attuale": 79.1,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_37_6491",
+    "timestamp": 1755114428,
+    "datetime": "13-08-2025 21:47:08",
+    "credito_precedente": 87.65,
+    "credito_attuale": 86.58,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755115891,
+    "datetime": "13-08-2025 22:11:31",
+    "credito_precedente": 3.8,
+    "credito_attuale": 3.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755115913,
+    "datetime": "13-08-2025 22:11:53",
+    "credito_precedente": 3.5,
+    "credito_attuale": 3.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755116221,
+    "datetime": "13-08-2025 22:17:01",
+    "credito_precedente": 3.2,
+    "credito_attuale": 2.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755116592,
+    "datetime": "13-08-2025 22:23:12",
+    "credito_precedente": 0.6,
+    "credito_attuale": 0.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755116881,
+    "datetime": "13-08-2025 22:28:01",
+    "credito_precedente": 0.3,
+    "credito_attuale": 0,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117335,
+    "datetime": "13-08-2025 22:35:35",
+    "credito_precedente": 0,
+    "credito_attuale": 5,
+    "status": "accredito"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117342,
+    "datetime": "13-08-2025 22:35:42",
+    "credito_precedente": 5,
+    "credito_attuale": 4.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117532,
+    "datetime": "13-08-2025 22:38:52",
+    "credito_precedente": 4.7,
+    "credito_attuale": 4.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117604,
+    "datetime": "13-08-2025 22:40:04",
+    "credito_precedente": 4.4,
+    "credito_attuale": 4.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117927,
+    "datetime": "13-08-2025 22:45:27",
+    "credito_precedente": 4.1,
+    "credito_attuale": 3.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755117963,
+    "datetime": "13-08-2025 22:46:03",
+    "credito_precedente": 3.8,
+    "credito_attuale": 3.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118265,
+    "datetime": "13-08-2025 22:51:05",
+    "credito_precedente": 3.5,
+    "credito_attuale": 3.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118297,
+    "datetime": "13-08-2025 22:51:37",
+    "credito_precedente": 3.2,
+    "credito_attuale": 2.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118307,
+    "datetime": "13-08-2025 22:51:47",
+    "credito_precedente": 2.9,
+    "credito_attuale": 2.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118317,
+    "datetime": "13-08-2025 22:51:57",
+    "credito_precedente": 2.6,
+    "credito_attuale": 2.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755118332,
+    "datetime": "13-08-2025 22:52:12",
+    "credito_precedente": 2.9,
+    "credito_attuale": 2.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118389,
+    "datetime": "13-08-2025 22:53:09",
+    "credito_precedente": 2.3,
+    "credito_attuale": 2,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118403,
+    "datetime": "13-08-2025 22:53:23",
+    "credito_precedente": 2.3,
+    "credito_attuale": 2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755118412,
+    "datetime": "13-08-2025 22:53:32",
+    "credito_precedente": 2.6,
+    "credito_attuale": 2.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118499,
+    "datetime": "13-08-2025 22:54:59",
+    "credito_precedente": 2,
+    "credito_attuale": 1.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118511,
+    "datetime": "13-08-2025 22:55:11",
+    "credito_precedente": 1.7,
+    "credito_attuale": 1.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118695,
+    "datetime": "13-08-2025 22:58:15",
+    "credito_precedente": 1.4,
+    "credito_attuale": 1.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755118902,
+    "datetime": "13-08-2025 23:01:42",
+    "credito_precedente": 1.1,
+    "credito_attuale": 0.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755119541,
+    "datetime": "13-08-2025 23:12:21",
+    "credito_precedente": 0.8,
+    "credito_attuale": 0.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755119651,
+    "datetime": "13-08-2025 23:14:27",
+    "credito_precedente": 2.3,
+    "credito_attuale": 2,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755119558,
+    "datetime": "13-08-2025 23:12:55",
+    "credito_precedente": 0.5,
+    "credito_attuale": 0.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755119939,
+    "datetime": "13-08-2025 23:18:59",
+    "credito_precedente": 2.3,
+    "credito_attuale": 2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755190307,
+    "datetime": "14-08-2025 18:51:47",
+    "credito_precedente": 1.4,
+    "credito_attuale": 1.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755189582,
+    "datetime": "14-08-2025 18:39:42",
+    "credito_precedente": 1.7,
+    "credito_attuale": 1.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755191526,
+    "datetime": "14-08-2025 19:12:06",
+    "credito_precedente": 1.1,
+    "credito_attuale": 0.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755191553,
+    "datetime": "14-08-2025 19:12:33",
+    "credito_precedente": 0.8,
+    "credito_attuale": 0.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755191777,
+    "datetime": "14-08-2025 19:16:17",
+    "credito_precedente": 0.5,
+    "credito_attuale": 0.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755466790,
+    "datetime": "17-08-2025 23:39:50",
+    "credito_precedente": 4.3,
+    "credito_attuale": 4,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755466807,
+    "datetime": "17-08-2025 23:40:07",
+    "credito_precedente": 4,
+    "credito_attuale": 3.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755500064,
+    "datetime": "18-08-2025 08:54:24",
+    "credito_precedente": 3.4,
+    "credito_attuale": 3.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755501481,
+    "datetime": "18-08-2025 09:18:01",
+    "credito_precedente": 5.2,
+    "credito_attuale": 4.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755501490,
+    "datetime": "18-08-2025 09:18:10",
+    "credito_precedente": 3.1,
+    "credito_attuale": 2.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755501478,
+    "datetime": "18-08-2025 09:18:15",
+    "credito_precedente": 0.2,
+    "credito_attuale": 5.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755501593,
+    "datetime": "18-08-2025 09:19:53",
+    "credito_precedente": 2.8,
+    "credito_attuale": 2.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755501584,
+    "datetime": "18-08-2025 09:20:01",
+    "credito_precedente": 4.9,
+    "credito_attuale": 4.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755519627,
+    "datetime": "18-08-2025 14:20:27",
+    "credito_precedente": 4.6,
+    "credito_attuale": 4.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755519639,
+    "datetime": "18-08-2025 14:20:39",
+    "credito_precedente": 4.3,
+    "credito_attuale": 4,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755519650,
+    "datetime": "18-08-2025 14:20:50",
+    "credito_precedente": 2.5,
+    "credito_attuale": 2.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755519661,
+    "datetime": "18-08-2025 14:21:01",
+    "credito_precedente": 2.2,
+    "credito_attuale": 1.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755519738,
+    "datetime": "18-08-2025 14:22:18",
+    "credito_precedente": 4,
+    "credito_attuale": 3.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755519821,
+    "datetime": "18-08-2025 14:23:41",
+    "credito_precedente": 3.7,
+    "credito_attuale": 3.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755520008,
+    "datetime": "18-08-2025 14:26:48",
+    "credito_precedente": 1.9,
+    "credito_attuale": 1.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755520147,
+    "datetime": "18-08-2025 14:29:07",
+    "credito_precedente": 3.4,
+    "credito_attuale": 3.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755520255,
+    "datetime": "18-08-2025 14:30:55",
+    "credito_precedente": 1.6,
+    "credito_attuale": 1.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755520264,
+    "datetime": "18-08-2025 14:31:04",
+    "credito_precedente": 3.1,
+    "credito_attuale": 2.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755520586,
+    "datetime": "18-08-2025 14:36:26",
+    "credito_precedente": 1.3,
+    "credito_attuale": 1,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755520603,
+    "datetime": "18-08-2025 14:36:43",
+    "credito_precedente": 1,
+    "credito_attuale": 0.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755520724,
+    "datetime": "18-08-2025 14:38:44",
+    "credito_precedente": 0.7,
+    "credito_attuale": 0.4,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755520988,
+    "datetime": "18-08-2025 14:43:08",
+    "credito_precedente": 2.8,
+    "credito_attuale": 2.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755523903,
+    "datetime": "18-08-2025 15:31:43",
+    "credito_precedente": 2.5,
+    "credito_attuale": 2.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755524857,
+    "datetime": "18-08-2025 15:47:37",
+    "credito_precedente": 0.4,
+    "credito_attuale": 0.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_4_3971",
+    "timestamp": 1755525139,
+    "datetime": "18-08-2025 15:52:19",
+    "credito_precedente": 55.88,
+    "credito_attuale": 62.89,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_5_3073",
+    "timestamp": 1755525140,
+    "datetime": "18-08-2025 15:52:20",
+    "credito_precedente": 44.36,
+    "credito_attuale": 45.98,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_6_8772",
+    "timestamp": 1755525141,
+    "datetime": "18-08-2025 15:52:21",
+    "credito_precedente": 3.1,
+    "credito_attuale": -0.93,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_7_6532",
+    "timestamp": 1755525142,
+    "datetime": "18-08-2025 15:52:22",
+    "credito_precedente": 17.97,
+    "credito_attuale": 15.26,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_8_5858",
+    "timestamp": 1755525143,
+    "datetime": "18-08-2025 15:52:23",
+    "credito_precedente": 36.52,
+    "credito_attuale": 45.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_2067",
+    "timestamp": 1755525144,
+    "datetime": "18-08-2025 15:52:24",
+    "credito_precedente": 88.07,
+    "credito_attuale": 93.08,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_10_4067",
+    "timestamp": 1755525145,
+    "datetime": "18-08-2025 15:52:25",
+    "credito_precedente": 62.77,
+    "credito_attuale": 68.7,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_11_6606",
+    "timestamp": 1755525146,
+    "datetime": "18-08-2025 15:52:26",
+    "credito_precedente": 32.62,
+    "credito_attuale": 34.76,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_12_3818",
+    "timestamp": 1755525147,
+    "datetime": "18-08-2025 15:52:27",
+    "credito_precedente": 52.44,
+    "credito_attuale": 52.19,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_13_4390",
+    "timestamp": 1755525148,
+    "datetime": "18-08-2025 15:52:28",
+    "credito_precedente": 45.04,
+    "credito_attuale": 48.07,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_14_9257",
+    "timestamp": 1755525149,
+    "datetime": "18-08-2025 15:52:29",
+    "credito_precedente": 28.4,
+    "credito_attuale": 32.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_15_8990",
+    "timestamp": 1755525150,
+    "datetime": "18-08-2025 15:52:30",
+    "credito_precedente": 44.66,
+    "credito_attuale": 51.62,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_16_5961",
+    "timestamp": 1755525151,
+    "datetime": "18-08-2025 15:52:31",
+    "credito_precedente": 6.37,
+    "credito_attuale": 3.65,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_8430",
+    "timestamp": 1755525152,
+    "datetime": "18-08-2025 15:52:32",
+    "credito_precedente": 20.79,
+    "credito_attuale": 29.87,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_1196",
+    "timestamp": 1755525154,
+    "datetime": "18-08-2025 15:52:34",
+    "credito_precedente": 51.73,
+    "credito_attuale": 60.12,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_4203",
+    "timestamp": 1755525155,
+    "datetime": "18-08-2025 15:52:35",
+    "credito_precedente": 25.16,
+    "credito_attuale": 34.09,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_2854",
+    "timestamp": 1755525156,
+    "datetime": "18-08-2025 15:52:36",
+    "credito_precedente": 8.87,
+    "credito_attuale": 6.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_21_1010",
+    "timestamp": 1755525157,
+    "datetime": "18-08-2025 15:52:37",
+    "credito_precedente": 36.96,
+    "credito_attuale": 43.17,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_6319",
+    "timestamp": 1755525158,
+    "datetime": "18-08-2025 15:52:38",
+    "credito_precedente": 48.77,
+    "credito_attuale": 55.25,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755525158,
+    "datetime": "18-08-2025 15:52:38",
+    "credito_precedente": 2.2,
+    "credito_attuale": 1.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_23_6621",
+    "timestamp": 1755525159,
+    "datetime": "18-08-2025 15:52:39",
+    "credito_precedente": 75.55,
+    "credito_attuale": 85.1,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_24_7969",
+    "timestamp": 1755525160,
+    "datetime": "18-08-2025 15:52:40",
+    "credito_precedente": 80.7,
+    "credito_attuale": 79.66,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_25_8128",
+    "timestamp": 1755525161,
+    "datetime": "18-08-2025 15:52:41",
+    "credito_precedente": 83.22,
+    "credito_attuale": 86.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_26_9505",
+    "timestamp": 1755525162,
+    "datetime": "18-08-2025 15:52:42",
+    "credito_precedente": 73.58,
+    "credito_attuale": 81.99,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_27_7887",
+    "timestamp": 1755525163,
+    "datetime": "18-08-2025 15:52:43",
+    "credito_precedente": 4.39,
+    "credito_attuale": 12.64,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_28_1873",
+    "timestamp": 1755525164,
+    "datetime": "18-08-2025 15:52:44",
+    "credito_precedente": 46.83,
+    "credito_attuale": 53.29,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_29_7225",
+    "timestamp": 1755525165,
+    "datetime": "18-08-2025 15:52:45",
+    "credito_precedente": 50.09,
+    "credito_attuale": 51.73,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_7962",
+    "timestamp": 1755525166,
+    "datetime": "18-08-2025 15:52:46",
+    "credito_precedente": 43.08,
+    "credito_attuale": 50.85,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_9713",
+    "timestamp": 1755525167,
+    "datetime": "18-08-2025 15:52:47",
+    "credito_precedente": 25.16,
+    "credito_attuale": 23.38,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_32_7763",
+    "timestamp": 1755525168,
+    "datetime": "18-08-2025 15:52:48",
+    "credito_precedente": 6.03,
+    "credito_attuale": 7.83,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_33_7353",
+    "timestamp": 1755525169,
+    "datetime": "18-08-2025 15:52:49",
+    "credito_precedente": 36.36,
+    "credito_attuale": 33.79,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_34_8330",
+    "timestamp": 1755525170,
+    "datetime": "18-08-2025 15:52:50",
+    "credito_precedente": 31.39,
+    "credito_attuale": 35.71,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_35_8674",
+    "timestamp": 1755525171,
+    "datetime": "18-08-2025 15:52:51",
+    "credito_precedente": 70.29,
+    "credito_attuale": 76.4,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_5724",
+    "timestamp": 1755525172,
+    "datetime": "18-08-2025 15:52:52",
+    "credito_precedente": 80.76,
+    "credito_attuale": 87.38,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_37_5815",
+    "timestamp": 1755525173,
+    "datetime": "18-08-2025 15:52:53",
+    "credito_precedente": 38.71,
+    "credito_attuale": 42.44,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_8751",
+    "timestamp": 1755525174,
+    "datetime": "18-08-2025 15:52:54",
+    "credito_precedente": 78.6,
+    "credito_attuale": 79.63,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_3217",
+    "timestamp": 1755525175,
+    "datetime": "18-08-2025 15:52:55",
+    "credito_precedente": 13.98,
+    "credito_attuale": 18.23,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_40_4566",
+    "timestamp": 1755525176,
+    "datetime": "18-08-2025 15:52:56",
+    "credito_precedente": 39.66,
+    "credito_attuale": 35.23,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_41_4904",
+    "timestamp": 1755525177,
+    "datetime": "18-08-2025 15:52:57",
+    "credito_precedente": 83.02,
+    "credito_attuale": 86.17,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_1365",
+    "timestamp": 1755525178,
+    "datetime": "18-08-2025 15:52:58",
+    "credito_precedente": 68.85,
+    "credito_attuale": 69.07,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_8241",
+    "timestamp": 1755525179,
+    "datetime": "18-08-2025 15:52:59",
+    "credito_precedente": 94.08,
+    "credito_attuale": 99.76,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_44_6909",
+    "timestamp": 1755525180,
+    "datetime": "18-08-2025 15:53:00",
+    "credito_precedente": 36.33,
+    "credito_attuale": 43.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_1561",
+    "timestamp": 1755525181,
+    "datetime": "18-08-2025 15:53:01",
+    "credito_precedente": 12.15,
+    "credito_attuale": 19.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_1938",
+    "timestamp": 1755525182,
+    "datetime": "18-08-2025 15:53:02",
+    "credito_precedente": 24.53,
+    "credito_attuale": 20.77,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_47_8764",
+    "timestamp": 1755525183,
+    "datetime": "18-08-2025 15:53:03",
+    "credito_precedente": 90.22,
+    "credito_attuale": 93.53,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_48_1846",
+    "timestamp": 1755525184,
+    "datetime": "18-08-2025 15:53:04",
+    "credito_precedente": 50.25,
+    "credito_attuale": 55.89,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_49_5163",
+    "timestamp": 1755525186,
+    "datetime": "18-08-2025 15:53:06",
+    "credito_precedente": 73.22,
+    "credito_attuale": 76.68,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_50_2334",
+    "timestamp": 1755525187,
+    "datetime": "18-08-2025 15:53:07",
+    "credito_precedente": 61.04,
+    "credito_attuale": 60.51,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_1_4827",
+    "timestamp": 1755525136,
+    "datetime": "18-08-2025 15:52:32",
+    "credito_precedente": 9.48,
+    "credito_attuale": 13.91,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_2_1874",
+    "timestamp": 1755525137,
+    "datetime": "18-08-2025 15:52:49",
+    "credito_precedente": 7.58,
+    "credito_attuale": 8.16,
+    "status": "spesa"
+  },
+  {
+    "uid": "TEST_3_7742",
+    "timestamp": 1755525138,
+    "datetime": "18-08-2025 15:53:07",
+    "credito_precedente": 43.13,
+    "credito_attuale": 48.33,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755526085,
+    "datetime": "18-08-2025 16:08:05",
+    "credito_precedente": 0,
+    "credito_attuale": 0.1,
+    "status": "assegnazione"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755526096,
+    "datetime": "18-08-2025 16:08:16",
+    "credito_precedente": 0,
+    "credito_attuale": 0.1,
+    "status": "assegnazione"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755526097,
+    "datetime": "18-08-2025 16:08:17",
+    "credito_precedente": 0,
+    "credito_attuale": 0.1,
+    "status": "assegnazione"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755526156,
+    "datetime": "18-08-2025 16:09:16",
+    "credito_precedente": 0,
+    "credito_attuale": 1.9,
+    "status": "assegnazione"
+  },
+  {
+    "uid": "TEST_1_3071",
+    "timestamp": 1755526873,
+    "datetime": "18-08-2025 16:21:13",
+    "credito_precedente": 89.47,
+    "credito_attuale": 94.47,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_2_5460",
+    "timestamp": 1755526874,
+    "datetime": "18-08-2025 16:21:14",
+    "credito_precedente": 52.17,
+    "credito_attuale": 57.17,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_3_2540",
+    "timestamp": 1755526875,
+    "datetime": "18-08-2025 16:21:15",
+    "credito_precedente": 33.36,
+    "credito_attuale": 38.36,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_4_5329",
+    "timestamp": 1755526876,
+    "datetime": "18-08-2025 16:21:16",
+    "credito_precedente": 24.7,
+    "credito_attuale": 29.7,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_5_5459",
+    "timestamp": 1755526877,
+    "datetime": "18-08-2025 16:21:17",
+    "credito_precedente": 1.27,
+    "credito_attuale": 6.27,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_6_9553",
+    "timestamp": 1755526878,
+    "datetime": "18-08-2025 16:21:18",
+    "credito_precedente": 38.23,
+    "credito_attuale": 43.23,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_7_5759",
+    "timestamp": 1755526879,
+    "datetime": "18-08-2025 16:21:19",
+    "credito_precedente": 31.3,
+    "credito_attuale": 36.3,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_8_9931",
+    "timestamp": 1755526880,
+    "datetime": "18-08-2025 16:21:20",
+    "credito_precedente": 91.23,
+    "credito_attuale": 96.23,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_9_9926",
+    "timestamp": 1755526881,
+    "datetime": "18-08-2025 16:21:21",
+    "credito_precedente": 22.72,
+    "credito_attuale": 27.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_10_4282",
+    "timestamp": 1755526882,
+    "datetime": "18-08-2025 16:21:22",
+    "credito_precedente": 79.2,
+    "credito_attuale": 84.2,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_11_8185",
+    "timestamp": 1755526884,
+    "datetime": "18-08-2025 16:21:24",
+    "credito_precedente": 11.41,
+    "credito_attuale": 16.41,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_12_7216",
+    "timestamp": 1755526885,
+    "datetime": "18-08-2025 16:21:25",
+    "credito_precedente": 84.21,
+    "credito_attuale": 89.21,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_13_5805",
+    "timestamp": 1755526886,
+    "datetime": "18-08-2025 16:21:26",
+    "credito_precedente": 72.01,
+    "credito_attuale": 77.01,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_14_2371",
+    "timestamp": 1755526887,
+    "datetime": "18-08-2025 16:21:27",
+    "credito_precedente": 76.72,
+    "credito_attuale": 81.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_15_2103",
+    "timestamp": 1755526888,
+    "datetime": "18-08-2025 16:21:28",
+    "credito_precedente": 24.81,
+    "credito_attuale": 29.81,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_16_2758",
+    "timestamp": 1755526889,
+    "datetime": "18-08-2025 16:21:29",
+    "credito_precedente": 66.06,
+    "credito_attuale": 71.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_17_9499",
+    "timestamp": 1755526890,
+    "datetime": "18-08-2025 16:21:30",
+    "credito_precedente": 4.69,
+    "credito_attuale": 9.69,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_18_7970",
+    "timestamp": 1755526891,
+    "datetime": "18-08-2025 16:21:31",
+    "credito_precedente": 95.57,
+    "credito_attuale": 100.57,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_19_3986",
+    "timestamp": 1755526892,
+    "datetime": "18-08-2025 16:21:32",
+    "credito_precedente": 56.06,
+    "credito_attuale": 61.06,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_20_1687",
+    "timestamp": 1755526893,
+    "datetime": "18-08-2025 16:21:33",
+    "credito_precedente": 71.43,
+    "credito_attuale": 76.43,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_21_6862",
+    "timestamp": 1755526894,
+    "datetime": "18-08-2025 16:21:34",
+    "credito_precedente": 84.6,
+    "credito_attuale": 89.6,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_22_9462",
+    "timestamp": 1755526895,
+    "datetime": "18-08-2025 16:21:35",
+    "credito_precedente": 23.03,
+    "credito_attuale": 28.03,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_23_4528",
+    "timestamp": 1755526896,
+    "datetime": "18-08-2025 16:21:36",
+    "credito_precedente": 63.44,
+    "credito_attuale": 68.44,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_24_6704",
+    "timestamp": 1755526897,
+    "datetime": "18-08-2025 16:21:37",
+    "credito_precedente": 6.11,
+    "credito_attuale": 11.11,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_25_1335",
+    "timestamp": 1755526898,
+    "datetime": "18-08-2025 16:21:38",
+    "credito_precedente": 22.41,
+    "credito_attuale": 27.41,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_26_2872",
+    "timestamp": 1755526899,
+    "datetime": "18-08-2025 16:21:39",
+    "credito_precedente": 30.57,
+    "credito_attuale": 35.57,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_27_6923",
+    "timestamp": 1755526900,
+    "datetime": "18-08-2025 16:21:40",
+    "credito_precedente": 70.95,
+    "credito_attuale": 75.95,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_28_8411",
+    "timestamp": 1755526901,
+    "datetime": "18-08-2025 16:21:41",
+    "credito_precedente": 87.32,
+    "credito_attuale": 92.32,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_29_3439",
+    "timestamp": 1755526902,
+    "datetime": "18-08-2025 16:21:42",
+    "credito_precedente": 2.53,
+    "credito_attuale": 7.53,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_30_6440",
+    "timestamp": 1755526903,
+    "datetime": "18-08-2025 16:21:43",
+    "credito_precedente": 26.56,
+    "credito_attuale": 31.56,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_31_7661",
+    "timestamp": 1755526904,
+    "datetime": "18-08-2025 16:21:44",
+    "credito_precedente": 52.54,
+    "credito_attuale": 57.54,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_32_6670",
+    "timestamp": 1755526905,
+    "datetime": "18-08-2025 16:21:45",
+    "credito_precedente": 57.25,
+    "credito_attuale": 62.25,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_33_4555",
+    "timestamp": 1755526906,
+    "datetime": "18-08-2025 16:21:46",
+    "credito_precedente": 1.33,
+    "credito_attuale": 6.33,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_34_9538",
+    "timestamp": 1755526907,
+    "datetime": "18-08-2025 16:21:47",
+    "credito_precedente": 22.33,
+    "credito_attuale": 27.33,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_35_9259",
+    "timestamp": 1755526908,
+    "datetime": "18-08-2025 16:21:48",
+    "credito_precedente": 25.01,
+    "credito_attuale": 30.01,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_36_9528",
+    "timestamp": 1755526909,
+    "datetime": "18-08-2025 16:21:49",
+    "credito_precedente": 3.31,
+    "credito_attuale": 8.31,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_37_2344",
+    "timestamp": 1755526910,
+    "datetime": "18-08-2025 16:21:50",
+    "credito_precedente": 70.4,
+    "credito_attuale": 75.4,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_38_9554",
+    "timestamp": 1755526911,
+    "datetime": "18-08-2025 16:21:51",
+    "credito_precedente": 44.84,
+    "credito_attuale": 49.84,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_39_7784",
+    "timestamp": 1755526913,
+    "datetime": "18-08-2025 16:21:53",
+    "credito_precedente": 57.98,
+    "credito_attuale": 62.98,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_40_1358",
+    "timestamp": 1755526914,
+    "datetime": "18-08-2025 16:21:54",
+    "credito_precedente": 53.88,
+    "credito_attuale": 58.88,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_41_1463",
+    "timestamp": 1755526915,
+    "datetime": "18-08-2025 16:21:55",
+    "credito_precedente": 75.95,
+    "credito_attuale": 80.95,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_42_9354",
+    "timestamp": 1755526916,
+    "datetime": "18-08-2025 16:21:56",
+    "credito_precedente": 56.67,
+    "credito_attuale": 61.67,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_43_9292",
+    "timestamp": 1755526917,
+    "datetime": "18-08-2025 16:21:57",
+    "credito_precedente": 78.29,
+    "credito_attuale": 83.29,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_44_7653",
+    "timestamp": 1755526918,
+    "datetime": "18-08-2025 16:21:58",
+    "credito_precedente": 79.28,
+    "credito_attuale": 84.28,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_45_9883",
+    "timestamp": 1755526919,
+    "datetime": "18-08-2025 16:21:59",
+    "credito_precedente": 18.72,
+    "credito_attuale": 23.72,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_46_9136",
+    "timestamp": 1755526920,
+    "datetime": "18-08-2025 16:22:00",
+    "credito_precedente": 64.91,
+    "credito_attuale": 69.91,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_47_5460",
+    "timestamp": 1755526921,
+    "datetime": "18-08-2025 16:22:01",
+    "credito_precedente": 24.27,
+    "credito_attuale": 29.27,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_48_7397",
+    "timestamp": 1755526922,
+    "datetime": "18-08-2025 16:22:02",
+    "credito_precedente": 33.7,
+    "credito_attuale": 38.7,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_49_4075",
+    "timestamp": 1755526923,
+    "datetime": "18-08-2025 16:22:03",
+    "credito_precedente": 53.24,
+    "credito_attuale": 58.24,
+    "status": "accredito"
+  },
+  {
+    "uid": "TEST_50_7551",
+    "timestamp": 1755526924,
+    "datetime": "18-08-2025 16:22:04",
+    "credito_precedente": 92.86,
+    "credito_attuale": 97.86,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755527242,
+    "datetime": "18-08-2025 16:27:22",
+    "credito_precedente": 0.1,
+    "credito_attuale": 5.1,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755527361,
+    "datetime": "18-08-2025 16:29:21",
+    "credito_precedente": 0,
+    "credito_attuale": 5.1,
+    "status": "assegnazione"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755527389,
+    "datetime": "18-08-2025 16:29:49",
+    "credito_precedente": 5.1,
+    "credito_attuale": 4.8,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755528631,
+    "datetime": "18-08-2025 16:50:31",
+    "credito_precedente": 1.9,
+    "credito_attuale": 6.9,
+    "status": "accredito"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755529883,
+    "datetime": "18-08-2025 17:11:23",
+    "credito_precedente": 4.8,
+    "credito_attuale": 4.5,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755529917,
+    "datetime": "18-08-2025 17:11:57",
+    "credito_precedente": 4.5,
+    "credito_attuale": 4.2,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755529963,
+    "datetime": "18-08-2025 17:12:43",
+    "credito_precedente": 6.9,
+    "credito_attuale": 6.6,
+    "status": "spesa"
   }
 ]

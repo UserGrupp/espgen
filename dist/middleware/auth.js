@@ -4,7 +4,7 @@ exports.basicAuth = void 0;
 // Autenticazione Basic HTTP per proteggere tutte le rotte
 // Usa variabili d'ambiente ADMIN_USER e ADMIN_PASSWORD, con default sicuri
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'changeme';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'esp32';
 function basicAuth(req, res, next) {
     const authHeader = req.headers['authorization'];
     if (!authHeader || !authHeader.startsWith('Basic ')) {
