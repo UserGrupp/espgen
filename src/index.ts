@@ -1384,17 +1384,6 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     // Inizializza il sticky header quando la pagina è caricata
     document.addEventListener('DOMContentLoaded', function() {
         initStickyHeader();
-        
-        // Ripristina il limite salvato dal localStorage
-        const currentPath = window.location.pathname;
-        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
-        const savedLimit = localStorage.getItem(storageKey);
-        if (savedLimit) {
-            const select = document.querySelector('#limitSelect');
-            if (select) {
-                select.value = savedLimit;
-            }
-        }
     });
   `;
 

@@ -45,7 +45,7 @@ export function generatePagination(pagination?: {
   
   return `
     <div class="pagination">
-        <select onchange="changeLimit(this.value)" id="limitSelect">
+        <select onchange="changeLimit(this.value)">
             <option value="5" ${pagination.limit === 5 ? 'selected' : ''}>5 per pagina</option>
             <option value="10" ${pagination.limit === 10 ? 'selected' : ''}>10 per pagina</option>
             <option value="25" ${pagination.limit === 25 ? 'selected' : ''}>25 per pagina</option>
@@ -120,7 +120,7 @@ export function generatePaginationScript(): string {
         const container = document.querySelector('.pagination');
         if (!container) return;
         let html = '';
-        html += '<select onchange="changeLimit(this.value)" id="limitSelect">';
+        html += '<select onchange="changeLimit(this.value)">';
         html += '<option value="5" ' + (p.limit === 5 ? 'selected' : '') + '>5 per pagina</option>';
         html += '<option value="10" ' + (p.limit === 10 ? 'selected' : '') + '>10 per pagina</option>';
         html += '<option value="25" ' + (p.limit === 25 ? 'selected' : '') + '>25 per pagina</option>';
@@ -132,11 +132,6 @@ export function generatePaginationScript(): string {
         if (p.page < p.totalPages) html += '<button onclick="goToPage(' + (p.page + 1) + ')">Successiva →</button>';
         if (p.page < p.totalPages) html += '<button onclick="goToPage(' + p.totalPages + ')">Ultima ⏭️</button>';
         container.innerHTML = html;
-        
-        // Ripristina il limite salvato dopo aver aggiornato il DOM
-        setTimeout(() => {
-            restoreSavedLimit();
-        }, 0);
     }
 
     function renderSpendingDashboardTable(stats) {
@@ -195,46 +190,15 @@ export function generatePaginationScript(): string {
         });
     }
 
-    // Funzione per salvare il limite nel localStorage
-    function saveLimitToStorage(limit) {
-        const currentPath = window.location.pathname;
-        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
-        localStorage.setItem(storageKey, limit.toString());
-    }
-    
-    // Funzione per recuperare il limite dal localStorage
-    function getLimitFromStorage() {
-        const currentPath = window.location.pathname;
-        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
-        const savedLimit = localStorage.getItem(storageKey);
-        return savedLimit ? Number(savedLimit) : 10; // Default a 10 se non trovato
-    }
-    
-    // Funzione per ripristinare il limite salvato
-    function restoreSavedLimit() {
-        const savedLimit = getLimitFromStorage();
-        const select = document.querySelector('#limitSelect');
-        if (select) {
-            select.value = savedLimit.toString();
-        }
-        return savedLimit;
-    }
-    
     window.goToPage = function(page) {
         const select = document.querySelector('.pagination select');
-        const limit = select ? Number(select.value) : getLimitFromStorage();
+        const limit = select ? Number(select.value) : 10;
         loadPageData(Number(page), limit);
     };
     
     window.changeLimit = function(limit) {
-        saveLimitToStorage(limit);
         loadPageData(1, Number(limit));
     };
-    
-    // Ripristina il limite salvato quando la pagina viene caricata
-    document.addEventListener('DOMContentLoaded', function() {
-        restoreSavedLimit();
-    });
   `;
 }
 
