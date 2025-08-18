@@ -18374,5 +18374,37 @@
     "credito_precedente": 6.9,
     "credito_attuale": 6.6,
     "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755537029,
+    "datetime": "18-08-2025 19:10:29",
+    "credito_precedente": 4.2,
+    "credito_attuale": 3.9,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755537042,
+    "datetime": "18-08-2025 19:10:43",
+    "credito_precedente": 6.6,
+    "credito_attuale": 6.3,
+    "status": "spesa"
+  },
+  {
+    "uid": "63:eb:88:49",
+    "timestamp": 1755537054,
+    "datetime": "18-08-2025 19:10:54",
+    "credito_precedente": 3.9,
+    "credito_attuale": 3.6,
+    "status": "spesa"
+  },
+  {
+    "uid": "93:3f:2a:0c",
+    "timestamp": 1755537066,
+    "datetime": "18-08-2025 19:11:06",
+    "credito_precedente": 6.3,
+    "credito_attuale": 6,
+    "status": "spesa"
   }
 ]

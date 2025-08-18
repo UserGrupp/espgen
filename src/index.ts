@@ -24,7 +24,7 @@ const path = require('path')
 app.use(basicAuth);
 
 app.use(express.static(path.join(__dirname, '../public')))
-let test: boolean = true;
+let test: boolean = false;
 let server;
 if (test)
 //***** ******************TEST**********************+
