@@ -1311,10 +1311,26 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     window.goToPage = function(page) {
         const url = new URL(window.location);
         url.searchParams.set('page', page);
+        
+        // Usa il limite salvato se non è specificato nell'URL
+        if (!url.searchParams.has('limit')) {
+            const currentPath = window.location.pathname;
+            const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
+            const savedLimit = localStorage.getItem(storageKey);
+            if (savedLimit) {
+                url.searchParams.set('limit', savedLimit);
+            }
+        }
+        
         window.location.href = url.toString();
     };
     
     window.changeLimit = function(limit) {
+        // Salva il nuovo limite nel localStorage
+        const currentPath = window.location.pathname;
+        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
+        localStorage.setItem(storageKey, limit.toString());
+        
         const url = new URL(window.location);
         url.searchParams.set('limit', limit);
         url.searchParams.set('page', '1'); // Torna alla prima pagina
@@ -1368,6 +1384,17 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     // Inizializza il sticky header quando la pagina è caricata
     document.addEventListener('DOMContentLoaded', function() {
         initStickyHeader();
+        
+        // Ripristina il limite salvato dal localStorage
+        const currentPath = window.location.pathname;
+        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
+        const savedLimit = localStorage.getItem(storageKey);
+        if (savedLimit) {
+            const select = document.querySelector('#limitSelect');
+            if (select) {
+                select.value = savedLimit;
+            }
+        }
     });
   `;
 
