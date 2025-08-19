@@ -527,7 +527,7 @@ app.get('/api/tag-owners/search/:nominativo', async (req, res) => {
 // Endpoint per aggiungere/aggiornare un possessore
 app.post('/api/tag-owners', async (req, res) => {
   try {
-    const { uid, nominativo, indirizzo, note } = req.body;
+    const { uid, nominativo, indirizzo, note,created_at } = req.body;
 
     // Validazione dei dati
     if (!uid || !nominativo || !indirizzo) {
@@ -542,7 +542,8 @@ app.post('/api/tag-owners', async (req, res) => {
       uid,
       nominativo,
       indirizzo,
-      note: note || undefined
+      note: note || undefined,
+      created_at
     };
 
     await database.addTagOwner(tagOwner);
@@ -1172,7 +1173,8 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     const nominativoField = `<input type="text" class="edit-field" id="nominativo_${tagOwner.uid}" value="${nominativoValue}" placeholder="Inserisci nominativo" oninput="checkSaveButton('${tagOwner.uid}')">`;
     const indirizzoField = `<textarea class="edit-field" id="indirizzo_${tagOwner.uid}" placeholder="Inserisci indirizzo">${indirizzoValue}</textarea>`;
     const noteField = `<textarea class="edit-field" id="note_${tagOwner.uid}" placeholder="Inserisci note">${tagOwner.note || ''}</textarea>`;
-
+    const created_at = `${tagOwner.created_at};`
+    const create_atField = `<input type="hidden" id="created_at_${tagOwner.uid}" value="${tagOwner.created_at}">`;
     // Pulsanti di azione con migliore posizionamento
     const actionButtons = `
       <div class="action-buttons">
@@ -1182,12 +1184,16 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     `;
 
     return `
+    
+    ${create_atField}
+    
       <tr class="${rowClass}">
         <td>
           <div>
             <a href="/spending-dashboard/${tagOwner.uid}" class="uid-link">${statusIcon}${tagOwner.uid}</a>
             ${nominativoValue ? `<br><small class="nominativo">👤 ${nominativoValue}</small>` : ''}
-          </div>
+          
+            </div>
         </td>
         <td>${nominativoField}</td>
         <td>${indirizzoField}</td>
@@ -1210,7 +1216,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
         const nominativo = document.getElementById('nominativo_' + uid).value.trim();
         const indirizzo = document.getElementById('indirizzo_' + uid).value.trim();
         const note = document.getElementById('note_' + uid).value.trim();
-        
+        const create_at = document.getElementById('create_at_' + uid).value.trim();
         // Validazione
         if (!nominativo) {
             window.showStatus('Inserisci un nominativo valido', 'error');
@@ -1232,7 +1238,8 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
                     uid: uid,
                     nominativo: nominativo,
                     indirizzo: indirizzo,
-                    note: note
+                    note: note,
+                    created_at
                 })
             });
             

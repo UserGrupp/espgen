@@ -686,15 +686,17 @@ class Database {
   async addTagOwner(tagOwner: TagOwner): Promise<void> {
     return new Promise((resolve, reject) => {
       const sql = `
-        INSERT OR REPLACE INTO tag_owners (uid, nominativo, indirizzo, note  )
-        VALUES (?, ?, ?, ?)
+        INSERT OR REPLACE INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
+        VALUES (?, ?, ?, ?, ?,?)
       `;
       
       this.db.run(sql, [
         tagOwner.uid,
         tagOwner.nominativo,
         tagOwner.indirizzo,
-        tagOwner.note || null
+        tagOwner.note || null,
+        tagOwner.created_at,
+        tagOwner.updated_at,
         
       ], function(this: any, err) {
         if (err) {
