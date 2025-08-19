@@ -1216,7 +1216,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
         const nominativo = document.getElementById('nominativo_' + uid).value.trim();
         const indirizzo = document.getElementById('indirizzo_' + uid).value.trim();
         const note = document.getElementById('note_' + uid).value.trim();
-        const create_at = document.getElementById('created_at_' + uid).value.trim();
+        const created_at = document.getElementById('created_at_' + uid).value.trim();
         // Validazione
         if (!nominativo) {
             window.showStatus('Inserisci un nominativo valido', 'error');
