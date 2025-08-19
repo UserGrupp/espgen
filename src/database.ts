@@ -22,11 +22,11 @@ export interface SensorRecord {
   status: string;
 }
 
-// Interfaccia per i proprietari dei tag NFC
+// Interfaccia per i possessori dei tag NFC
 export interface TagOwner {
   uid: string;              // UID del tag NFC (chiave primaria)
-  nominativo: string;       // Nome del proprietario
-  indirizzo: string;        // Indirizzo del proprietario
+  nominativo: string;       // Nome del possessore
+  indirizzo: string;        // Indirizzo del possessore
   note?: string;            // Note aggiuntive (opzionale)
   created_at?: string;      // Data di creazione
   updated_at?: string;      // Data di ultimo aggiornamento
@@ -70,7 +70,7 @@ class Database {
        )
      `;
 
-    // Tabella per i proprietari dei tag NFC
+    // Tabella per i possessori dei tag NFC
     const createTagOwnersTable = `
       CREATE TABLE IF NOT EXISTS tag_owners (
         uid TEXT PRIMARY KEY,
@@ -388,10 +388,10 @@ class Database {
           
           this.db.run(updateSql, [sqliteDate, record.uid], function(this: any, updateErr) {
             if (updateErr) {
-              console.error('Errore aggiornamento proprietario tag esistente:', updateErr);
+              console.error('Errore aggiornamento possessore tag esistente:', updateErr);
               reject(updateErr);
             } else {
-              console.log(`Aggiornato timestamp per proprietario tag esistente UID: ${record.uid} con datetime ESP32: ${record.datetime}`);
+              console.log(`Aggiornato timestamp per possessore tag esistente UID: ${record.uid} con datetime ESP32: ${record.datetime}`);
               resolve();
             }
           });
@@ -417,10 +417,10 @@ class Database {
             sqliteDate
           ], function(this: any, insertErr) {
             if (insertErr) {
-              console.error('Errore inserimento proprietario tag:', insertErr);
+              console.error('Errore inserimento possessore tag:', insertErr);
               reject(insertErr);
             } else {
-              console.log(`Nuovo proprietario tag creato per UID: ${record.uid} (ID: ${this.lastID})`);
+              console.log(`Nuovo possessore tag creato per UID: ${record.uid} (ID: ${this.lastID})`);
               resolve();
             }
           });
@@ -680,9 +680,9 @@ class Database {
     });
   }
 
-  // === FUNZIONI PER I PROPRIETARI DEI TAG NFC ===
+  // === FUNZIONI PER I possessori DEI TAG NFC ===
 
-  // Aggiungi un nuovo proprietario di tag
+  // Aggiungi un nuovo possessore di tag
   async addTagOwner(tagOwner: TagOwner): Promise<void> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -698,19 +698,19 @@ class Database {
         
       ], function(this: any, err) {
         if (err) {
-          console.error('Errore inserimento proprietario tag:', err);
+          console.error('Errore inserimento possessore tag:', err);
           reject(err);
         } else {
           // Controlla se è stato inserito nuovo record o aggiornato esistente
           const action = this.changes > 0 ? (this.changes === 1 ? 'inserito' : 'aggiornato') : 'nessuna modifica';
-          console.log(`Proprietario tag ${action} nel database per UID: ${tagOwner.uid}`);
+          console.log(`possessore tag ${action} nel database per UID: ${tagOwner.uid}`);
           resolve();
         }
       });
     });
   }
 
-  // Ottieni proprietario per UID specifico
+  // Ottieni possessore per UID specifico
   async getTagOwnerByUID(uid: string): Promise<TagOwner | null> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -739,7 +739,7 @@ class Database {
     });
   }
 
-  // Ottieni tutti i proprietari dei tag
+  // Ottieni tutti i possessori dei tag
   async getAllTagOwners(): Promise<TagOwner[]> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -766,7 +766,7 @@ class Database {
     });
   }
 
-  // Cerca proprietari per nominativo
+  // Cerca possessori per nominativo
   async searchTagOwnersByNominativo(searchTerm: string): Promise<TagOwner[]> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -794,7 +794,7 @@ class Database {
     });
   }
 
-  // Elimina proprietario per UID
+  // Elimina possessore per UID
   async deleteTagOwner(uid: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -832,7 +832,7 @@ class Database {
       status: string;
     }>;
     fromBackup?: boolean; // Indica se i dati provengono dal backup
-    tagOwner?: TagOwner | null; // Informazioni del proprietario del tag
+    tagOwner?: TagOwner | null; // Informazioni del possessore del tag
   }> {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -868,7 +868,7 @@ class Database {
             console.log('Nessun backup disponibile per UID:', uid);
           }
           
-                     // Recupera informazioni del proprietario del tag
+                     // Recupera informazioni del possessore del tag
            const tagOwner = await this.getTagOwnerByUID(uid);
            
            resolve({
@@ -961,7 +961,7 @@ class Database {
             status: rows[0].status
           };
 
-          // Recupera informazioni del proprietario del tag
+          // Recupera informazioni del possessore del tag
           const tagOwner = await this.getTagOwnerByUID(uid);
            
           resolve({

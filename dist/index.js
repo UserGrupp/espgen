@@ -147,33 +147,35 @@ app.post("/postjson", (req, res) => __awaiter(void 0, void 0, void 0, function* 
 // Funzione per salvare i record in un file JSON e nel database SQLite
 function saveRecordToFile(record) {
     return __awaiter(this, void 0, void 0, function* () {
-        const dataFile = 'sensor_data.json';
-        let records = [];
-        // Leggi i dati esistenti se il file esiste
-        if (fs.existsSync(dataFile)) {
+        /*   const dataFile = 'sensor_data.json';
+          let records: recor[] = [];
+        
+          // Leggi i dati esistenti se il file esiste
+          if (fs.existsSync(dataFile)) {
             try {
-                const fileContent = fs.readFileSync(dataFile, 'utf8');
-                records = JSON.parse(fileContent);
+              const fileContent = fs.readFileSync(dataFile, 'utf8');
+              records = JSON.parse(fileContent);
+            } catch (error) {
+              console.error('Errore nella lettura del file:', error);
+              records = [];
             }
-            catch (error) {
-                console.error('Errore nella lettura del file:', error);
-                records = [];
-            }
-        }
-        // Aggiungi il nuovo record
-        records.push(record);
-        // Mantieni solo gli ultimi 100 record per evitare file troppo grandi
-        // if (records.length > 100) {
-        //   records = records.slice(-100);
-        // }
-        // Salva i dati nel file JSON (mantiene compatibilità)
-        try {
+          }
+        
+          // Aggiungi il nuovo record
+          records.push(record);
+        
+          // Mantieni solo gli ultimi 100 record per evitare file troppo grandi
+          // if (records.length > 100) {
+          //   records = records.slice(-100);
+          // }
+        
+          // Salva i dati nel file JSON (mantiene compatibilità)
+          try {
             fs.writeFileSync(dataFile, JSON.stringify(records, null, 2));
             console.log('Record salvato nel file:', dataFile);
-        }
-        catch (error) {
+          } catch (error) {
             console.error('Errore nel salvataggio del file:', error);
-        }
+          } */
         // Salva anche nel database SQLite
         try {
             yield database_1.database.addSensorRecord(record);
@@ -192,14 +194,14 @@ app.get('/sensor-data', (req, res) => __awaiter(void 0, void 0, void 0, function
         // Ottieni i dati dal database SQLite con paginazione
         const result = yield database_1.database.getAllSensorRecords(page, limit);
         const records = result.records;
-        // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+        // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
-        // Crea una mappa per accesso rapido ai proprietari per UID
+        // Crea una mappa per accesso rapido ai possessori per UID
         const tagOwnersMap = new Map();
         tagOwners.forEach(owner => {
             tagOwnersMap.set(owner.uid, owner);
         });
-        // Genera la tabella HTML con i dati dei proprietari e paginazione
+        // Genera la tabella HTML con i dati dei possessori e paginazione
         const html = generateSensorDataTable(records, tagOwnersMap, {
             page,
             limit,
@@ -311,7 +313,7 @@ app.delete('/api/sensor-data/cleanup', (req, res) => __awaiter(void 0, void 0, v
 // Funzione per generare la tabella HTML dei dati dei sensori
 function generateSensorDataTable(records, tagOwnersMap, pagination) {
     const tableRows = records.map(record => {
-        // Controlla se esiste un proprietario per questo UID
+        // Controlla se esiste un possessore per questo UID
         const tagOwner = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(record.uid);
         const nominativo = tagOwner ? tagOwner.nominativo : null;
         // Genera il contenuto della cella UID con link e nominativo
@@ -345,7 +347,7 @@ function generateSensorDataTable(records, tagOwnersMap, pagination) {
     ${(0, helpers_1.generatePagination)(pagination)}
     <div class="container">
         <h1>📊 Raccolta Dati</h1>
-        ${(0, helpers_1.generateSearchSection)('searchInput', '🔍 Cerca per UID o nominativo proprietario...', 'clearSearch()')}
+        ${(0, helpers_1.generateSearchSection)('searchInput', '🔍 Cerca per UID o nominativo possessore...', 'clearSearch()')}
         <button id='btn-a' class="server-btn" onclick="disattiva()"> Disattiva/Attiva</button>
         <button id='btn-reset-db' class="danger-btn" onclick="resetDatabase()">🗑️ Azzera Database</button>
         <div class="table-container">
@@ -368,7 +370,7 @@ function generateSensorDataTable(records, tagOwnersMap, pagination) {
   `;
     return (0, helpers_1.generateBaseHTML)('Dati Sensori', 'sensor-data', content, additionalStyles, additionalScripts);
 }
-// Endpoint per ottenere tutti i proprietari dei tag
+// Endpoint per ottenere tutti i possessori dei tag
 app.get('/api/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -391,14 +393,14 @@ app.get('/api/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
     catch (error) {
-        console.error('Errore nel recupero dei proprietari dei tag:', error);
+        console.error('Errore nel recupero dei possessori dei tag:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nel recupero dei proprietari dei tag'
+            message: 'Errore nel recupero dei possessori dei tag'
         });
     }
 }));
-// Endpoint per ottenere un proprietario specifico per UID
+// Endpoint per ottenere un possessore specifico per UID
 app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const uid = req.params.uid;
@@ -406,7 +408,7 @@ app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, 
         if (!tagOwner) {
             return res.status(404).json({
                 success: false,
-                message: 'Proprietario non trovato'
+                message: 'possessore non trovato'
             });
         }
         res.json({
@@ -415,14 +417,14 @@ app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, 
         });
     }
     catch (error) {
-        console.error('Errore nel recupero del proprietario:', error);
+        console.error('Errore nel recupero del possessore:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nel recupero del proprietario'
+            message: 'Errore nel recupero del possessore'
         });
     }
 }));
-// Endpoint per cercare proprietari per nominativo
+// Endpoint per cercare possessori per nominativo
 app.get('/api/tag-owners/search/:nominativo', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const nominativo = req.params.nominativo;
@@ -434,14 +436,14 @@ app.get('/api/tag-owners/search/:nominativo', (req, res) => __awaiter(void 0, vo
         });
     }
     catch (error) {
-        console.error('Errore nella ricerca dei proprietari:', error);
+        console.error('Errore nella ricerca dei possessori:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nella ricerca dei proprietari'
+            message: 'Errore nella ricerca dei possessori'
         });
     }
 }));
-// Endpoint per aggiungere/aggiornare un proprietario
+// Endpoint per aggiungere/aggiornare un possessore
 app.post('/api/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { uid, nominativo, indirizzo, note } = req.body;
@@ -462,19 +464,19 @@ app.post('/api/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, func
         yield database_1.database.addTagOwner(tagOwner);
         res.json({
             success: true,
-            message: 'Proprietario salvato con successo',
+            message: 'possessore salvato con successo',
             data: tagOwner
         });
     }
     catch (error) {
-        console.error('Errore nel salvataggio del proprietario:', error);
+        console.error('Errore nel salvataggio del possessore:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nel salvataggio del proprietario'
+            message: 'Errore nel salvataggio del possessore'
         });
     }
 }));
-// Endpoint per eliminare un proprietario
+// Endpoint per eliminare un possessore
 app.delete('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const uid = req.params.uid;
@@ -482,28 +484,28 @@ app.delete('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 
         if (!deleted) {
             return res.status(404).json({
                 success: false,
-                message: 'Proprietario non trovato'
+                message: 'possessore non trovato'
             });
         }
         res.json({
             success: true,
-            message: 'Proprietario eliminato con successo'
+            message: 'possessore eliminato con successo'
         });
     }
     catch (error) {
-        console.error('Errore nell\'eliminazione del proprietario:', error);
+        console.error('Errore nell\'eliminazione del possessore:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nell\'eliminazione del proprietario'
+            message: 'Errore nell\'eliminazione del possessore'
         });
     }
 }));
-// Endpoint per visualizzare i proprietari dei tag in formato HTML
+// Endpoint per visualizzare i possessori dei tag in formato HTML
 app.get('/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
-        // Ottieni tutti i proprietari dei tag
+        // Ottieni tutti i possessori dei tag
         const allTagOwners = yield database_1.database.getAllTagOwners();
         // Calcola la paginazione
         const total = allTagOwners.length;
@@ -521,7 +523,7 @@ app.get('/tag-owners', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.send(html);
     }
     catch (error) {
-        console.error('Errore nel recupero dei proprietari dei tag:', error);
+        console.error('Errore nel recupero dei possessori dei tag:', error);
         res.status(500).send('Errore nel recupero dei dati');
     }
 }));
@@ -593,7 +595,7 @@ app.get('/api/spending-stats/search', (req, res) => __awaiter(void 0, void 0, vo
             });
         }
         const stats = yield database_1.database.getAllSpendingStats();
-        // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+        // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
         const tagOwnersMap = new Map();
         tagOwners.forEach(owner => {
@@ -667,9 +669,9 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const stats = yield database_1.database.getAllSpendingStats();
-        // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+        // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
-        // Crea una mappa per accesso rapido ai proprietari per UID
+        // Crea una mappa per accesso rapido ai possessori per UID
         const tagOwnersMap = new Map();
         tagOwners.forEach(owner => {
             tagOwnersMap.set(owner.uid, owner);
@@ -704,7 +706,7 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
         res.status(500).send('Errore nella generazione della dashboard generale');
     }
 }));
-// Funzione per generare la tabella HTML dei proprietari dei tag
+// Funzione per generare la tabella HTML dei possessori dei tag
 // Funzione per generare la dashboard di spesa per un UID specifico
 function generateSpendingDashboard(spendingData, pagination) {
     const operationsRows = spendingData.operations.map(op => {
@@ -742,7 +744,7 @@ function generateSpendingDashboard(spendingData, pagination) {
         ${spendingData.fromBackup ? '<div class="backup-notice">📊 Dati completati con backup delle statistiche</div>' : ''}
         ${spendingData.tagOwner ? `
         <div class="tag-owner-info">
-            <h2>👤 Proprietario Tag</h2>
+            <h2>👤 Possessore Tag</h2>
             <div class="owner-details">
                 <p><strong>Nominativo:</strong> ${spendingData.tagOwner.nominativo}</p>
                 <p><strong>Indirizzo:</strong> ${spendingData.tagOwner.indirizzo}</p>
@@ -823,7 +825,7 @@ function generateSpendingDashboard(spendingData, pagination) {
 // Funzione per generare la dashboard generale delle spese
 function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globalTotals) {
     const tableRows = stats.map(stat => {
-        // Controlla se esiste un proprietario per questo UID
+        // Controlla se esiste un possessore per questo UID
         const tagOwner = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(stat.uid);
         const nominativo = tagOwner ? tagOwner.nominativo : null;
         // Genera il contenuto della cella UID con link e nominativo
@@ -942,7 +944,7 @@ function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globa
           📊 = Dati provenienti da backup (record operativi cancellati)
         </p>
         
-        ${(0, helpers_1.generateSearchSection)('searchOperations', '🔍 Cerca per UID o nominativo proprietario...', 'clearOperationsSearch()')}
+        ${(0, helpers_1.generateSearchSection)('searchOperations', '🔍 Cerca per UID o nominativo possessore...', 'clearOperationsSearch()')}
         
         <div class="table-container">
             <table>
@@ -1041,7 +1043,7 @@ function generateTagOwnersTable(tagOwners, pagination) {
             const result = await response.json();
             
             if (result.success) {
-                window.showStatus('Tag proprietario aggiornato con successo!', 'success');
+                window.showStatus('Tag possessore aggiornato con successo!', 'success');
                 // Ricarica la pagina dopo 2 secondi per mostrare i dati aggiornati
                 setTimeout(() => {
                     location.reload();
@@ -1081,7 +1083,7 @@ function generateTagOwnersTable(tagOwners, pagination) {
     }
     
     window.deleteTagOwner = async function(uid) {
-        if (!confirm('Sei sicuro di voler eliminare questo proprietario tag?')) {
+        if (!confirm('Sei sicuro di voler eliminare questo possessore tag?')) {
             return;
         }
         
@@ -1096,7 +1098,7 @@ function generateTagOwnersTable(tagOwners, pagination) {
             const result = await response.json();
             
             if (result.success) {
-                window.showStatus('Proprietario tag eliminato con successo!', 'success');
+                window.showStatus('Possessore tag eliminato con successo!', 'success');
                 // Ricarica la pagina dopo 2 secondi
                 setTimeout(() => {
                     location.reload();
@@ -1117,8 +1119,9 @@ function generateTagOwnersTable(tagOwners, pagination) {
         // Usa il limite salvato se non è specificato nell'URL
         if (!url.searchParams.has('limit')) {
             const currentPath = window.location.pathname;
-            const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
-            const savedLimit = localStorage.getItem(storageKey);
+            const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
+            
+             const savedLimit = localStorage.getItem(storageKey);
             if (savedLimit) {
                 url.searchParams.set('limit', savedLimit);
             }
@@ -1130,7 +1133,7 @@ function generateTagOwnersTable(tagOwners, pagination) {
     window.changeLimit = function(limit) {
         // Salva il nuovo limite nel localStorage
         const currentPath = window.location.pathname;
-        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
+        const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
         localStorage.setItem(storageKey, limit.toString());
         
         const url = new URL(window.location);
@@ -1192,7 +1195,7 @@ function generateTagOwnersTable(tagOwners, pagination) {
     const content = `
     ${(0, helpers_1.generatePagination)(pagination)}
     <div class="container">
-        <h1>Proprietari Tag NFC</h1>
+        <h1>Possessori Tag NFC</h1>
         <div id="statusMessage"></div>
         
         ${(0, helpers_1.generateSearchSection)('searchOperations', '🔍 Cerca per UID, nominativo o indirizzo...', 'clearOperationsSearch()')}
@@ -1212,13 +1215,13 @@ function generateTagOwnersTable(tagOwners, pagination) {
                     </tr>
                 </thead>
                 <tbody>
-                    ${tagOwners.length > 0 ? tableRows : '<tr><td colspan="7" class="no-data">Nessun proprietario trovato</td></tr>'}
+                    ${tagOwners.length > 0 ? tableRows : '<tr><td colspan="7" class="no-data">Nessun possessore trovato</td></tr>'}
                 </tbody>
             </table>
         </div>
     </div>
   `;
-    return (0, helpers_1.generateBaseHTML)('Proprietari Tag NFC', 'tag-owners', content, additionalStyles, additionalScripts);
+    return (0, helpers_1.generateBaseHTML)('possessori Tag NFC', 'tag-owners', content, additionalStyles, additionalScripts);
 }
 // Endpoint per la pagina utility/impostazioni
 app.get('/utility', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -1241,6 +1244,20 @@ app.get('/utility', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(500).send('Errore interno del server');
     }
 }));
+app.get('/download-db', (req, res) => {
+    // *** MODIFICA QUI: 'dati.db' diventa 'logs.db' ***
+    const dbPath = path.join("./", 'logs.db'); // Il tuo database si chiama logs.db
+    //__dirname
+    res.download(dbPath, 'logs.db', (err) => {
+        if (err) {
+            console.error('Errore durante il download del database:', err);
+            res.status(500).send('Impossibile scaricare il file del database.');
+        }
+        else {
+            console.log('File logs.db scaricato con successo.');
+        }
+    });
+});
 // Endpoint per eseguire pulizia immediata
 app.post('/api/utility/cleanup-now', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -1424,10 +1441,10 @@ function stopAutoCleanup() {
 function generateHomePage() {
     const content = `
     <div class="welcome-section">
-        <h1>🏠 ARD Home Server</h1>
-        <p>Sistema di gestione integrato per sensori NFC e controllo domotico</p>
+        <h1>🏠 ESP Home Server</h1>
+        <p>Sistema di gestione integrato per sensori NFC</p>
     </div>
-
+<div class="container">
     <div class="quick-stats">
         <a href="/sensor-data" class="nav-card">
             <h3><span class="icon">📊</span>Dati Sensori</h3>
@@ -1440,15 +1457,15 @@ function generateHomePage() {
         </a>
 
         <a href="/tag-owners" class="nav-card">
-            <h3><span class="icon">👥</span>Proprietari Tag</h3>
-            <p>Gestisci i proprietari dei tag NFC, associa UID a nominativi e indirizzi.</p>
+            <h3><span class="icon">👥</span>Possessori Tag</h3>
+            <p>Gestisci i possessori dei tag NFC, associa UID a nominativi e indirizzi.</p>
         </a>
 
         <a href="/utility" class="nav-card">
             <h3><span class="icon">⚙️</span>Utility & Impostazioni</h3>
             <p>Configura periodi di conservazione, pulizia automatica e monitora lo stato del database.</p>
         </a>
-
+         
         <a href="/api/logs-view" class="nav-card">
             <h3><span class="icon">📝</span>Log Sistema</h3>
             <p>Visualizza i log delle attività del sistema e monitora le operazioni degli utenti.</p>
@@ -1460,17 +1477,14 @@ function generateHomePage() {
         </div>
     </div>
 
-    <div class="container">
-        <h2>�� Stato Sistema</h2>
+    
+        <h2  style="text-align: center;" >  Stato Sistema</h2>
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">Scenario 2</div>
-                <div class="stat-label">Scenario Attivo</div>
-            </div>
+         
             <div class="stat-card">
                 <div class="stat-value">✅ Attivo</div>
                 <div class="stat-label">Backup Statistiche</div>
-            </div>
+            </div> 
             <div class="stat-card">
                 <div class="stat-value">⚙️ Configurabile</div>
                 <div class="stat-label">Pulizia Automatica</div>
@@ -1483,11 +1497,11 @@ function generateHomePage() {
     </div>
 
     <div class="footer">
-        <p>ARD Home Server v3.0 - Sistema di gestione integrato</p>
+        <p>ESP Home Server v3.0 - Sistema di gestione integrato</p>
         <p>Backup automatico statistiche • Periodi conservazione configurabili • Dashboard avanzate</p>
     </div>
   `;
-    return (0, helpers_1.generateBaseHTML)('ARD Home Server - Dashboard Principale', 'home', content);
+    return (0, helpers_1.generateBaseHTML)('ESP Home Server - Dashboard Principale', 'home', content);
 }
 // Funzione per generare la pagina utility/impostazioni
 function generateUtilityPage(data) {
@@ -1531,6 +1545,9 @@ function generateUtilityPage(data) {
     }).join('')}
                 </tbody>
             </table>
+             <p class="save-btn" style="text-align: center;">
+                <a href="/download-db" download="logs.db" class="button-link">Scarica database SQLite</a>
+            </p>
         </div>
         
         <!-- Sezione Controllo Logging -->
@@ -1801,7 +1818,7 @@ app.get('/', (req, res) => {
     const html = generateHomePage();
     res.send(html);
 });
-// Endpoint per cercare nei proprietari dei tag
+// Endpoint per cercare nei possessori dei tag
 app.get('/api/tag-owners/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const searchTerm = req.query.q;
@@ -1828,7 +1845,7 @@ app.get('/api/tag-owners/search', (req, res) => __awaiter(void 0, void 0, void 0
         });
     }
     catch (error) {
-        console.error('Errore nella ricerca dei proprietari dei tag:', error);
+        console.error('Errore nella ricerca dei possessori dei tag:', error);
         res.status(500).json({
             success: false,
             message: 'Errore nella ricerca'
@@ -1847,7 +1864,7 @@ app.get('/api/sensor-data/search', (req, res) => __awaiter(void 0, void 0, void 
         }
         // Ottieni tutti i record (senza paginazione per la ricerca)
         const result = yield database_1.database.getAllSensorRecords(1, 10000); // Numero grande per ottenere tutti i record
-        // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+        // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
         const tagOwnersMap = new Map();
         tagOwners.forEach(owner => {
@@ -1884,7 +1901,7 @@ app.get('/api/sensor-data/search', (req, res) => __awaiter(void 0, void 0, void 
         });
     }
 }));
-// Endpoint per ottenere un proprietario specifico per UID
+// Endpoint per ottenere un possessore specifico per UID
 app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const uid = req.params.uid;
@@ -1892,7 +1909,7 @@ app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, 
         if (!tagOwner) {
             return res.status(404).json({
                 success: false,
-                message: 'Proprietario non trovato'
+                message: 'possessore non trovato'
             });
         }
         res.json({
@@ -1901,10 +1918,10 @@ app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, 
         });
     }
     catch (error) {
-        console.error('Errore nel recupero del proprietario:', error);
+        console.error('Errore nel recupero del possessore:', error);
         res.status(500).json({
             success: false,
-            message: 'Errore nel recupero del proprietario'
+            message: 'Errore nel recupero del possessore'
         });
     }
 }));

@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from 'express';
 
 // Autenticazione Basic HTTP per proteggere tutte le rotte
 // Usa variabili d'ambiente ADMIN_USER e ADMIN_PASSWORD, con default sicuri
-const ADMIN_USER = process.env.ADMIN_USER || 'admin';
+const ADMIN_USER = process.env.ADMIN_USER || 'admin0';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'esp32';
 
 export function basicAuth(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers['authorization'];
 
   if (!authHeader || !authHeader.startsWith('Basic ')) {
-    res.setHeader('WWW-Authenticate', 'Basic realm="ARD Home Server"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="ESP Home Server"');
     res.status(401).send('Autenticazione richiesta');
     return;
   }
@@ -19,7 +19,7 @@ export function basicAuth(req: Request, res: Response, next: NextFunction): void
   try {
     decoded = Buffer.from(base64Credentials, 'base64').toString('utf8');
   } catch {
-    res.setHeader('WWW-Authenticate', 'Basic realm="ARD Home Server"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="ESP Home Server"');
     res.status(401).send('Credenziali non valide');
     return;
   }
@@ -30,7 +30,7 @@ export function basicAuth(req: Request, res: Response, next: NextFunction): void
 
   const isValid = username === ADMIN_USER && password === ADMIN_PASSWORD;
   if (!isValid) {
-    res.setHeader('WWW-Authenticate', 'Basic realm="ARD Home Server"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="ESP Home Server"');
     res.status(401).send('Accesso negato');
     return;
   }

@@ -190,7 +190,7 @@ else
 
 // Funzione per salvare i record in un file JSON e nel database SQLite
 async function saveRecordToFile(record: recor) {
-  const dataFile = 'sensor_data.json';
+/*   const dataFile = 'sensor_data.json';
   let records: recor[] = [];
 
   // Leggi i dati esistenti se il file esiste
@@ -218,7 +218,7 @@ async function saveRecordToFile(record: recor) {
     console.log('Record salvato nel file:', dataFile);
   } catch (error) {
     console.error('Errore nel salvataggio del file:', error);
-  }
+  } */
 
   // Salva anche nel database SQLite
   try {
@@ -239,16 +239,16 @@ app.get('/sensor-data', async (req, res) => {
     const result = await database.getAllSensorRecords(page, limit);
     const records = result.records;
 
-    // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+    // Ottieni tutti i possessori dei tag per mostrare i nominativi
     const tagOwners = await database.getAllTagOwners();
 
-    // Crea una mappa per accesso rapido ai proprietari per UID
+    // Crea una mappa per accesso rapido ai possessori per UID
     const tagOwnersMap = new Map();
     tagOwners.forEach(owner => {
       tagOwnersMap.set(owner.uid, owner);
     });
 
-    // Genera la tabella HTML con i dati dei proprietari e paginazione
+    // Genera la tabella HTML con i dati dei possessori e paginazione
     const html = generateSensorDataTable(records, tagOwnersMap, {
       page,
       limit,
@@ -379,7 +379,7 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
   totalPages: number;
 }): string {
   const tableRows = records.map(record => {
-    // Controlla se esiste un proprietario per questo UID
+    // Controlla se esiste un possessore per questo UID
     const tagOwner = tagOwnersMap?.get(record.uid);
     const nominativo = tagOwner ? tagOwner.nominativo : null;
     // Genera il contenuto della cella UID con link e nominativo
@@ -416,7 +416,7 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
     ${generatePagination(pagination)}
     <div class="container">
         <h1>📊 Raccolta Dati</h1>
-        ${generateSearchSection('searchInput', '🔍 Cerca per UID o nominativo proprietario...', 'clearSearch()')}
+        ${generateSearchSection('searchInput', '🔍 Cerca per UID o nominativo possessore...', 'clearSearch()')}
         <button id='btn-a' class="server-btn" onclick="disattiva()"> Disattiva/Attiva</button>
         <button id='btn-reset-db' class="danger-btn" onclick="resetDatabase()">🗑️ Azzera Database</button>
         <div class="table-container">
@@ -444,7 +444,7 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
 
 
 
-// Endpoint per ottenere tutti i proprietari dei tag
+// Endpoint per ottenere tutti i possessori dei tag
 app.get('/api/tag-owners', async (req, res) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
@@ -468,15 +468,15 @@ app.get('/api/tag-owners', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Errore nel recupero dei proprietari dei tag:', error);
+    console.error('Errore nel recupero dei possessori dei tag:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nel recupero dei proprietari dei tag'
+      message: 'Errore nel recupero dei possessori dei tag'
     });
   }
 });
 
-// Endpoint per ottenere un proprietario specifico per UID
+// Endpoint per ottenere un possessore specifico per UID
 app.get('/api/tag-owners/:uid', async (req, res) => {
   try {
     const uid = req.params.uid;
@@ -486,7 +486,7 @@ app.get('/api/tag-owners/:uid', async (req, res) => {
     if (!tagOwner) {
       return res.status(404).json({
         success: false,
-        message: 'Proprietario non trovato'
+        message: 'possessore non trovato'
       });
     }
 
@@ -495,15 +495,15 @@ app.get('/api/tag-owners/:uid', async (req, res) => {
       data: tagOwner
     });
   } catch (error) {
-    console.error('Errore nel recupero del proprietario:', error);
+    console.error('Errore nel recupero del possessore:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nel recupero del proprietario'
+      message: 'Errore nel recupero del possessore'
     });
   }
 });
 
-// Endpoint per cercare proprietari per nominativo
+// Endpoint per cercare possessori per nominativo
 app.get('/api/tag-owners/search/:nominativo', async (req, res) => {
   try {
     const nominativo = req.params.nominativo;
@@ -516,15 +516,15 @@ app.get('/api/tag-owners/search/:nominativo', async (req, res) => {
       count: tagOwners.length
     });
   } catch (error) {
-    console.error('Errore nella ricerca dei proprietari:', error);
+    console.error('Errore nella ricerca dei possessori:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nella ricerca dei proprietari'
+      message: 'Errore nella ricerca dei possessori'
     });
   }
 });
 
-// Endpoint per aggiungere/aggiornare un proprietario
+// Endpoint per aggiungere/aggiornare un possessore
 app.post('/api/tag-owners', async (req, res) => {
   try {
     const { uid, nominativo, indirizzo, note } = req.body;
@@ -549,19 +549,19 @@ app.post('/api/tag-owners', async (req, res) => {
 
     res.json({
       success: true,
-      message: 'Proprietario salvato con successo',
+      message: 'possessore salvato con successo',
       data: tagOwner
     });
   } catch (error) {
-    console.error('Errore nel salvataggio del proprietario:', error);
+    console.error('Errore nel salvataggio del possessore:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nel salvataggio del proprietario'
+      message: 'Errore nel salvataggio del possessore'
     });
   }
 });
 
-// Endpoint per eliminare un proprietario
+// Endpoint per eliminare un possessore
 app.delete('/api/tag-owners/:uid', async (req, res) => {
   try {
     const uid = req.params.uid;
@@ -571,30 +571,30 @@ app.delete('/api/tag-owners/:uid', async (req, res) => {
     if (!deleted) {
       return res.status(404).json({
         success: false,
-        message: 'Proprietario non trovato'
+        message: 'possessore non trovato'
       });
     }
 
     res.json({
       success: true,
-      message: 'Proprietario eliminato con successo'
+      message: 'possessore eliminato con successo'
     });
   } catch (error) {
-    console.error('Errore nell\'eliminazione del proprietario:', error);
+    console.error('Errore nell\'eliminazione del possessore:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nell\'eliminazione del proprietario'
+      message: 'Errore nell\'eliminazione del possessore'
     });
   }
 });
 
-// Endpoint per visualizzare i proprietari dei tag in formato HTML
+// Endpoint per visualizzare i possessori dei tag in formato HTML
 app.get('/tag-owners', async (req, res) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     
-    // Ottieni tutti i proprietari dei tag
+    // Ottieni tutti i possessori dei tag
     const allTagOwners = await database.getAllTagOwners();
     
     // Calcola la paginazione
@@ -614,7 +614,7 @@ app.get('/tag-owners', async (req, res) => {
     });
     res.send(html);
   } catch (error) {
-    console.error('Errore nel recupero dei proprietari dei tag:', error);
+    console.error('Errore nel recupero dei possessori dei tag:', error);
     res.status(500).send('Errore nel recupero dei dati');
   }
 });
@@ -695,7 +695,7 @@ app.get('/api/spending-stats/search', async (req, res) => {
 
     const stats = await database.getAllSpendingStats();
     
-    // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+    // Ottieni tutti i possessori dei tag per mostrare i nominativi
     const tagOwners = await database.getAllTagOwners();
     const tagOwnersMap = new Map();
     tagOwners.forEach(owner => {
@@ -785,10 +785,10 @@ app.get('/spending-dashboard', async (req, res) => {
     
     const stats = await database.getAllSpendingStats();
 
-    // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+    // Ottieni tutti i possessori dei tag per mostrare i nominativi
     const tagOwners = await database.getAllTagOwners();
 
-    // Crea una mappa per accesso rapido ai proprietari per UID
+    // Crea una mappa per accesso rapido ai possessori per UID
     const tagOwnersMap = new Map();
     tagOwners.forEach(owner => {
       tagOwnersMap.set(owner.uid, owner);
@@ -829,7 +829,7 @@ app.get('/spending-dashboard', async (req, res) => {
 
 
 
-// Funzione per generare la tabella HTML dei proprietari dei tag
+// Funzione per generare la tabella HTML dei possessori dei tag
 // Funzione per generare la dashboard di spesa per un UID specifico
 function generateSpendingDashboard(spendingData: {
   uid: string;
@@ -896,7 +896,7 @@ function generateSpendingDashboard(spendingData: {
         ${spendingData.fromBackup ? '<div class="backup-notice">📊 Dati completati con backup delle statistiche</div>' : ''}
         ${spendingData.tagOwner ? `
         <div class="tag-owner-info">
-            <h2>👤 Proprietario Tag</h2>
+            <h2>👤 Possessore Tag</h2>
             <div class="owner-details">
                 <p><strong>Nominativo:</strong> ${spendingData.tagOwner.nominativo}</p>
                 <p><strong>Indirizzo:</strong> ${spendingData.tagOwner.indirizzo}</p>
@@ -1000,7 +1000,7 @@ function generateGeneralSpendingDashboard(stats: Array<{
   totalAccrediti: number;
 }): string {
   const tableRows = stats.map(stat => {
-    // Controlla se esiste un proprietario per questo UID
+    // Controlla se esiste un possessore per questo UID
     const tagOwner = tagOwnersMap?.get(stat.uid);
     const nominativo = tagOwner ? tagOwner.nominativo : null;
 
@@ -1125,7 +1125,7 @@ function generateGeneralSpendingDashboard(stats: Array<{
           📊 = Dati provenienti da backup (record operativi cancellati)
         </p>
         
-        ${generateSearchSection('searchOperations', '🔍 Cerca per UID o nominativo proprietario...', 'clearOperationsSearch()')}
+        ${generateSearchSection('searchOperations', '🔍 Cerca per UID o nominativo possessore...', 'clearOperationsSearch()')}
         
         <div class="table-container">
             <table>
@@ -1239,7 +1239,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
             const result = await response.json();
             
             if (result.success) {
-                window.showStatus('Tag proprietario aggiornato con successo!', 'success');
+                window.showStatus('Tag possessore aggiornato con successo!', 'success');
                 // Ricarica la pagina dopo 2 secondi per mostrare i dati aggiornati
                 setTimeout(() => {
                     location.reload();
@@ -1279,7 +1279,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     }
     
     window.deleteTagOwner = async function(uid) {
-        if (!confirm('Sei sicuro di voler eliminare questo proprietario tag?')) {
+        if (!confirm('Sei sicuro di voler eliminare questo possessore tag?')) {
             return;
         }
         
@@ -1294,7 +1294,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
             const result = await response.json();
             
             if (result.success) {
-                window.showStatus('Proprietario tag eliminato con successo!', 'success');
+                window.showStatus('Possessore tag eliminato con successo!', 'success');
                 // Ricarica la pagina dopo 2 secondi
                 setTimeout(() => {
                     location.reload();
@@ -1315,8 +1315,9 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
         // Usa il limite salvato se non è specificato nell'URL
         if (!url.searchParams.has('limit')) {
             const currentPath = window.location.pathname;
-            const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
-            const savedLimit = localStorage.getItem(storageKey);
+            const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
+            
+             const savedLimit = localStorage.getItem(storageKey);
             if (savedLimit) {
                 url.searchParams.set('limit', savedLimit);
             }
@@ -1328,7 +1329,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     window.changeLimit = function(limit) {
         // Salva il nuovo limite nel localStorage
         const currentPath = window.location.pathname;
-        const storageKey = 'tableLimit_' + currentPath.replace(/\//g, '_');
+        const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
         localStorage.setItem(storageKey, limit.toString());
         
         const url = new URL(window.location);
@@ -1391,7 +1392,7 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
   const content = `
     ${generatePagination(pagination)}
     <div class="container">
-        <h1>Proprietari Tag NFC</h1>
+        <h1>Possessori Tag NFC</h1>
         <div id="statusMessage"></div>
         
         ${generateSearchSection('searchOperations', '🔍 Cerca per UID, nominativo o indirizzo...', 'clearOperationsSearch()')}
@@ -1411,14 +1412,14 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
                     </tr>
                 </thead>
                 <tbody>
-                    ${tagOwners.length > 0 ? tableRows : '<tr><td colspan="7" class="no-data">Nessun proprietario trovato</td></tr>'}
+                    ${tagOwners.length > 0 ? tableRows : '<tr><td colspan="7" class="no-data">Nessun possessore trovato</td></tr>'}
                 </tbody>
             </table>
         </div>
     </div>
   `;
 
-  return generateBaseHTML('Proprietari Tag NFC', 'tag-owners', content, additionalStyles, additionalScripts);
+  return generateBaseHTML('possessori Tag NFC', 'tag-owners', content, additionalStyles, additionalScripts);
 }
 
 // Endpoint per la pagina utility/impostazioni
@@ -1443,7 +1444,19 @@ app.get('/utility', async (req, res) => {
     res.status(500).send('Errore interno del server');
   }
 });
-
+app.get('/download-db', (req, res) => {
+  // *** MODIFICA QUI: 'dati.db' diventa 'logs.db' ***
+  const dbPath = path.join("./", 'logs.db'); // Il tuo database si chiama logs.db
+//__dirname
+  res.download(dbPath, 'logs.db', (err) => { // Il nome che l'utente scaricherà
+    if (err) {
+      console.error('Errore durante il download del database:', err);
+      res.status(500).send('Impossibile scaricare il file del database.');
+    } else {
+      console.log('File logs.db scaricato con successo.');
+    }
+  });
+});
 // Endpoint per eseguire pulizia immediata
 app.post('/api/utility/cleanup-now', async (req, res) => {
   try {
@@ -1656,10 +1669,10 @@ function stopAutoCleanup() {
 function generateHomePage(): string {
   const content = `
     <div class="welcome-section">
-        <h1>🏠 ARD Home Server</h1>
-        <p>Sistema di gestione integrato per sensori NFC e controllo domotico</p>
+        <h1>🏠 ESP Home Server</h1>
+        <p>Sistema di gestione integrato per sensori NFC</p>
     </div>
-
+<div class="container">
     <div class="quick-stats">
         <a href="/sensor-data" class="nav-card">
             <h3><span class="icon">📊</span>Dati Sensori</h3>
@@ -1672,15 +1685,15 @@ function generateHomePage(): string {
         </a>
 
         <a href="/tag-owners" class="nav-card">
-            <h3><span class="icon">👥</span>Proprietari Tag</h3>
-            <p>Gestisci i proprietari dei tag NFC, associa UID a nominativi e indirizzi.</p>
+            <h3><span class="icon">👥</span>Possessori Tag</h3>
+            <p>Gestisci i possessori dei tag NFC, associa UID a nominativi e indirizzi.</p>
         </a>
 
         <a href="/utility" class="nav-card">
             <h3><span class="icon">⚙️</span>Utility & Impostazioni</h3>
             <p>Configura periodi di conservazione, pulizia automatica e monitora lo stato del database.</p>
         </a>
-
+         
         <a href="/api/logs-view" class="nav-card">
             <h3><span class="icon">📝</span>Log Sistema</h3>
             <p>Visualizza i log delle attività del sistema e monitora le operazioni degli utenti.</p>
@@ -1692,17 +1705,14 @@ function generateHomePage(): string {
         </div>
     </div>
 
-    <div class="container">
-        <h2>�� Stato Sistema</h2>
+    
+        <h2  style="text-align: center;" >  Stato Sistema</h2>
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">Scenario 2</div>
-                <div class="stat-label">Scenario Attivo</div>
-            </div>
+         
             <div class="stat-card">
                 <div class="stat-value">✅ Attivo</div>
                 <div class="stat-label">Backup Statistiche</div>
-            </div>
+            </div> 
             <div class="stat-card">
                 <div class="stat-value">⚙️ Configurabile</div>
                 <div class="stat-label">Pulizia Automatica</div>
@@ -1715,12 +1725,12 @@ function generateHomePage(): string {
     </div>
 
     <div class="footer">
-        <p>ARD Home Server v3.0 - Sistema di gestione integrato</p>
+        <p>ESP Home Server v3.0 - Sistema di gestione integrato</p>
         <p>Backup automatico statistiche • Periodi conservazione configurabili • Dashboard avanzate</p>
     </div>
   `;
 
-  return generateBaseHTML('ARD Home Server - Dashboard Principale', 'home', content);
+  return generateBaseHTML('ESP Home Server - Dashboard Principale', 'home', content);
 }
 
 // Funzione per generare la pagina utility/impostazioni
@@ -1781,6 +1791,9 @@ function generateUtilityPage(data: {
   }).join('')}
                 </tbody>
             </table>
+             <p class="save-btn" style="text-align: center;">
+                <a href="/download-db" download="logs.db" class="button-link">Scarica database SQLite</a>
+            </p>
         </div>
         
         <!-- Sezione Controllo Logging -->
@@ -2064,7 +2077,7 @@ app.get('/', (req, res) => {
   res.send(html);
 });
 
-// Endpoint per cercare nei proprietari dei tag
+// Endpoint per cercare nei possessori dei tag
 app.get('/api/tag-owners/search', async (req, res) => {
   try {
     const searchTerm = req.query.q as string;
@@ -2096,7 +2109,7 @@ app.get('/api/tag-owners/search', async (req, res) => {
       data: filteredOwners
     });
   } catch (error) {
-    console.error('Errore nella ricerca dei proprietari dei tag:', error);
+    console.error('Errore nella ricerca dei possessori dei tag:', error);
     res.status(500).json({
       success: false,
       message: 'Errore nella ricerca'
@@ -2118,7 +2131,7 @@ app.get('/api/sensor-data/search', async (req, res) => {
     // Ottieni tutti i record (senza paginazione per la ricerca)
     const result = await database.getAllSensorRecords(1, 10000); // Numero grande per ottenere tutti i record
     
-    // Ottieni tutti i proprietari dei tag per mostrare i nominativi
+    // Ottieni tutti i possessori dei tag per mostrare i nominativi
     const tagOwners = await database.getAllTagOwners();
     const tagOwnersMap = new Map();
     tagOwners.forEach(owner => {
@@ -2161,7 +2174,7 @@ app.get('/api/sensor-data/search', async (req, res) => {
   }
 });
 
-// Endpoint per ottenere un proprietario specifico per UID
+// Endpoint per ottenere un possessore specifico per UID
 app.get('/api/tag-owners/:uid', async (req, res) => {
   try {
     const uid = req.params.uid;
@@ -2171,7 +2184,7 @@ app.get('/api/tag-owners/:uid', async (req, res) => {
     if (!tagOwner) {
       return res.status(404).json({
         success: false,
-        message: 'Proprietario non trovato'
+        message: 'possessore non trovato'
       });
     }
 
@@ -2180,10 +2193,10 @@ app.get('/api/tag-owners/:uid', async (req, res) => {
       data: tagOwner
     });
   } catch (error) {
-    console.error('Errore nel recupero del proprietario:', error);
+    console.error('Errore nel recupero del possessore:', error);
     res.status(500).json({
       success: false,
-      message: 'Errore nel recupero del proprietario'
+      message: 'Errore nel recupero del possessore'
     });
   }
 });

@@ -7,7 +7,7 @@ function generateNavbar(activePage) {
     const pages = [
         { href: '/sensor-data', icon: '📊', text: 'Dati Sensori' },
         { href: '/spending-dashboard', icon: '💰', text: 'Dashboard Spese' },
-        { href: '/tag-owners', icon: '👥', text: 'Proprietari Tag' },
+        { href: '/tag-owners', icon: '👥', text: 'Possessori Tag' },
         { href: '/utility', icon: '🔧', text: 'Utility' }
     ];
     const navItems = pages.map(page => {
@@ -57,6 +57,29 @@ exports.generatePagination = generatePagination;
 // Funzione per generare il JavaScript comune per la paginazione
 function generatePaginationScript() {
     return `
+
+
+     // --- Parte aggiunta/modificata per gestire il limite di paginazione da localStorage all'avvio ---
+    const currentPath = window.location.pathname;
+    // Correzione dell'espressione regolare per il backslash
+    const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_'); 
+
+    const url = new URL(window.location.href);
+
+    // Se il parametro 'limit' non è già presente nell'URL
+    if (!url.searchParams.has('limit')) {
+        const savedLimit = localStorage.getItem(storageKey);
+        if (savedLimit) {
+            // Imposta il parametro 'limit' nell'URL con il valore salvato
+            url.searchParams.set('limit', savedLimit);
+            // Reindirizza la pagina con il nuovo URL.
+            // Usiamo replace() per non aggiungere all'history del browser.
+            // Questo assicura che il limite sia sempre nell'URL e la paginazione iniziale sia corretta.
+            window.location.replace(url.toString());
+            return; // Ferma l'esecuzione dello script per questa iterazione
+                    // La pagina si ricaricherà con il limite corretto nell'URL
+        }
+    }
     // Paginazione AJAX: aggiorna solo la tabella + barra paginazione
     async function loadPageData(page, limit) {
         const currentPath = window.location.pathname;
@@ -183,7 +206,7 @@ function generatePaginationScript() {
         });
     }
 
-    window.goToPage = function(page) {
+/*     window.goToPage = function(page) {
         const select = document.querySelector('.pagination select');
         const limit = select ? Number(select.value) : 10;
         loadPageData(Number(page), limit);
@@ -191,7 +214,41 @@ function generatePaginationScript() {
     
     window.changeLimit = function(limit) {
         loadPageData(1, Number(limit));
+    }; */
+
+
+ // Funzioni per la paginazione
+    window.goToPage = function(page) {
+        const url = new URL(window.location);
+        url.searchParams.set('page', page);
+        
+        // Usa il limite salvato se non è specificato nell'URL
+        if (!url.searchParams.has('limit')) {
+            const currentPath = window.location.pathname;
+            const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
+            
+             const savedLimit = localStorage.getItem(storageKey);
+            if (savedLimit) {
+                url.searchParams.set('limit', savedLimit);
+            }
+        }
+        
+        window.location.href = url.toString();
     };
+    
+    window.changeLimit = function(limit) {
+        // Salva il nuovo limite nel localStorage
+        const currentPath = window.location.pathname;
+        const storageKey = 'tableLimit_' + currentPath.replace(/\\//g, '_');
+        localStorage.setItem(storageKey, limit.toString());
+        
+        const url = new URL(window.location);
+        url.searchParams.set('limit', limit);
+        url.searchParams.set('page', '1'); // Torna alla prima pagina
+        window.location.href = url.toString();
+    };
+
+
   `;
 }
 exports.generatePaginationScript = generatePaginationScript;
@@ -514,7 +571,7 @@ function generateSearchScript(searchId, clearFunction) {
                     // Dashboard generale spese - usa endpoint con ricerca
                     endpoint = '/api/spending-stats/search?q=' + encodeURIComponent(searchTerm);
                 } else if (currentPath.includes('/tag-owners')) {
-                    // Proprietari tag - usa endpoint con ricerca
+                    // possessori tag - usa endpoint con ricerca
                     endpoint = '/api/tag-owners/search?q=' + encodeURIComponent(searchTerm);
                 } else if (currentPath.includes('/sensor-data')) {
                     // Dati sensori - usa endpoint con ricerca
@@ -580,7 +637,7 @@ function generateSearchScript(searchId, clearFunction) {
                 console.log('Added spending dashboard row', index);
             });
         } else if (currentPath.includes('/tag-owners')) {
-            // Proprietari tag - le funzioni restituiscono già l'elemento tr completo
+            // possessori tag - le funzioni restituiscono già l'elemento tr completo
             console.log('Generating tag owner rows');
             filteredData.forEach((owner, index) => {
                 const html = generateTagOwnerRow(owner);
@@ -613,7 +670,7 @@ function generateSearchScript(searchId, clearFunction) {
             let colspan = 6; // Default
             
             if (currentPath.includes('/tag-owners')) {
-                colspan = 7; // Proprietari tag hanno 7 colonne
+                colspan = 7; // possessori tag hanno 7 colonne
             } else if (currentPath.includes('/sensor-data')) {
                 colspan = 5; // Dati sensori hanno 5 colonne
             } else if (currentPath.includes('/spending-dashboard') && !currentPath.includes('/spending-dashboard/')) {
@@ -693,7 +750,7 @@ function generateSearchScript(searchId, clearFunction) {
         // Debug: verifica i dati ricevuti
         console.log('Generating sensor data row:', record);
         
-        // Controlla se esiste un proprietario per questo UID
+        // Controlla se esiste un possessorio per questo UID
         const nominativo = record.nominativo || '';
         const uidCell = \`
             <div>

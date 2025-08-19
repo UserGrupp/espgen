@@ -66,8 +66,9 @@ h1 {
     background-color: #2c2c2c; /* Colore di sfondo leggermente più chiaro del body */
     border-radius: 12px; /* Angoli arrotondati per un look moderno */
     box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Ombra profonda per effetto di elevazione */
-    overflow: hidden; /* Nasconde il contenuto che esce dai bordi arrotondati */
+   /*   overflow: hidden;/*  Nasconde il contenuto che esce dai bordi arrotondati */
     border: 1px solid #404040; /* Bordo sottile per definire i limiti del container */
+    
 }
 
 /* ========================================
@@ -479,6 +480,9 @@ tr:hover {
     background: linear-gradient(135deg, #333333 0%, #404040 100%); /* Gradiente di sfondo per la griglia */
     border-radius: 12px; /* Angoli arrotondati per un look moderno */
     margin: 25px; /* Spazio esterno per separazione dagli altri elementi */
+    
+  
+  
 }
 
 /* Card per le statistiche */
@@ -627,7 +631,7 @@ tr:hover {
     font-weight: 600; /* Peso del font semi-bold per enfasi */
 }
 
-/* Informazioni proprietario tag */
+/* Informazioni possessori tag */
 .tag-owner-info {
     background: linear-gradient(135deg, #333333 0%, #404040 100%); /* Gradiente di sfondo per le info del proprietario */
     border: 1px solid #007bff; /* Bordo blu per evidenziare le informazioni */
@@ -722,6 +726,7 @@ tr:hover {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     margin: 30px;
+    text-align: center;
 }
 
 /* Card per le statistiche rapide */

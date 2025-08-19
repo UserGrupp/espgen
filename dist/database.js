@@ -48,7 +48,7 @@ class Database {
          created_at DATETIME DEFAULT CURRENT_TIMESTAMP
        )
      `;
-        // Tabella per i proprietari dei tag NFC
+        // Tabella per i possessori dei tag NFC
         const createTagOwnersTable = `
       CREATE TABLE IF NOT EXISTS tag_owners (
         uid TEXT PRIMARY KEY,
@@ -355,11 +355,11 @@ class Database {
                         const sqliteDate = `${year}-${month}-${day} ${timePart}`;
                         this.db.run(updateSql, [sqliteDate, record.uid], function (updateErr) {
                             if (updateErr) {
-                                console.error('Errore aggiornamento proprietario tag esistente:', updateErr);
+                                console.error('Errore aggiornamento possessore tag esistente:', updateErr);
                                 reject(updateErr);
                             }
                             else {
-                                console.log(`Aggiornato timestamp per proprietario tag esistente UID: ${record.uid} con datetime ESP32: ${record.datetime}`);
+                                console.log(`Aggiornato timestamp per possessore tag esistente UID: ${record.uid} con datetime ESP32: ${record.datetime}`);
                                 resolve();
                             }
                         });
@@ -384,11 +384,11 @@ class Database {
                             sqliteDate
                         ], function (insertErr) {
                             if (insertErr) {
-                                console.error('Errore inserimento proprietario tag:', insertErr);
+                                console.error('Errore inserimento possessore tag:', insertErr);
                                 reject(insertErr);
                             }
                             else {
-                                console.log(`Nuovo proprietario tag creato per UID: ${record.uid} (ID: ${this.lastID})`);
+                                console.log(`Nuovo possessore tag creato per UID: ${record.uid} (ID: ${this.lastID})`);
                                 resolve();
                             }
                         });
@@ -654,8 +654,8 @@ class Database {
             });
         });
     }
-    // === FUNZIONI PER I PROPRIETARI DEI TAG NFC ===
-    // Aggiungi un nuovo proprietario di tag
+    // === FUNZIONI PER I possessori DEI TAG NFC ===
+    // Aggiungi un nuovo possessore di tag
     addTagOwner(tagOwner) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -670,20 +670,20 @@ class Database {
                     tagOwner.note || null
                 ], function (err) {
                     if (err) {
-                        console.error('Errore inserimento proprietario tag:', err);
+                        console.error('Errore inserimento possessore tag:', err);
                         reject(err);
                     }
                     else {
                         // Controlla se è stato inserito nuovo record o aggiornato esistente
                         const action = this.changes > 0 ? (this.changes === 1 ? 'inserito' : 'aggiornato') : 'nessuna modifica';
-                        console.log(`Proprietario tag ${action} nel database per UID: ${tagOwner.uid}`);
+                        console.log(`possessore tag ${action} nel database per UID: ${tagOwner.uid}`);
                         resolve();
                     }
                 });
             });
         });
     }
-    // Ottieni proprietario per UID specifico
+    // Ottieni possessore per UID specifico
     getTagOwnerByUID(uid) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -713,7 +713,7 @@ class Database {
             });
         });
     }
-    // Ottieni tutti i proprietari dei tag
+    // Ottieni tutti i possessori dei tag
     getAllTagOwners() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -740,7 +740,7 @@ class Database {
             });
         });
     }
-    // Cerca proprietari per nominativo
+    // Cerca possessori per nominativo
     searchTagOwnersByNominativo(searchTerm) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -768,7 +768,7 @@ class Database {
             });
         });
     }
-    // Elimina proprietario per UID
+    // Elimina possessore per UID
     deleteTagOwner(uid) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -825,7 +825,7 @@ class Database {
                         catch (backupError) {
                             console.log('Nessun backup disponibile per UID:', uid);
                         }
-                        // Recupera informazioni del proprietario del tag
+                        // Recupera informazioni del possessore del tag
                         const tagOwner = yield this.getTagOwnerByUID(uid);
                         resolve({
                             uid,
@@ -901,7 +901,7 @@ class Database {
                             credito_attuale: rows[0].credito_attuale,
                             status: rows[0].status
                         };
-                        // Recupera informazioni del proprietario del tag
+                        // Recupera informazioni del possessore del tag
                         const tagOwner = yield this.getTagOwnerByUID(uid);
                         resolve({
                             uid,
