@@ -669,7 +669,7 @@ class Database {
                     tagOwner.indirizzo,
                     tagOwner.note || null,
                     tagOwner.created_at,
-                    tagOwner.updated_at,
+                    tagOwner.created_at,
                 ], function (err) {
                     if (err) {
                         console.error('Errore inserimento possessore tag:', err);
