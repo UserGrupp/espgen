@@ -548,8 +548,8 @@ tr:hover {
 
 /* Status per azzeramenti */
 .status.azzeramento {
-    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); /* Gradiente giallo per indicare azzeramenti */
-    color: #232323; /* Testo scuro per contrasto sul fondo giallo */
+    background: linear-gradient(135deg, #363431 0%, #191303 100%); /* Gradiente giallo per indicare azzeramenti */
+    color: #f3f3ef; /* Testo scuro per contrasto sul fondo giallo */
 }
 /* Status per azzeramenti */
 .status.assegnazione {
