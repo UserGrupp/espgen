@@ -32,7 +32,7 @@ const path = require('path');
 // Autenticazione per tutte le rotte (inclusi asset statici e homepage)
 app.use(auth_1.basicAuth);
 app.use(express.static(path.join(__dirname, '../public')));
-let test = false;
+let test = (process.env.TEST || 'false') == 'true' ? true : false;
 let server;
 if (test) 
 //***** ******************TEST**********************+
