@@ -907,10 +907,20 @@ function generateSpendingDashboard(spendingData: {
         </div>
         ` : ''}
         <div class="stats-grid">
+           <div class="stat-card">
+                <div class="stat-value">${Number(spendingData.lastOperation ? (spendingData.lastOperation.credito_attuale) : 0).toFixed(2)}€</div>
+                <div class="stat-label">Credito Attuale</div>
+            </div>
              <div class="stat-card">
                  <div class="stat-value">${spendingData.totalSpent.toFixed(2)}€</div>
                  <div class="stat-label">Spesa Totale</div>
              </div>
+             
+        <div class="stat-card">
+            <div class="stat-value">${spendingData.averageSpentPerSpending.toFixed(2)}€</div>
+            <div class="stat-label">Spesa Media</div>
+        </div>
+
              <div class="stat-card">
                  <div class="stat-value">${spendingData.totalOperations}</div>
                  <div class="stat-label">Operazioni Totali</div>
@@ -919,10 +929,7 @@ function generateSpendingDashboard(spendingData: {
             <div class="stat-value">${spendingData.spendingOperations}</div>
             <div class="stat-label">Operazioni di Spesa</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">${spendingData.averageSpentPerSpending.toFixed(2)}€</div>
-            <div class="stat-label">Spesa Media</div>
-        </div>
+       
             <div class="stat-card">
                 <div class="stat-value">${spendingData.firstOperation ? spendingData.firstOperation.datetime : 'N/A'}</div>
                 <div class="stat-label">Prima Operazione</div>
@@ -931,10 +938,7 @@ function generateSpendingDashboard(spendingData: {
                 <div class="stat-value">${spendingData.lastOperation ? spendingData.lastOperation.datetime : 'N/A'}</div>
                 <div class="stat-label">Ultima Operazione</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">${Number(spendingData.lastOperation ? (spendingData.lastOperation.credito_attuale) : 0).toFixed(2)}€</div>
-                <div class="stat-label">Credito Attuale</div>
-            </div>
+         
         </div>
         <h2 class="section-title">📅 Riepilogo Mensile</h2>
         <div class="table-container">
@@ -1099,14 +1103,17 @@ function generateGeneralSpendingDashboard(stats: Array<{
                 <div class="stat-value">${pagination ? pagination.total : stats.length}</div>
                 <div class="stat-label">UID Attivi</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">${totalSpent.toFixed(2)}€</div>
-                <div class="stat-label">Spesa Totale</div>
-            </div>
+            
             <div class="stat-card">
                 <div class="stat-value">${totalAccrediti.toFixed(2)}€</div>
                 <div class="stat-label">Accrediti Totali</div>
             </div>
+
+            <div class="stat-card">
+                <div class="stat-value">${totalSpent.toFixed(2)}€</div>
+                <div class="stat-label">Spesa Totale</div>
+            </div>
+          
             <div class="stat-card">
                 <div class="stat-value">${totalOperations}</div>
                 <div class="stat-label">Operazioni Totali</div>
