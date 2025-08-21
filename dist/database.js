@@ -659,14 +659,29 @@ class Database {
     addTagOwner(tagOwner) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
+                console.log("questo è il nominativo: ");
+                console.log(tagOwner.nominativo);
                 //  const sql = `
                 //     INSERT OR REPLACE INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
                 //     VALUES (?, ?, ?, ?, ?,?)
                 //   `;
+                //   const sql = `
+                //   INSERT   INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
+                //   VALUES (?, ?, ?, ?, ?,?)
+                // `;
                 const sql = `
-      INSERT   INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
-      VALUES (?, ?, ?, ?, ?,?)
-    `;
+    INSERT INTO tag_owners (uid, nominativo, indirizzo, note, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(uid) DO UPDATE SET
+     
+      nominativo = COALESCE(EXCLUDED.nominativo, tag_owners.nominativo), -- Mantieni vecchio se nuovo è vuoto
+      indirizzo = COALESCE(EXCLUDED.indirizzo, tag_owners.indirizzo),
+     note = COALESCE(EXCLUDED.note, tag_owners.note),
+     updated_at = EXCLUDED.updated_at;
+  `;
+                // NOTA: Se vuoi che i campi nominativo, indirizzo, note si aggiornino
+                // quando un UID già esiste e viene fornito un nuovo record, dovresti aggiungerli al DO UPDATE SET:
+                // SET
                 this.db.run(sql, [
                     tagOwner.uid,
                     tagOwner.nominativo,
