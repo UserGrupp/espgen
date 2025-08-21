@@ -572,7 +572,7 @@ function generateSearchScript(searchId, clearFunction) {
                     endpoint = '/api/spending-stats/search?q=' + encodeURIComponent(searchTerm);
                 } else if (currentPath.includes('/tag-owners')) {
                     // possessori tag - usa endpoint con ricerca
-                    endpoint = '/api/tag-owners/search?q=' + encodeURIComponent(searchTerm);
+                    endpoint = '/api/tagowners/search?q=' + encodeURIComponent(searchTerm);
                 } else if (currentPath.includes('/sensor-data')) {
                     // Dati sensori - usa endpoint con ricerca
                     endpoint = '/api/sensor-data/search?q=' + encodeURIComponent(searchTerm);

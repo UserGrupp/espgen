@@ -52,7 +52,7 @@ class Database {
         const createTagOwnersTable = `
       CREATE TABLE IF NOT EXISTS tag_owners (
         uid TEXT PRIMARY KEY,
-        nominativo TEXT NOT NULL,
+        nominativo TEXT  NOT NULL UNIQUE,
         indirizzo TEXT NOT NULL,
         note TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -659,10 +659,14 @@ class Database {
     addTagOwner(tagOwner) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
+                //  const sql = `
+                //     INSERT OR REPLACE INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
+                //     VALUES (?, ?, ?, ?, ?,?)
+                //   `;
                 const sql = `
-        INSERT OR REPLACE INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
-        VALUES (?, ?, ?, ?, ?,?)
-      `;
+      INSERT   INTO tag_owners (uid, nominativo, indirizzo, note,created_at,updated_at  )
+      VALUES (?, ?, ?, ?, ?,?)
+    `;
                 this.db.run(sql, [
                     tagOwner.uid,
                     tagOwner.nominativo,

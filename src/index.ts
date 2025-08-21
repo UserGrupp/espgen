@@ -1260,6 +1260,9 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
                 }, 2000);
             } else {
                 window.showStatus("Errore durante il salvataggio: " + result.message, 'error');
+                 const nominativo = document.getElementById('nominativo_' + uid);
+                nominativo.value="";
+               
             }
         } catch (error) {
             window.showStatus("Errore di connessione: " + error.message, 'error');
@@ -2091,8 +2094,16 @@ app.get('/', (req, res) => {
   res.send(html);
 });
 
+app.get('/api/tag/search',async(req,res)=>{
+
+   return res.json({
+    success: true,
+    data: []
+  })
+})
+
 // Endpoint per cercare nei possessori dei tag
-app.get('/api/tag-owners/search', async (req, res) => {
+app.get('/api/tagowners/search', async (req, res) => {
   try {
     const searchTerm = req.query.q as string;
     if (!searchTerm) {
@@ -2189,7 +2200,7 @@ app.get('/api/sensor-data/search', async (req, res) => {
 });
 
 // Endpoint per ottenere un possessore specifico per UID
-app.get('/api/tag-owners/:uid', async (req, res) => {
+/* app.get('/api/tag-owners/:uid', async (req, res) => {
   try {
     const uid = req.params.uid;
 
@@ -2214,7 +2225,7 @@ app.get('/api/tag-owners/:uid', async (req, res) => {
     });
   }
 });
-
+ */
 // Endpoint per azzerare tutte le tabelle del database (e reset autoincrementali)
 app.post('/api/reset-db', async (req, res) => {
   try {

@@ -1065,6 +1065,9 @@ function generateTagOwnersTable(tagOwners, pagination) {
                 }, 2000);
             } else {
                 window.showStatus("Errore durante il salvataggio: " + result.message, 'error');
+                 const nominativo = document.getElementById('nominativo_' + uid);
+                nominativo.value="";
+               
             }
         } catch (error) {
             window.showStatus("Errore di connessione: " + error.message, 'error');
@@ -1833,8 +1836,14 @@ app.get('/', (req, res) => {
     const html = generateHomePage();
     res.send(html);
 });
+app.get('/api/tag/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    return res.json({
+        success: true,
+        data: []
+    });
+}));
 // Endpoint per cercare nei possessori dei tag
-app.get('/api/tag-owners/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/tagowners/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const searchTerm = req.query.q;
         if (!searchTerm) {
@@ -1917,29 +1926,32 @@ app.get('/api/sensor-data/search', (req, res) => __awaiter(void 0, void 0, void 
     }
 }));
 // Endpoint per ottenere un possessore specifico per UID
-app.get('/api/tag-owners/:uid', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const uid = req.params.uid;
-        const tagOwner = yield database_1.database.getTagOwnerByUID(uid);
-        if (!tagOwner) {
-            return res.status(404).json({
-                success: false,
-                message: 'possessore non trovato'
-            });
-        }
-        res.json({
-            success: true,
-            data: tagOwner
-        });
+/* app.get('/api/tag-owners/:uid', async (req, res) => {
+  try {
+    const uid = req.params.uid;
+
+    const tagOwner = await database.getTagOwnerByUID(uid);
+
+    if (!tagOwner) {
+      return res.status(404).json({
+        success: false,
+        message: 'possessore non trovato'
+      });
     }
-    catch (error) {
-        console.error('Errore nel recupero del possessore:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Errore nel recupero del possessore'
-        });
-    }
-}));
+
+    res.json({
+      success: true,
+      data: tagOwner
+    });
+  } catch (error) {
+    console.error('Errore nel recupero del possessore:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Errore nel recupero del possessore'
+    });
+  }
+});
+ */
 // Endpoint per azzerare tutte le tabelle del database (e reset autoincrementali)
 app.post('/api/reset-db', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
