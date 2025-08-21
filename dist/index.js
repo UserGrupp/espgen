@@ -1836,12 +1836,6 @@ app.get('/', (req, res) => {
     const html = generateHomePage();
     res.send(html);
 });
-app.get('/api/tag/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    return res.json({
-        success: true,
-        data: []
-    });
-}));
 // Endpoint per cercare nei possessori dei tag
 app.get('/api/tagowners/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

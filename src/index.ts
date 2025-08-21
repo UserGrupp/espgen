@@ -2094,13 +2094,7 @@ app.get('/', (req, res) => {
   res.send(html);
 });
 
-app.get('/api/tag/search',async(req,res)=>{
-
-   return res.json({
-    success: true,
-    data: []
-  })
-})
+ 
 
 // Endpoint per cercare nei possessori dei tag
 app.get('/api/tagowners/search', async (req, res) => {
