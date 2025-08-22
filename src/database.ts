@@ -685,6 +685,8 @@ class Database {
   // Aggiungi un nuovo possessore di tag
   async addTagOwner(tagOwner: TagOwner): Promise<void> {
     return new Promise((resolve, reject) => {
+      tagOwner.nominativo=tagOwner.nominativo.toUpperCase();
+      tagOwner.indirizzo=tagOwner.indirizzo.toUpperCase();
       console.log("questo è il nominativo: ");
       console.log(tagOwner.nominativo);
 

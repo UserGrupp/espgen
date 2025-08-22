@@ -659,6 +659,8 @@ class Database {
     addTagOwner(tagOwner) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
+                tagOwner.nominativo = tagOwner.nominativo.toUpperCase();
+                tagOwner.indirizzo = tagOwner.indirizzo.toUpperCase();
                 console.log("questo è il nominativo: ");
                 console.log(tagOwner.nominativo);
                 //  const sql = `
