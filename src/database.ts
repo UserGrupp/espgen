@@ -201,6 +201,8 @@ class Database {
 
   // Controlla se i log sono attivi
   isLogAttivo(): boolean {
+    // Controlla se i log sono attivi
+    // Gestisce il formato delle date italiane (DD-MM-YYYY) nel database
     return this.attivaLog;
   }
 
@@ -1443,6 +1445,557 @@ class Database {
         }
       });
     });
+  }
+
+  // Aggrega per mese le operazioni e la spesa di un UID con filtro date, sommando sensor_data e spending_monthly_stats
+  async getMonthlyStatsByUIDAndDateRange(uid: string, startDate: string, endDate: string): Promise<Array<{ yearMonth: string, totalOperations: number, totalSpendingOperations: number, totalSpent: number, totalAccrediti: number }>> {
+    return new Promise((resolve, reject) => {
+      // Converte le date in timestamp Unix per il confronto diretto
+      const startTimestamp = this.convertDateToTimestamp(startDate);
+      const endTimestamp = this.convertDateToEndOfDayTimestamp(endDate);
+      
+      // Query per sensor_data (transazioni ancora presenti) con filtro date - formato MM-YYYY
+      const sqlSensor = `
+        SELECT   SUBSTR(datetime, 4, 2) || '-' || SUBSTR(datetime, 7, 4) as yearMonth,
+               COUNT(*) as totalOperations,
+               COUNT(CASE WHEN status = 'spesa' THEN 1 END) as totalSpendingOperations,
+               SUM(CASE WHEN status = 'spesa' THEN (credito_precedente - credito_attuale) ELSE 0 END) as totalSpent,
+               SUM(CASE 
+                 WHEN status = 'accredito' THEN (credito_attuale - credito_precedente)
+                 WHEN status = 'azzeramento' THEN (-credito_precedente)
+                 ELSE 0 
+               END) as totalAccrediti
+        FROM sensor_data
+        WHERE uid = ? AND CAST(timestamp AS INTEGER) BETWEEN ? AND ?
+        GROUP BY yearMonth
+      `;
+      this.db.all(sqlSensor, [uid, startTimestamp, endTimestamp], (err, sensorRows: Array<{ yearMonth: string, totalOperations: number, totalSpendingOperations: number, totalSpent: number, totalAccrediti: number }>) => {
+        if (err) {
+          reject(err);
+        } else {
+          // Query per spending_monthly_stats (backup mensile) con filtro date - converti YYYY-MM in MM-YYYY
+          const sqlBackup = `
+            SELECT 
+              SUBSTR(year_month, 6, 2) || '-' || SUBSTR(year_month, 1, 4) as yearMonth,
+              total_operations as totalOperations,
+              total_spending_operations as totalSpendingOperations,
+              total_spent as totalSpent, 
+              total_credits as totalAccrediti
+            FROM spending_monthly_stats
+            WHERE uid = ?
+          `;
+          this.db.all(sqlBackup, [uid], (err2, backupRows: Array<{ yearMonth: string, totalOperations: number, totalSpendingOperations: number, totalSpent: number, totalAccrediti: number }>) => {
+            if (err2) {
+              reject(err2);
+            } else {
+              // Unisci i risultati per mese
+              const monthlyMap = new Map<string, { totalOperations: number, totalSpendingOperations: number, totalSpent: number, totalAccrediti: number }>();
+              for (const row of sensorRows) {
+                monthlyMap.set(row.yearMonth, {
+                  totalOperations: row.totalOperations || 0,
+                  totalSpendingOperations: row.totalSpendingOperations || 0,
+                  totalSpent: row.totalSpent || 0,
+                  totalAccrediti: row.totalAccrediti || 0
+                });
+              }
+              for (const row of backupRows) {
+                if (monthlyMap.has(row.yearMonth)) {
+                  const prev = monthlyMap.get(row.yearMonth)!;
+                  monthlyMap.set(row.yearMonth, {
+                    totalOperations: prev.totalOperations + (row.totalOperations || 0),
+                    totalSpendingOperations: prev.totalSpendingOperations + (row.totalSpendingOperations || 0),
+                    totalSpent: prev.totalSpent + (row.totalSpent || 0),
+                    totalAccrediti: prev.totalAccrediti + (row.totalAccrediti || 0)
+                  });
+                } else {
+                  monthlyMap.set(row.yearMonth, {
+                    totalOperations: row.totalOperations || 0,
+                    totalSpendingOperations: row.totalSpendingOperations || 0,
+                    totalSpent: row.totalSpent || 0,
+                    totalAccrediti: row.totalAccrediti || 0
+                  });
+                }
+              }
+              // Ordina per mese
+              const result = Array.from(monthlyMap.entries())
+                .map(([yearMonth, data]) => ({ yearMonth, ...data }))
+                .sort((a, b) => a.yearMonth.localeCompare(b.yearMonth));
+              resolve(result);
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // === FUNZIONI PER FILTRO PER INTERVALLI DI DATE ===
+
+  // Ottieni record in un intervallo di tempo specifico
+  async getSensorRecordsByDateRange(startDate: string, endDate: string): Promise<SensorRecord[]> {
+    return new Promise((resolve, reject) => {
+      // Converte le date in timestamp Unix per il confronto diretto
+      const startTimestamp = this.convertDateToTimestamp(startDate);
+      const endTimestamp = this.convertDateToEndOfDayTimestamp(endDate); // Usa fine del giorno per endDate
+      
+      console.log(`[DEBUG] getSensorRecordsByDateRange: startDate=${startDate}, endDate=${endDate}`);
+      console.log(`[DEBUG] getSensorRecordsByDateRange: startTimestamp=${startTimestamp}, endTimestamp=${endTimestamp}`);
+      
+      // Prima, mostra alcuni record di esempio per debug
+      this.db.all('SELECT timestamp, datetime, typeof(timestamp) as timestamp_type FROM sensor_data ORDER BY timestamp DESC LIMIT 5', [], (err, sampleRows) => {
+        if (!err && sampleRows.length > 0) {
+          console.log('[DEBUG] Esempi di timestamp nel database:');
+          sampleRows.forEach((row: any, index) => {
+            console.log(`[DEBUG] Record ${index + 1}: timestamp=${row.timestamp} (type: ${row.timestamp_type}), datetime=${row.datetime}`);
+            if (row.timestamp_type === 'integer') {
+              const date = new Date(row.timestamp);
+              console.log(`[DEBUG] Record ${index + 1}: converted date=${date.toISOString()}`);
+            }
+          });
+        }
+      });
+      
+      // Query che gestisce sia timestamp INTEGER che TEXT
+      const sql = `
+        SELECT * FROM sensor_data 
+        WHERE CAST(timestamp AS INTEGER) BETWEEN ? AND ? 
+        ORDER BY CAST(timestamp AS INTEGER) DESC
+      `;
+      
+      this.db.all(sql, [startTimestamp, endTimestamp], (err, rows) => {
+        if (err) {
+          console.error('[DEBUG] getSensorRecordsByDateRange error:', err);
+          reject(err);
+        } else {
+          console.log(`[DEBUG] getSensorRecordsByDateRange: trovati ${rows.length} record`);
+          console.log(`[DEBUG] Query eseguita: ${sql}`);
+          console.log(`[DEBUG] Parametri: startTimestamp=${startTimestamp}, endTimestamp=${endTimestamp}`);
+          
+          if (rows.length > 0) {
+            console.log('[DEBUG] Primi record trovati:');
+            rows.slice(0, 3).forEach((row: any, index) => {
+              console.log(`[DEBUG] Record ${index + 1}: timestamp=${row.timestamp} (type: ${typeof row.timestamp}), datetime=${row.datetime}`);
+              if (typeof row.timestamp === 'number' || !isNaN(Number(row.timestamp))) {
+                const date = new Date(Number(row.timestamp) * 1000); // Converti da secondi a millisecondi
+                console.log(`[DEBUG] Record ${index + 1}: converted date=${date.toISOString()}`);
+              }
+            });
+          } else {
+            console.log('[DEBUG] Nessun record trovato - controlla i timestamp nel database');
+            // Esegui una query di debug per vedere tutti i record
+            this.db.all('SELECT timestamp, datetime FROM sensor_data ORDER BY CAST(timestamp AS INTEGER) DESC LIMIT 10', [], (debugErr, debugRows) => {
+              if (!debugErr && debugRows.length > 0) {
+                console.log('[DEBUG] Ultimi 10 record nel database:');
+                debugRows.forEach((row: any, index) => {
+                  console.log(`[DEBUG] DB Record ${index + 1}: timestamp=${row.timestamp} (type: ${typeof row.timestamp}), datetime=${row.datetime}`);
+                  if (typeof row.timestamp === 'number' || !isNaN(Number(row.timestamp))) {
+                    const date = new Date(Number(row.timestamp) * 1000); // Converti da secondi a millisecondi
+                    console.log(`[DEBUG] DB Record ${index + 1}: converted date=${date.toISOString()}`);
+                  }
+                });
+              }
+            });
+          }
+          const records = rows.map((row: any) => ({
+            uid: row.uid,
+            timestamp: row.timestamp,
+            datetime: row.datetime,
+            credito_precedente: row.credito_precedente,
+            credito_attuale: row.credito_attuale,
+            status: row.status
+          }));
+          
+          resolve(records as SensorRecord[]);
+        }
+      });
+    });
+  }
+
+  // Calcola statistiche di spesa per un intervallo di date specifico
+  async getSpendingStatsByDateRange(startDate: string, endDate: string): Promise<Array<{
+    uid: string;
+    totalSpent: number;
+    totalOperations: number;
+    spendingOperations: number;
+    averageSpentPerSpending: number;
+    totalAccrediti: number;
+    lastOperation: string;
+    creditoAttuale: number;
+    fromBackup?: boolean;
+  }>> {
+    return new Promise((resolve, reject) => {
+      // Converte le date in timestamp Unix per il confronto diretto
+      const startTimestamp = this.convertDateToTimestamp(startDate);
+      const endTimestamp = this.convertDateToEndOfDayTimestamp(endDate); // Usa fine del giorno per endDate
+      
+      // Query che gestisce sia timestamp INTEGER che TEXT
+      const sql = `
+        SELECT uid, 
+               COUNT(*) as total_operations,
+               SUM(CASE 
+                 WHEN status = 'spesa' THEN (credito_precedente - credito_attuale)
+                 ELSE 0 
+               END) as total_spent,
+               COUNT(CASE WHEN status = 'spesa' THEN 1 END) as spending_operations,
+               SUM(CASE 
+                 WHEN status = 'accredito' THEN (credito_attuale - credito_precedente)
+                 WHEN status = 'azzeramento' THEN (-credito_precedente)
+                 ELSE 0 
+               END) as total_accrediti,
+               MAX(datetime) as last_operation,
+               (SELECT credito_attuale FROM sensor_data WHERE uid = sd.uid ORDER BY CAST(timestamp AS INTEGER) DESC LIMIT 1) as credito_attuale
+        FROM sensor_data sd
+        WHERE CAST(timestamp AS INTEGER) BETWEEN ? AND ?
+        GROUP BY uid
+        ORDER BY total_spent DESC
+      `;
+      
+      this.db.all(sql, [startTimestamp, endTimestamp], async (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          const stats = rows.map((row: any) => {
+            // Calcola la media solo per le operazioni di spesa
+            const spendingOperations = row.spending_operations || 0;
+            const averageSpentPerSpending = spendingOperations > 0 
+              ? Math.round((row.total_spent / spendingOperations) * 100) / 100 
+              : 0;
+            return {
+              uid: row.uid,
+              totalSpent: Math.round((row.total_spent || 0) * 100) / 100,
+              totalOperations: row.total_operations,
+              spendingOperations: spendingOperations,
+              averageSpentPerSpending: averageSpentPerSpending,
+              totalAccrediti: Math.round((row.total_accrediti || 0) * 100) / 100,
+              lastOperation: row.last_operation,
+              creditoAttuale: Math.round((row.credito_attuale || 0) * 100) / 100,
+              fromBackup: false
+            };
+          });
+
+          // Per ogni UID, controlla se ci sono statistiche di backup da aggiungere
+          const enhancedStats = await Promise.all(stats.map(async (stat) => {
+            try {
+              const backupStats = await this.getSpendingSummary(stat.uid);
+              if (backupStats) {
+                // Combina i dati operativi con quelli del backup
+                const combinedTotalSpent = (stat.totalSpent || 0) + (backupStats.totalSpent || 0);
+                const combinedTotalOperations = (stat.totalOperations || 0) + (backupStats.totalOperations || 0);
+                const combinedSpendingOperations = (stat.spendingOperations || 0) + (backupStats.spendingOperations || 0);
+                const combinedTotalAccrediti = (stat.totalAccrediti || 0) + (backupStats.totalCredits || 0);
+                
+                // Calcola la spesa media combinata (operativi + backup)
+                const averageSpentPerSpending = combinedSpendingOperations > 0 
+                  ? Math.round((combinedTotalSpent / combinedSpendingOperations) * 100) / 100 
+                  : 0;
+                
+                return {
+                  ...stat,
+                  totalSpent: Math.round(combinedTotalSpent * 100) / 100,
+                  totalOperations: combinedTotalOperations,
+                  spendingOperations: combinedSpendingOperations,
+                  averageSpentPerSpending: averageSpentPerSpending,
+                  totalAccrediti: Math.round(combinedTotalAccrediti * 100) / 100,
+                  fromBackup: true
+                };
+              }
+            } catch (e) {}
+            return stat;
+          }));
+          resolve(enhancedStats);
+        }
+      });
+    });
+  }
+
+  // Calcola la spesa totale per un UID in un intervallo di date specifico
+  async getTotalSpendingByUIDAndDateRange(uid: string, startDate: string, endDate: string): Promise<{
+    uid: string;
+    totalSpent: number;
+    firstOperation: SensorRecord | null;
+    lastOperation: SensorRecord | null;
+    totalOperations: number;
+    spendingOperations: number;
+    averageSpentPerSpending: number;
+    operations: Array<{
+      timestamp: number;
+      datetime: string;
+      credito_precedente: number;
+      credito_attuale: number;
+      spesa: number;
+      status: string;
+    }>;
+    fromBackup?: boolean;
+    tagOwner?: TagOwner | null;
+    dateRange: {
+      startDate: string;
+      endDate: string;
+    };
+  }> {
+    return new Promise((resolve, reject) => {
+      // Converte le date in timestamp Unix per il confronto diretto
+      const startTimestamp = this.convertDateToTimestamp(startDate);
+      const endTimestamp = this.convertDateToEndOfDayTimestamp(endDate); // Usa fine del giorno per endDate
+      
+      // Query che gestisce sia timestamp INTEGER che TEXT
+      const sql = `
+        SELECT * FROM sensor_data 
+        WHERE uid = ? AND CAST(timestamp AS INTEGER) BETWEEN ? AND ?
+        ORDER BY CAST(timestamp AS INTEGER) DESC
+      `;
+      
+      this.db.all(sql, [uid, startTimestamp, endTimestamp], async (err, rows: SensorRecord[]) => {
+        if (err) {
+          reject(err);
+        } else if (rows.length === 0) {
+          // Se non ci sono record operativi nell'intervallo, prova a usare il backup
+          try {
+            const backupStats = await this.getSpendingSummary(uid);
+            if (backupStats) {
+              resolve({
+                uid,
+                totalSpent: backupStats.totalSpent,
+                firstOperation: null,
+                lastOperation: null,
+                totalOperations: backupStats.totalOperations,
+                spendingOperations: backupStats.spendingOperations,
+                averageSpentPerSpending: backupStats.spendingOperations > 0 
+                  ? Math.round((backupStats.totalSpent / backupStats.spendingOperations) * 100) / 100 
+                  : 0,
+                operations: [],
+                fromBackup: true,
+                dateRange: { startDate, endDate }
+              });
+              return;
+            }
+          } catch (backupError) {
+            console.log('Nessun backup disponibile per UID:', uid);
+          }
+          
+          // Recupera informazioni del possessore del tag
+          const tagOwner = await this.getTagOwnerByUID(uid);
+          
+          resolve({
+            uid,
+            totalSpent: 0,
+            firstOperation: null,
+            lastOperation: null,
+            totalOperations: 0,
+            spendingOperations: 0,
+            averageSpentPerSpending: 0,
+            operations: [],
+            tagOwner,
+            dateRange: { startDate, endDate }
+          });
+        } else {
+          // Calcola statistiche dai dati correnti nell'intervallo
+          let currentTotalSpent = 0;
+          let currentTotalCredits = 0;
+          const operations: Array<{
+            timestamp: number;
+            datetime: string;
+            credito_precedente: number;
+            credito_attuale: number;
+            spesa: number;
+            status: string;
+          }> = [];
+
+          // Calcola la spesa per ogni operazione
+          rows.forEach((row: any) => {
+            let spesa = 0;
+            
+            // Calcola la spesa solo per operazioni di tipo "spesa"
+            if (row.status === 'spesa') {
+              spesa = Math.round((row.credito_precedente - row.credito_attuale) * 100) / 100;
+              currentTotalSpent += spesa;
+            }
+            // Per "accredito" calcola il valore dell'accredito (credito_attuale - credito_precedente)
+            else if (row.status === 'accredito') {
+              spesa = Math.round((row.credito_attuale - row.credito_precedente) * 100) / 100;
+              currentTotalCredits += spesa;
+            }
+            // Per "azzeramento" calcola il valore dell'azzeramento (credito_precedente, perché credito_attuale è sempre 0)
+            else if (row.status === 'azzeramento') {
+              spesa = Math.round(row.credito_precedente * 100) / 100; // Valore dell'azzeramento
+              currentTotalCredits += spesa;
+            }
+            
+            operations.push({
+              timestamp: row.timestamp,
+              datetime: row.datetime,
+              credito_precedente: row.credito_precedente,
+              credito_attuale: row.credito_attuale,
+              spesa: spesa,
+              status: row.status
+            });
+          });
+
+          const currentTotalOperations = rows.length;
+          const currentSpendingOperations = operations.filter(op => op.status === 'spesa').length;
+
+          // Recupera dati dal backup
+          const backupStats = await this.getSpendingSummary(uid);
+          
+          // Combina i dati correnti con quelli del backup
+          const combinedTotalSpent = currentTotalSpent + (backupStats?.totalSpent || 0);
+          const combinedTotalCredits = currentTotalCredits + (backupStats?.totalCredits || 0);
+          const combinedTotalOperations = currentTotalOperations + (backupStats?.totalOperations || 0);
+          const combinedSpendingOperations = currentSpendingOperations + (backupStats?.spendingOperations || 0);
+
+          // Calcola la spesa media combinata
+          const averageSpentPerSpending = combinedSpendingOperations > 0 
+            ? Math.round((combinedTotalSpent / combinedSpendingOperations) * 100) / 100 
+            : 0;
+
+          // Prima e ultima operazione solo dai dati correnti nell'intervallo
+          const firstOperation: SensorRecord = { 
+            uid: rows[rows.length - 1].uid,
+            timestamp: rows[rows.length - 1].timestamp,
+            datetime: rows[rows.length - 1].datetime,
+            credito_precedente: rows[rows.length - 1].credito_precedente,
+            credito_attuale: rows[rows.length - 1].credito_attuale,
+            status: rows[rows.length - 1].status
+          };
+
+          const lastOperation: SensorRecord = {
+            uid: rows[0].uid,
+            timestamp: rows[0].timestamp,
+            datetime: rows[0].datetime,
+            credito_precedente: rows[0].credito_precedente,
+            credito_attuale: rows[0].credito_attuale,
+            status: rows[0].status
+          };
+
+          // Recupera informazioni del possessore del tag
+          const tagOwner = await this.getTagOwnerByUID(uid);
+           
+          resolve({
+            uid,
+            totalSpent: combinedTotalSpent,
+            firstOperation,
+            lastOperation,
+            totalOperations: combinedTotalOperations,
+            spendingOperations: combinedSpendingOperations,
+            averageSpentPerSpending: averageSpentPerSpending,
+            operations,
+            tagOwner,
+            fromBackup: backupStats ? true : false,
+            dateRange: { startDate, endDate }
+          });
+        }
+      });
+    });
+  }
+
+  // Funzione helper per convertire date dal formato italiano (DD-MM-YYYY) al timestamp Unix (in secondi)
+  public convertDateToTimestamp(dateString: string): number {
+    if (!dateString || dateString === '') return 0;
+    
+    // Se la data è già in formato SQLite (YYYY-MM-DD), la converte direttamente
+    if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      // Crea la data in orario locale per evitare problemi di timezone
+      const [year, month, day] = dateString.split('-');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 0, 0, 0, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Converte dal formato italiano con trattini (DD-MM-YYYY) al timestamp
+    if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+      const [day, month, year] = dateString.split('-');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 0, 0, 0, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Converte dal formato italiano con barre (DD/MM/YYYY) al timestamp
+    if (dateString.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+      const [day, month, year] = dateString.split('/');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 0, 0, 0, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Se il formato non è riconosciuto, restituisce 0
+    console.log(`[DEBUG] convertDateToTimestamp: formato non riconosciuto per ${dateString}`);
+    return 0;
+  }
+
+  // Funzione helper per convertire date al timestamp Unix per la fine del giorno (23:59:59) in secondi
+  public convertDateToEndOfDayTimestamp(dateString: string): number {
+    if (!dateString || dateString === '') return 0;
+    
+    // Se la data è già in formato SQLite (YYYY-MM-DD), la converte direttamente
+    if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      // Crea la data in orario locale per la fine del giorno
+      const [year, month, day] = dateString.split('-');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 23, 59, 59, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToEndOfDayTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Converte dal formato italiano con trattini (DD-MM-YYYY) al timestamp
+    if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+      const [day, month, year] = dateString.split('-');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 23, 59, 59, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToEndOfDayTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Converte dal formato italiano con barre (DD/MM/YYYY) al timestamp
+    if (dateString.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+      const [day, month, year] = dateString.split('/');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), 23, 59, 59, 0);
+      const timestamp = Math.floor(date.getTime() / 1000); // Converti in secondi
+      console.log(`[DEBUG] convertDateToEndOfDayTimestamp: ${dateString} -> ${timestamp} (${date.toISOString()})`);
+      return timestamp;
+    }
+    
+    // Se il formato non è riconosciuto, restituisce 0
+    console.log(`[DEBUG] convertDateToEndOfDayTimestamp: formato non riconosciuto per ${dateString}`);
+    return 0;
+  }
+
+  // Funzione helper per convertire date dal formato italiano (DD-MM-YYYY) al formato SQLite (YYYY-MM-DD)
+  private convertDateToSQLite(dateString: string): string {
+    if (!dateString || dateString === '') return '';
+    
+    // Se la data è già in formato SQLite, la restituisce così com'è
+    if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      return dateString;
+    }
+    
+    // Converte dal formato italiano (DD-MM-YYYY) al formato SQLite (YYYY-MM-DD)
+    if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+      const [day, month, year] = dateString.split('-');
+      return `${year}-${month}-${day}`;
+    }
+    
+    // Se il formato non è riconosciuto, restituisce la stringa originale
+    return dateString;
+  }
+
+  // Funzione helper per convertire date dal formato SQLite (YYYY-MM-DD) al formato italiano (DD-MM-YYYY)
+  private convertDateToItalian(dateString: string): string {
+    if (!dateString || dateString === '') return '';
+    
+    // Se la data è già in formato italiano, la restituisce così com'è
+    if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+      return dateString;
+    }
+    
+    // Converte dal formato SQLite (YYYY-MM-DD) al formato italiano (DD-MM-YYYY)
+    if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const [year, month, day] = dateString.split('-');
+      return `${day}-${month}-${year}`;
+    }
+    
+    // Se il formato non è riconosciuto, restituisce la stringa originale
+    return dateString;
   }
 
   // Elimina tutti i dati da tutte le tabelle e resetta gli autoincrementali

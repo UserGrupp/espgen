@@ -224,7 +224,7 @@ export function generatePaginationScript(): string {
     }; */
 
 
- // Funzioni per la paginazione
+  // Funzioni per la paginazione
     window.goToPage = function(page) {
         const url = new URL(window.location);
         url.searchParams.set('page', page);
@@ -903,4 +903,278 @@ export function resetDatabaseScript(btnid: string, resetFunction: string): strin
         }
         window.${resetFunction} = ${resetFunction};
     `
+} 
+
+// Funzione per generare i controlli di data per il filtro
+export function generateDateRangeControls(startDateId: string = 'startDate', endDateId: string = 'endDate', applyFunction: string = 'applyDateFilter', filterIndicatorHtml: string = ''): string {
+  return `
+    <div class="date-range-controls">
+      <div class="date-fields-and-indicator">
+        <div class="date-fields-col">
+          <div class="date-input-group">
+            <label for="${startDateId}">📅 Data Inizio:</label>
+            <input type="date" id="${startDateId}" class="date-input" placeholder="Seleziona data inizio">
+          </div>
+          <div class="date-input-group">
+            <label for="${endDateId}">📅 Data Fine:</label>
+            <input type="date" id="${endDateId}" class="date-input" placeholder="Seleziona data fine">
+          </div>
+        </div>
+        <div class="filter-indicator-right">
+          ${filterIndicatorHtml}
+        </div>
+      </div>
+      <div class="date-buttons">
+        <button onclick="${applyFunction}()" class="apply-btn">🔍 Applica Filtro</button>
+        <button onclick="clearDateFilter()" class="clear-btn">❌ Rimuovi Filtro</button>
+        <button onclick="setDateRange('today')" class="quick-btn">Oggi</button>
+        <button onclick="setDateRange('yesterday')" class="quick-btn">Ieri</button>
+        <button onclick="setDateRange('lastWeek')" class="quick-btn">Ultima Settimana</button>
+        <button onclick="setDateRange('lastMonth')" class="quick-btn">Ultimo Mese</button>
+        <button onclick="setDateRange('all')" class="quick-btn">Tutto</button>
+      </div>
+    </div>
+  `;
+}
+
+// Funzione per generare il JavaScript per i controlli di data
+export function generateDateRangeScript(startDateId: string = 'startDate', endDateId: string = 'endDate', applyFunction: string = 'applyDateFilter'): string {
+  return `
+    // Funzioni per la gestione dei filtri di data
+    window.${applyFunction} = function() {
+      const startDate = document.getElementById('${startDateId}').value;
+      const endDate = document.getElementById('${endDateId}').value;
+      
+      if (!startDate || !endDate) {
+        alert('⚠️ Seleziona sia la data di inizio che quella di fine!');
+        return;
+      }
+      
+      if (startDate > endDate) {
+        alert('⚠️ La data di inizio non può essere successiva alla data di fine!');
+        return;
+      }
+      
+      // Costruisci l'URL con i parametri del filtro
+      const url = new URL(window.location);
+      url.searchParams.set('startDate', startDate);
+      url.searchParams.set('endDate', endDate);
+      url.searchParams.set('page', '1'); // Torna alla prima pagina
+      
+      // Reindirizza alla pagina con i filtri applicati
+      window.location.href = url.toString();
+    };
+    
+    window.setDateRange = function(range) {
+      const startDateInput = document.getElementById('${startDateId}');
+      const endDateInput = document.getElementById('${endDateId}');
+      const today = new Date();
+      
+      // Controlla se ci sono già filtri attivi nell'URL
+      const url = new URL(window.location);
+      const hasActiveFilters = url.searchParams.has('startDate') || url.searchParams.has('endDate');
+      
+      switch(range) {
+        case 'today':
+          const todayStr = today.toISOString().split('T')[0];
+          startDateInput.value = todayStr;
+          endDateInput.value = todayStr;
+          break;
+        case 'yesterday':
+          const yesterday = new Date(today);
+          yesterday.setDate(yesterday.getDate() - 1);
+          const yesterdayStr = yesterday.toISOString().split('T')[0];
+          startDateInput.value = yesterdayStr;
+          endDateInput.value = yesterdayStr;
+          break;
+        case 'lastWeek':
+          const lastWeek = new Date(today);
+          lastWeek.setDate(lastWeek.getDate() - 7);
+          const lastWeekStr = lastWeek.toISOString().split('T')[0];
+          const todayStr2 = today.toISOString().split('T')[0];
+          startDateInput.value = lastWeekStr;
+          endDateInput.value = todayStr2;
+          break;
+        case 'lastMonth':
+          const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+          const lastMonthStr = lastMonth.toISOString().split('T')[0];
+          const todayStr3 = today.toISOString().split('T')[0];
+          startDateInput.value = lastMonthStr;
+          endDateInput.value = todayStr3;
+          break;
+        case 'all':
+          startDateInput.value = '';
+          endDateInput.value = '';
+          // Rimuovi i parametri delle date dall'URL e ricarica
+          url.searchParams.delete('startDate');
+          url.searchParams.delete('endDate');
+          url.searchParams.set('page', '1'); // Torna alla prima pagina
+          window.location.href = url.toString();
+          return; // Esci dalla funzione per non applicare il filtro
+          break;
+      }
+      
+      // Applica automaticamente il filtro per tutti i range predefiniti (tranne "all")
+      if (range !== 'all') {
+        ${applyFunction}();
+      }
+    };
+    
+    window.clearDateFilter = function() {
+      const startDateInput = document.getElementById('${startDateId}');
+      const endDateInput = document.getElementById('${endDateId}');
+      startDateInput.value = '';
+      endDateInput.value = '';
+      
+      // Aggiorna l'indicatore visivo
+      updateFilterIndicator();
+      
+      // Rimuovi i parametri delle date dall'URL prima di ricaricare
+      const url = new URL(window.location);
+      url.searchParams.delete('startDate');
+      url.searchParams.delete('endDate');
+      url.searchParams.set('page', '1'); // Torna alla prima pagina
+      
+      // Reindirizza alla pagina senza i parametri delle date
+      window.location.href = url.toString();
+    };
+    
+    // Funzione per validare le date
+    function validateDateRange() {
+      const startDate = document.getElementById('${startDateId}').value;
+      const endDate = document.getElementById('${endDateId}').value;
+      
+      if (startDate && endDate && startDate > endDate) {
+        alert('⚠️ La data di inizio non può essere successiva alla data di fine!');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    // Funzione per aggiornare l'indicatore visivo dei filtri
+    function updateFilterIndicator() {
+      const url = new URL(window.location);
+      const hasActiveFilters = url.searchParams.has('startDate') || url.searchParams.has('endDate');
+      
+      // Aggiorna il testo del pulsante "Rimuovi Filtro"
+      const clearBtn = document.querySelector('.clear-btn');
+      if (clearBtn) {
+        if (hasActiveFilters) {
+          clearBtn.textContent = '❌ Rimuovi Filtro';
+          clearBtn.style.background = '#f44336';
+          clearBtn.disabled = false;
+        } else {
+          clearBtn.textContent = '✅ Nessun Filtro';
+          clearBtn.style.background = '#4caf50';
+          clearBtn.disabled = true;
+        }
+      }
+      
+      // Mostra/nascondi messaggio informativo
+      let infoMessage = document.querySelector('.filter-status-message');
+      if (!infoMessage) {
+        infoMessage = document.createElement('div');
+        infoMessage.className = 'filter-status-message';
+        infoMessage.style.cssText = 'text-align: center; margin: 10px 0; padding: 10px; border-radius: 6px; font-size: 14px;';
+        
+        const controlsContainer = document.querySelector('.date-range-controls');
+        if (controlsContainer) {
+          controlsContainer.appendChild(infoMessage);
+        }
+      }
+      
+      if (hasActiveFilters) {
+        const startDate = url.searchParams.get('startDate');
+        const endDate = url.searchParams.get('endDate');
+        infoMessage.innerHTML = \`<span style="color: #2196f3;">📅 Filtro attivo: dal \${startDate} al \${endDate}</span>\`;
+        infoMessage.style.background = '#e3f2fd';
+        infoMessage.style.border = '1px solid #2196f3';
+      } else {
+        infoMessage.innerHTML = '<span style="color: #4caf50;">✅ Nessun filtro temporale applicato - Mostrando tutti i dati</span>';
+        infoMessage.style.background = '#e8f5e8';
+        infoMessage.style.border = '1px solid #4caf50';
+      }
+    }
+    
+    // Aggiungi validazione agli input di data
+    document.addEventListener('DOMContentLoaded', function() {
+      const startDateInput = document.getElementById('${startDateId}');
+      const endDateInput = document.getElementById('${endDateId}');
+      
+      if (startDateInput && endDateInput) {
+        // Inizializza i controlli con i valori dell'URL se presenti
+        const url = new URL(window.location);
+        const startDate = url.searchParams.get('startDate');
+        const endDate = url.searchParams.get('endDate');
+        
+        if (startDate) startDateInput.value = startDate;
+        if (endDate) endDateInput.value = endDate;
+        
+        // Aggiorna l'indicatore visivo
+        updateFilterIndicator();
+        
+        // Aggiungi validazione
+        startDateInput.addEventListener('change', validateDateRange);
+        endDateInput.addEventListener('change', validateDateRange);
+      }
+    });
+  `;
+}
+
+// Funzione per generare la sezione di ricerca con filtri di data
+export function generateSearchSectionWithDateFilter(
+  searchId: string, 
+  placeholder: string, 
+  clearFunction: string,
+  startDateId: string = 'startDate',
+  endDateId: string = 'endDate',
+  applyFunction: string = 'applyDateFilter'
+): string {
+  return `
+    <div class="search-section-with-dates">
+      <div class="search-row">
+        <div class="search-input-group">
+          <input type="text" id="${searchId}" placeholder="${placeholder}" class="search-input">
+          <button onclick="${clearFunction}()" class="clear-btn">❌</button>
+        </div>
+        ${generateDateRangeControls(startDateId, endDateId, applyFunction)}
+      </div>
+    </div>
+  `;
+} 
+
+// Funzione per formattare una data in formato italiano (YYYY-MM-DD, DD-MM-YYYY, DD/MM/YYYY -> DD/MM/YYYY)
+export function formatDateIta(dateString: string): string {
+  if (!dateString) return '';
+  // Gestione formato YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  }
+  // Gestione formato DD-MM-YYYY
+  if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) {
+    const [day, month, year] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  }
+  // Gestione formato DD/MM/YYYY
+  if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) {
+    return dateString;
+  }
+  // Fallback: restituisci la stringa originale
+  return dateString;
+}
+
+// Componente centralizzato per l'indicatore filtro date
+export function generateDateFilterIndicator(startDate?: string, endDate?: string): string {
+  if (startDate && endDate) {
+    return `
+      <div class="filter-info">
+        <p>📅 Filtro Date Applicato </p>
+        <p>Periodo: Dal <strong>${formatDateIta(startDate)}</strong> al <strong>${formatDateIta(endDate)}</strong></p>
+        <p><em>I dati mostrati si riferiscono solo a questo intervallo temporale</em></p>
+      </div>
+    `;
+  }
+  return '';
 } 

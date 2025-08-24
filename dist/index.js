@@ -191,9 +191,22 @@ app.get('/sensor-data', (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 5;
-        // Ottieni i dati dal database SQLite con paginazione
-        const result = yield database_1.database.getAllSensorRecords(page, limit);
-        const records = result.records;
+        const startDate = req.query.startDate;
+        const endDate = req.query.endDate;
+        let records;
+        let total;
+        // Se sono specificati i filtri delle date, usa la funzione specifica
+        if (startDate && endDate) {
+            const filteredRecords = yield database_1.database.getSensorRecordsByDateRange(startDate, endDate);
+            records = filteredRecords;
+            total = filteredRecords.length;
+        }
+        else {
+            // Altrimenti usa la funzione normale con paginazione
+            const result = yield database_1.database.getAllSensorRecords(page, limit);
+            records = result.records;
+            total = result.total;
+        }
         // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
         // Crea una mappa per accesso rapido ai possessori per UID
@@ -205,9 +218,9 @@ app.get('/sensor-data', (req, res) => __awaiter(void 0, void 0, void 0, function
         const html = generateSensorDataTable(records, tagOwnersMap, {
             page,
             limit,
-            total: result.total,
-            totalPages: Math.ceil(result.total / limit)
-        });
+            total,
+            totalPages: Math.ceil(total / limit)
+        }, { startDate, endDate });
         res.send(html);
     }
     catch (error) {
@@ -311,12 +324,10 @@ app.delete('/api/sensor-data/cleanup', (req, res) => __awaiter(void 0, void 0, v
     }
 }));
 // Funzione per generare la tabella HTML dei dati dei sensori
-function generateSensorDataTable(records, tagOwnersMap, pagination) {
+function generateSensorDataTable(records, tagOwnersMap, pagination, filters) {
     const tableRows = records.map(record => {
-        // Controlla se esiste un possessore per questo UID
-        const tagOwner = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(record.uid);
-        const nominativo = tagOwner ? tagOwner.nominativo : null;
-        // Genera il contenuto della cella UID con link e nominativo
+        var _a;
+        const nominativo = ((_a = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(record.uid)) === null || _a === void 0 ? void 0 : _a.nominativo) || '';
         const uidCell = `
         <div>
             <a href="/spending-dashboard/${record.uid}" class="uid-link">${record.uid}</a>
@@ -334,22 +345,55 @@ function generateSensorDataTable(records, tagOwnersMap, pagination) {
     `;
     }).join('');
     // Stili aggiuntivi specifici per questa pagina (solo quelli non presenti nel CSS comune)
-    const additionalStyles = ``;
+    const additionalStyles = "";
+    //  `
+    //   .filter-info {
+    //     background: #e3f2fd;
+    //     border: 1px solid #2196f3;
+    //     border-radius: 6px;
+    //     padding: 15px;
+    //     margin: 20px 0;
+    //     text-align: center;
+    //   }
+    //   .filter-info p {
+    //     margin: 5px 0;
+    //     color: #1976d2;
+    //   }
+    //   .filter-info p:first-child {
+    //     font-weight: bold;
+    //     font-size: 16px;
+    //   }
+    // `;
     // Script aggiuntivi specifici per questa pagina
     const additionalScripts = `
     ${(0, helpers_1.generateSearchScript)('searchInput', 'clearSearch')}
+    ${(0, helpers_1.generateDateRangeScript)('startDate', 'endDate', 'applyDateFilter')}
     ${(0, helpers_1.disattivaScript)('btn-a', 'disattiva')}
     ${(0, helpers_1.checkServer)('btn-a', 'checkServer')}
     ${(0, helpers_1.resetDatabaseScript)('btn-reset-db', 'resetDatabase')}
+    
   `;
     // Contenuto della pagina
     const content = `
     ${(0, helpers_1.generatePagination)(pagination)}
     <div class="container">
         <h1>📊 Raccolta Dati</h1>
-        ${(0, helpers_1.generateSearchSection)('searchInput', '🔍 Cerca per UID o nominativo possessore...', 'clearSearch()')}
+        
+        <!-- Controlli per il filtro delle date -->
+       
+      <!--  ${(0, helpers_1.generateSearchSectionWithDateFilter)('searchInput', '🔍 Cerca per UID o nominativo possessore...', 'clearSearch', 'startDate', 'endDate', 'applyDateFilter')} -->
         <button id='btn-a' class="server-btn" onclick="disattiva()"> Disattiva/Attiva</button>
         <button id='btn-reset-db' class="danger-btn" onclick="resetDatabase()">🗑️ Azzera Database</button>
+          ${(0, helpers_1.generateDateRangeControls)('startDate', 'endDate', 'applyDateFilter', (0, helpers_1.generateDateFilterIndicator)(filters === null || filters === void 0 ? void 0 : filters.startDate, filters === null || filters === void 0 ? void 0 : filters.endDate))}
+       <!--   ${(filters === null || filters === void 0 ? void 0 : filters.startDate) && (filters === null || filters === void 0 ? void 0 : filters.endDate) ? `
+          <div class="filter-info">
+            <p>📅 Filtro Date Applicato</p>
+            <p>Periodo: Dal ${filters.startDate} al ${filters.endDate}</p>
+            <p><em>I dati mostrati si riferiscono solo a questo intervallo temporale</em></p>
+          </div>
+        ` : ''} -->
+            ${(0, helpers_1.generateSearchSection)('searchOperations', '🔍 Cerca per UID o nominativo possessore...', 'clearOperationsSearch()')}
+       
         <div class="table-container">
             <table>
                 <thead>
@@ -639,8 +683,20 @@ app.get('/spending-dashboard/:uid', (req, res) => __awaiter(void 0, void 0, void
         const { uid } = req.params;
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
-        const spendingData = yield database_1.database.getTotalSpendingByUID(uid);
-        const monthlyStats = yield database_1.database.getMonthlyStatsByUID(uid);
+        const startDate = req.query.startDate;
+        const endDate = req.query.endDate;
+        let spendingData;
+        let monthlyStats;
+        // Se sono specificati i filtri delle date, usa la funzione specifica
+        if (startDate && endDate) {
+            spendingData = yield database_1.database.getTotalSpendingByUIDAndDateRange(uid, startDate, endDate);
+            monthlyStats = yield database_1.database.getMonthlyStatsByUIDAndDateRange(uid, startDate, endDate);
+        }
+        else {
+            // Altrimenti usa la funzione normale
+            spendingData = yield database_1.database.getTotalSpendingByUID(uid);
+            monthlyStats = yield database_1.database.getMonthlyStatsByUID(uid);
+        }
         // Calcola la paginazione per le operazioni
         const total = spendingData.operations.length;
         const totalPages = Math.ceil(total / limit);
@@ -656,7 +712,7 @@ app.get('/spending-dashboard/:uid', (req, res) => __awaiter(void 0, void 0, void
             limit,
             total,
             totalPages
-        });
+        }, { startDate, endDate });
         res.send(html);
     }
     catch (error) {
@@ -669,7 +725,17 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
-        const stats = yield database_1.database.getAllSpendingStats();
+        const startDate = req.query.startDate;
+        const endDate = req.query.endDate;
+        let stats;
+        // Se sono specificati i filtri delle date, usa la funzione specifica
+        if (startDate && endDate) {
+            stats = yield database_1.database.getSpendingStatsByDateRange(startDate, endDate);
+        }
+        else {
+            // Altrimenti usa la funzione normale
+            stats = yield database_1.database.getAllSpendingStats();
+        }
         // Ottieni tutti i possessori dei tag per mostrare i nominativi
         const tagOwners = yield database_1.database.getAllTagOwners();
         // Crea una mappa per accesso rapido ai possessori per UID
@@ -699,7 +765,7 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
             totalOperations: globalTotalOperations,
             totalSpendingOperations: globalTotalSpendingOperations,
             totalAccrediti: globalTotalAccrediti
-        });
+        }, { startDate, endDate });
         res.send(html);
     }
     catch (error) {
@@ -709,7 +775,7 @@ app.get('/spending-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, f
 }));
 // Funzione per generare la tabella HTML dei possessori dei tag
 // Funzione per generare la dashboard di spesa per un UID specifico
-function generateSpendingDashboard(spendingData, pagination) {
+function generateSpendingDashboard(spendingData, pagination, filters) {
     const operationsRows = spendingData.operations.map(op => {
         return `
       <tr>
@@ -736,13 +802,18 @@ function generateSpendingDashboard(spendingData, pagination) {
     // Script aggiuntivi specifici per questa pagina
     const additionalScripts = `
     ${(0, helpers_1.generateSearchScript)('searchOperations', 'clearOperationsSearch')}
+    ${(0, helpers_1.generateDateRangeScript)('startDate', 'endDate', 'applyDateFilter')}
   `;
     // Contenuto della pagina
     const content = `
     ${(0, helpers_1.generatePagination)(pagination)}
     <div class="container">
         <h1>💰 Dashboard Spese - UID: ${spendingData.uid}</h1>
+        
+        <!-- Controlli per il filtro delle date -->
+        ${(0, helpers_1.generateDateRangeControls)('startDate', 'endDate', 'applyDateFilter', (0, helpers_1.generateDateFilterIndicator)(filters === null || filters === void 0 ? void 0 : filters.startDate, filters === null || filters === void 0 ? void 0 : filters.endDate))}
         ${spendingData.fromBackup ? '<div class="backup-notice">📊 Dati completati con backup delle statistiche</div>' : ''}
+        
         ${spendingData.tagOwner ? `
         <div class="tag-owner-info">
             <h2>👤 Possessore Tag</h2>
@@ -828,7 +899,7 @@ function generateSpendingDashboard(spendingData, pagination) {
     return (0, helpers_1.generateBaseHTML)(`Dashboard Spese - UID ${spendingData.uid}`, 'spending-dashboard', content, additionalStyles, additionalScripts);
 }
 // Funzione per generare la dashboard generale delle spese
-function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globalTotals) {
+function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globalTotals, filters) {
     const tableRows = stats.map(stat => {
         // Controlla se esiste un possessore per questo UID
         const tagOwner = tagOwnersMap === null || tagOwnersMap === void 0 ? void 0 : tagOwnersMap.get(stat.uid);
@@ -857,10 +928,29 @@ function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globa
     const totalSpendingOperations = globalTotals ? globalTotals.totalSpendingOperations : stats.reduce((sum, stat) => sum + stat.spendingOperations, 0);
     const totalAccrediti = globalTotals ? globalTotals.totalAccrediti : stats.reduce((sum, stat) => sum + stat.totalAccrediti, 0);
     // Stili aggiuntivi specifici per questa pagina
-    const additionalStyles = ``;
+    const additionalStyles = "";
+    //  `
+    //   .filter-info {
+    //     background: #e3f2fd;
+    //     border: 1px solid #2196f3;
+    //     border-radius: 6px;
+    //     padding: 15px;
+    //     margin: 20px 0;
+    //     text-align: center;
+    //   }
+    //   .filter-info p {
+    //     margin: 5px 0;
+    //     color: #1976d2;
+    //   }
+    //   .filter-info p:first-child {
+    //     font-weight: bold;
+    //     font-size: 16px;
+    //   }
+    // `;
     // Script aggiuntivi specifici per questa pagina
     const additionalScripts = `
     ${(0, helpers_1.generateSearchScript)('searchOperations', 'clearOperationsSearch')}
+    ${(0, helpers_1.generateDateRangeScript)('startDate', 'endDate', 'applyDateFilter')}
     
     // Funzione per gestire il sticky header
     function initStickyHeader() {
@@ -917,6 +1007,8 @@ function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globa
     <div class="container">
         <h1>💰 Dashboard Generale Spese</h1>
         
+        
+        
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-value">${pagination ? pagination.total : stats.length}</div>
@@ -951,7 +1043,16 @@ function generateGeneralSpendingDashboard(stats, tagOwnersMap, pagination, globa
         <p class="backup-info">
           📊 = Dati provenienti da backup (record operativi cancellati)
         </p>
+        <!-- Controlli per il filtro delle date -->
+        ${(0, helpers_1.generateDateRangeControls)('startDate', 'endDate', 'applyDateFilter', (0, helpers_1.generateDateFilterIndicator)(filters === null || filters === void 0 ? void 0 : filters.startDate, filters === null || filters === void 0 ? void 0 : filters.endDate))}
         
+       <!-- ${(filters === null || filters === void 0 ? void 0 : filters.startDate) && (filters === null || filters === void 0 ? void 0 : filters.endDate) ? `
+          <div class="filter-info">
+            <p>📅 Filtro Date Applicato</p>
+            <p>Periodo: Dal ${filters.startDate} al ${filters.endDate}</p>
+            <p><em>I dati mostrati si riferiscono solo a questo intervallo temporale</em></p>
+          </div>
+        ` : ''} -->
         ${(0, helpers_1.generateSearchSection)('searchOperations', '🔍 Cerca per UID o nominativo possessore...', 'clearOperationsSearch()')}
         
         <div class="table-container">
@@ -1955,5 +2056,186 @@ app.post('/api/reset-db', (req, res) => __awaiter(void 0, void 0, void 0, functi
     catch (error) {
         console.error('Errore reset database:', error);
         res.status(500).json({ success: false, message: 'Errore nel reset del database' });
+    }
+}));
+// Endpoint per ottenere i dati dei sensori filtrati per intervallo di date
+app.get('/api/sensor-data/date-range', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { startDate, endDate } = req.query;
+        if (!startDate || !endDate) {
+            return res.status(400).json({
+                success: false,
+                message: 'Parametri startDate e endDate sono richiesti'
+            });
+        }
+        const records = yield database_1.database.getSensorRecordsByDateRange(startDate, endDate);
+        res.json({
+            success: true,
+            data: records,
+            count: records.length,
+            filters: { startDate, endDate }
+        });
+    }
+    catch (error) {
+        console.error('Errore nel recupero dei dati filtrati per date:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Errore nel recupero dei dati filtrati'
+        });
+    }
+}));
+// Endpoint per ottenere le statistiche di spesa filtrate per intervallo di date
+app.get('/api/spending-stats/date-range', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { startDate, endDate } = req.query;
+        if (!startDate || !endDate) {
+            return res.status(400).json({
+                success: false,
+                message: 'Parametri startDate e endDate sono richiesti'
+            });
+        }
+        const stats = yield database_1.database.getSpendingStatsByDateRange(startDate, endDate);
+        // Enrich con nominativo per coerenza con le viste
+        const tagOwners = yield database_1.database.getAllTagOwners();
+        const tagOwnersMap = new Map();
+        tagOwners.forEach(owner => tagOwnersMap.set(owner.uid, owner));
+        const enriched = stats.map(s => {
+            var _a;
+            return (Object.assign(Object.assign({}, s), { nominativo: ((_a = tagOwnersMap.get(s.uid)) === null || _a === void 0 ? void 0 : _a.nominativo) || null }));
+        });
+        res.json({
+            success: true,
+            data: enriched,
+            count: enriched.length,
+            filters: { startDate, endDate }
+        });
+    }
+    catch (error) {
+        console.error('Errore nel recupero delle statistiche filtrate per date:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Errore nel recupero delle statistiche filtrate'
+        });
+    }
+}));
+// Endpoint per ottenere le statistiche di spesa di un UID specifico filtrate per intervallo di date
+app.get('/api/spending-stats/uid/:uid/date-range', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { uid } = req.params;
+        const { startDate, endDate } = req.query;
+        if (!startDate || !endDate) {
+            return res.status(400).json({
+                success: false,
+                message: 'Parametri startDate e endDate sono richiesti'
+            });
+        }
+        const spendingData = yield database_1.database.getTotalSpendingByUIDAndDateRange(uid, startDate, endDate);
+        res.json({
+            success: true,
+            data: spendingData,
+            filters: { startDate, endDate }
+        });
+    }
+    catch (error) {
+        console.error('Errore nel recupero delle statistiche UID filtrate per date:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Errore nel recupero delle statistiche UID filtrate'
+        });
+    }
+}));
+// Endpoint per ottenere i dati dei sensori filtrati per intervallo di date con paginazione
+app.get('/api/sensor-data/date-range/paginated', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { startDate, endDate, page = '1', pageSize = '50' } = req.query;
+        if (!startDate || !endDate) {
+            return res.status(400).json({
+                success: false,
+                message: 'Parametri startDate e endDate sono richiesti'
+            });
+        }
+        const pageNum = parseInt(page);
+        const limit = parseInt(pageSize);
+        const records = yield database_1.database.getSensorRecordsByDateRange(startDate, endDate);
+        // Paginazione lato server
+        const total = records.length;
+        const totalPages = Math.ceil(total / limit);
+        const startIndex = (pageNum - 1) * limit;
+        const endIndex = startIndex + limit;
+        const paginatedRecords = records.slice(startIndex, endIndex);
+        res.json({
+            success: true,
+            data: paginatedRecords,
+            pagination: {
+                page: pageNum,
+                pageSize: limit,
+                total,
+                totalPages
+            },
+            filters: { startDate, endDate }
+        });
+    }
+    catch (error) {
+        console.error('Errore nel recupero dei dati filtrati per date con paginazione:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Errore nel recupero dei dati filtrati'
+        });
+    }
+}));
+// Endpoint di debug per testare i filtri di data
+app.get('/api/debug/date-filter', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { startDate, endDate } = req.query;
+        if (!startDate || !endDate) {
+            return res.status(400).json({
+                success: false,
+                message: 'Parametri startDate e endDate sono richiesti'
+            });
+        }
+        console.log(`[DEBUG] Test filtro date: startDate=${startDate}, endDate=${endDate}`);
+        // Test della conversione delle date
+        const startTimestamp = database_1.database.convertDateToTimestamp(startDate);
+        const endTimestamp = database_1.database.convertDateToEndOfDayTimestamp(endDate);
+        const startDateObj = new Date(startTimestamp * 1000); // Converti da secondi a millisecondi
+        const endDateObj = new Date(endTimestamp * 1000); // Converti da secondi a millisecondi
+        // Ottieni alcuni record di esempio dal database
+        const sampleRecords = yield new Promise((resolve, reject) => {
+            database_1.database.db.all('SELECT timestamp, datetime, typeof(timestamp) as timestamp_type FROM sensor_data ORDER BY CAST(timestamp AS INTEGER) DESC LIMIT 10', [], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows);
+            });
+        });
+        // Ottieni informazioni sulla struttura della tabella
+        const tableInfo = yield new Promise((resolve, reject) => {
+            database_1.database.db.all("PRAGMA table_info(sensor_data)", [], (err, rows) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(rows);
+            });
+        });
+        res.json({
+            success: true,
+            debug: {
+                inputDates: { startDate, endDate },
+                convertedTimestamps: { startTimestamp, endTimestamp },
+                convertedDates: {
+                    startDate: startDateObj.toISOString(),
+                    endDate: endDateObj.toISOString()
+                },
+                sampleRecords: sampleRecords,
+                tableStructure: tableInfo
+            }
+        });
+    }
+    catch (error) {
+        console.error('Errore nel debug del filtro date:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Errore nel debug del filtro date'
+        });
     }
 }));

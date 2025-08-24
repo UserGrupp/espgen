@@ -1069,45 +1069,287 @@ input[disabled] {
    16. RESPONSIVE DESIGN
    ======================================== */
 
-/* Media queries per dispositivi mobili */
+/* Media queries per dispositivi mobili e tablet */
 @media (max-width: 768px) {
-    /* Navbar responsive */
+    .container {
+        margin: 10px;
+        border-radius: 8px;
+    }
+    
     .navbar-container {
-        flex-direction: column; /* Dispone gli elementi della navbar verticalmente */
-        gap: 15px; /* Spazio tra gli elementi della navbar */
+        padding: 0 15px;
+        flex-direction: column;
+        gap: 15px;
     }
     
     .navbar-nav {
-        flex-wrap: wrap; /* Permette il wrap degli elementi della navbar */
-        justify-content: center; /* Centra gli elementi della navbar */
+        flex-direction: column;
+        gap: 10px;
     }
     
-    .navbar-nav li {
-        margin: 5px; /* Spazio ridotto tra gli elementi della navbar */
-    }
-    
-    /* Griglie responsive */
     .stats-grid {
-        grid-template-columns: 1fr; /* Una sola colonna per le statistiche su mobile */
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
     
-    .quick-stats {
-        grid-template-columns: 1fr; /* Una sola colonna per le statistiche rapide su mobile */
-    }
-    
-    .settings-grid {
-        grid-template-columns: 1fr; /* Una sola colonna per le impostazioni su mobile */
-    }
-    
-    /* Sezione di ricerca responsive */
-    .search-section {
-        flex-direction: column; /* Dispone gli elementi di ricerca verticalmente */
-        gap: 10px; /* Spazio tra gli elementi di ricerca */
-    }
-    
-    /* Tabelle responsive */
     .table-container {
-        margin: 10px; /* Spazio ridotto per le tabelle su mobile */
-        max-height: 300px; /* Altezza massima ridotta per le tabelle su mobile */
+        overflow-x: auto;
     }
+    
+    .search-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    
+    .container {
+        margin: 5px;
+        padding: 15px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+}
+
+/* ========================================
+   17. CONTROLLI DI DATA E FILTRI TEMPORALI
+   ======================================== */
+
+/* Sezione di ricerca con controlli di data */
+.search-section-with-dates {
+    margin: 20px 0;
+    padding: 20px;
+    background: #333;
+    border-radius: 8px;
+    border: 1px solid #555;
+}
+
+.search-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Controlli per intervalli di date */
+.date-range-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.date-input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.date-input-group label {
+    font-weight: 600;
+    color: #fff;
+    min-width: 120px;
+}
+
+.date-input {
+    padding: 10px 15px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: #2196f3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.date-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.apply-btn {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.apply-btn:hover {
+    background: #1976d2;
+}
+
+.clear-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.clear-btn:hover {
+    background: #d32f2f;
+}
+
+.quick-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    font-size: 13px;
+}
+
+.quick-btn:hover {
+    background: #388e3c;
+}
+
+/* Informazioni sui filtri applicati */
+.filter-info {
+    background: #232323;
+    border: 1px solid #2196f3;
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin: 0;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: max-content;
+}
+
+.filter-info h3 {
+    margin: 0 0 10px 0;
+    color: #fbfbfb;
+    font-size: 1.2em;
+}
+
+.filter-info p {
+    margin: 5px 0;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* Responsive per i controlli di data */
+@media (max-width: 768px) {
+    .date-range-controls {
+        padding: 15px;
+    }
+    
+    .date-input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .date-input-group label {
+        min-width: auto;
+    }
+    
+    .date-input {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    .date-buttons {
+        justify-content: center;
+    }
+    
+    .quick-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-section-with-dates {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .date-range-controls {
+        padding: 12px;
+    }
+    
+    .date-buttons {
+        gap: 8px;
+    }
+    
+    .apply-btn, .clear-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+} 
+
+.date-range-controls .date-fields-and-indicator {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+}
+
+.date-fields-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-indicator-right {
+  margin-left: 30px;
+  min-width: 260px;
+  max-width: 550px;
+  text-align: right;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 0;
+  height: auto;
+}
+
+.filter-indicator-right:empty::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+  visibility: hidden;
 } 
