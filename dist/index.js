@@ -23,53 +23,180 @@ const auth_1 = require("./middleware/auth");
 const logs_1 = __importDefault(require("./routes/logs"));
 const database_1 = require("./database");
 const helpers_1 = require("./helpers");
+const WebSocket = require('ws');
 const http = require('http');
 const https = require('https');
 const express = require('express');
+//const io = require('socket.io')(https);
+//let io = require('socket.io')
+//const SocketIOServer = require('socket.io').Server; // Importa la CLASSE Server di Socket.IO
 const app = express();
 const port = 3000;
 const path = require('path');
 // Autenticazione per tutte le rotte (inclusi asset statici e homepage)
+//app.use(conditionalBasicAuth); //basicAuth);
 app.use(auth_1.basicAuth);
 app.use(express.static(path.join(__dirname, '../public')));
 let test = (process.env.TEST || 'false') == 'true' ? true : false;
 let server;
+let ioInstance;
 if (test) 
 //***** ******************TEST**********************+
 {
+    console.log(" SSL");
     const sslOptions = {
         key: fs.readFileSync('key.key'),
         cert: fs.readFileSync('key.crt')
     };
     server = https.createServer(sslOptions, app);
+    // ioInstance = new SocketIOServer(server, { // *** CORREZIONE QUI ***
+    //   cors: {
+    //     origin: "*",
+    //     methods: ["GET", "POST"]
+    //   }
+    // });
 }
 //**************************************************
-else
+else {
+    console.log(" NO SSL");
     server = http.createServer(app);
+    // ioInstance = new SocketIOServer(server, { // *** CORREZIONE QUI ***
+    //   cors: {
+    //     origin: "*",
+    //     methods: ["GET", "POST"]
+    //   }
+    // });
+}
 //const WebSocket = require('ws')
 const PORT = process.env.PORT || 3000;
+/* ioInstance.use((socket, next) => {
+  // Implementa la logica di autenticazione qui per le connessioni Socket.IO
+  // Esempio: Controlla un token JWT o credenziali passate nel handshake
+  // const token = socket.handshake.auth.token;
+  // if (isValidToken(token)) {
+  //   next();
+  // } else {
+  //   next(new Error('Authentication error'));
+  // }
+  next(); // Per ora, per test, permetti tutte le connessioni
+}); */
+// const wss = new WebSocket.Server({ server: server , cors: {
+//   origin: "*",
+//   methods: ["GET", "POST"]
+// } })
+// Crea un'istanza del server WebSocket che NON ascolta sulla sua propria porta
+// ma usa l'evento 'upgrade' del server HTTP/HTTPS.
+const wss = new WebSocket.Server({ noServer: true });
+// Server Node.js (con ws, senza HTTPS, senza Socket.IO)
+// ... (basicAuth e static assets - per ora commentati per test) ...
+// Cambiamo il nome per chiarezza, non è più ioInstance
+// Poiché `test` è false, questo blocco verrà eseguito:
+// --- Gestione dell'Upgrade a WebSocket ---
+// Il server HTTP cattura le richieste di upgrade e le passa a wss
+server.on('upgrade', (request, socket, head) => {
+    // Verifichiamo il percorso della richiesta WebSocket
+    // Il client si connetterà a ws://192.168.1.24:3000/ws
+    if (request.url === '/ws') { // *** PUNTO CRITICO: Controlla che il percorso sia /ws ***
+        wss.handleUpgrade(request, socket, head, clientWs => {
+            wss.emit('connection', clientWs, request);
+        });
+    }
+    else {
+        // Se la richiesta di upgrade non è per il percorso /ws, chiudiamo la connessione
+        console.log(`Richiesta di upgrade non valida per: ${request.url}`);
+        socket.destroy();
+    }
+});
 // Avvio del server HTTP
 server.listen(port, "0.0.0.0", () => {
     console.log("Server is running on port " + port);
+    const protocol = test ? 'https' : 'http';
+    console.log(`Server ${protocol} e Socket.IO in ascolto su ${protocol}://localhost:${port}`);
+    console.log(`Per connetterti dall'ESP32: ${test ? 'wss' : 'ws'}://YOUR_SERVER_IP_OR_DOMAIN:${port}/socket.io/?EIO=4&transport=websocket`);
 });
 // Gestione errori del server
 server.on('error', (error) => {
+    console.log("errore1");
     console.error('Errore del server:', error);
 });
 server.on('connection', (socket) => {
     // console.log('Nuova connessione da:', socket.remoteAddress + ':' + socket.remotePort);
     socket.on('error', (error) => {
+        console.log("errore2");
         console.error('Errore socket:', error);
     });
     socket.on('close', (hadError) => {
         if (hadError) {
-            //   console.log('Connessione chiusa con errore da:', socket.remoteAddress + ':' + socket.remotePort);
+            console.log('Connessione chiusa con errore da:', socket.remoteAddress + ':' + socket.remotePort);
         }
         else {
-            // console.log('Connessione chiusa normalmente da:', socket.remoteAddress + ':' + socket.remotePort);
+            console.log('Connessione chiusa normalmente da:', socket.remoteAddress + ':' + socket.remotePort);
         }
     });
 });
+// Gestione connessioni WebSocket standard
+wss.on('connection', ws => {
+    console.log('Un client si è connesso via WebSocket (standard)!'); // Log aggiornato
+    ws.on('message', message => {
+        const msgStr = message.toString(); // Converti il Buffer ricevuto in Stringa
+        console.log(`Ricevuto messaggio => ${msgStr}`);
+        if (msgStr === "toggle") {
+            // Implementa la tua logica di toggle qui
+            // Ad esempio, potresti voler aggiornare lo stato di un LED e poi notificare tutti
+            // let ledState = getLedState(); // Funzione per ottenere lo stato attuale
+            // ledState = !ledState;         // Cambia lo stato
+            // updateLedHardware(ledState);  // Aggiorna l'hardware
+            // Invia lo stato aggiornato a tutti i client connessi, incluso il mittente
+            wss.clients.forEach(client => {
+                if (client.readyState === WebSocket.OPEN) {
+                    client.send(msgStr); // O client.send(ledState ? "1" : "0");
+                }
+            });
+            // ws.send('toggle_ack'); // Invia un ACK specifico al mittente se preferisci
+        }
+    });
+    // Messaggio iniziale al client appena connesso
+    ws.send('Hello! Message From Server!!');
+    // Se vuoi inviare lo stato iniziale del LED
+    // ws.send(getLedState() ? "1" : "0");
+    ws.on('close', () => {
+        console.log("WebSocket client disconnected.");
+    });
+    ws.on('error', (err) => {
+        console.error("WebSocket error:", err);
+    });
+});
+// wss.on('connection', ws => {
+//   ws.on('message', message => {
+//     // console.log(`Received message => ${message}`)
+//   })
+//   ws.send('Hello! Message From Server!!')
+//   ws.on('close', () => {
+//     console.log("close"); // Ferma l'intervallo quando il client si disconnette
+//   });
+// })
+/* wss.on('connection', (socket) => {
+  console.log('Un client si è connesso via Socket :', socket.id);
+  socket.emit('message', 'Benvenuto al server Socket   !');
+  socket.on('message', (msg) => {
+    console.log('Messaggio ricevuto dal client %s: %s', socket.id, msg);
+    socket.broadcast.emit('message', `Client ${socket.id}: ${msg}`);
+  });
+  socket.on('disconnect', () => {
+    console.log('Il client si è disconnesso:', socket.id);
+  });
+}); */
+// ioInstance.on('connection', (socket) => {
+//   console.log('Un client si è connesso via Socket.IO:', socket.id);
+//   socket.emit('message', 'Benvenuto al server Socket.IO sicuro!');
+//   socket.on('message', (msg) => {
+//     console.log('Messaggio ricevuto dal client %s: %s', socket.id, msg);
+//     socket.broadcast.emit('message', `Client ${socket.id}: ${msg}`);
+//   });
+//   socket.on('disconnect', () => {
+//     console.log('Il client si è disconnesso:', socket.id);
+//   });
+// });
 app.use(express.json());
 // Middleware per loggare le azioni degli utenti
 app.use(logger_1.userLogger);

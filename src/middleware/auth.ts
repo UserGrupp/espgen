@@ -5,6 +5,16 @@ import { Request, Response, NextFunction } from 'express';
 const ADMIN_USER = process.env.ADMIN_USER || 'admin0';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'esp32';
 
+
+export const conditionalBasicAuth = (req, res, next) => {
+  // Socket.IO usa il percorso "/socket.io/" per il suo handshake
+  if (req.url.startsWith('/socket.io/')) {
+    return next(); // Salta l'autenticazione per Socket.IO
+  }
+  basicAuth(req, res, next); // Applica l'autenticazione per le altre rotte
+};
+
+
 export function basicAuth(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers['authorization'];
 
