@@ -151,7 +151,8 @@ wss.on('connection', ws => {
             wss.clients.forEach(client => {
                 if (client.readyState === WebSocket.OPEN) {
                     // client.send(msgStr); // O client.send(ledState ? "1" : "0");
-                    client.send((ledState = !ledState) ? "1" : "0");
+                    ledState = !ledState;
+                    client.send((ledState) ? "1" : "0");
                 }
             });
             // ws.send('toggle_ack'); // Invia un ACK specifico al mittente se preferisci
