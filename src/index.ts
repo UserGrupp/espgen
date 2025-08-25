@@ -133,13 +133,14 @@ server.on('connection', (socket) => {
 
   socket.on('close', (hadError) => {
     if (hadError) {
-        console.log('Connessione chiusa con errore da:', socket.remoteAddress + ':' + socket.remotePort);
+     //  console.log('Connessione chiusa con errore da:', socket.remoteAddress + ':' + socket.remotePort);
     } else {
-      console.log('Connessione chiusa normalmente da:', socket.remoteAddress + ':' + socket.remotePort);
+     // console.log('Connessione chiusa normalmente da:', socket.remoteAddress + ':' + socket.remotePort);
     }
   });
 });
 // Gestione connessioni WebSocket standard
+let ledState:boolean=false;
 wss.on('connection', ws => {
   console.log('Un client si è connesso via WebSocket (standard)!'); // Log aggiornato
 
@@ -157,7 +158,8 @@ wss.on('connection', ws => {
       // Invia lo stato aggiornato a tutti i client connessi, incluso il mittente
       wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-          client.send(msgStr); // O client.send(ledState ? "1" : "0");
+         // client.send(msgStr); // O client.send(ledState ? "1" : "0");
+         client.send( (ledState=!ledState) ? "1" : "0");
         }
       });
       // ws.send('toggle_ack'); // Invia un ACK specifico al mittente se preferisci
