@@ -2854,6 +2854,11 @@ app.post('/upload-db', upload.single('logsdb'), (req, res) => {
       fs.copyFileSync(tempPath, targetPath);
       try { fs.unlinkSync(tempPath); } catch {}
     }
+    try {
+      fs.chmodSync(targetPath, 0o666); // Lettura e scrittura per tutti
+    } catch (chmodErr) {
+      console.warn('Impossibile impostare i permessi di scrittura:', chmodErr);
+    }
 
     console.log('logs.db caricato e sostituito con successo');
     return res.json({ success: true, message: 'Database aggiornato con successo', backup: fs.existsSync(backupPath) ? backupPath : null, keptCopy: keepCopyPath });
