@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.database = void 0;
 const sqlite3_1 = __importDefault(require("sqlite3"));
+const DB_PATH = process.env.DB_PATH || '/tmp/logs.db';
 class Database {
     constructor() {
         this.attivaLog = false; // Flag per controllare se memorizzare i log
         this.Nrecords = 0;
-        this.db = new sqlite3_1.default.Database('./logs.db');
+        this.db = new sqlite3_1.default.Database(DB_PATH);
         this.initDatabase();
     }
     initDatabase() {

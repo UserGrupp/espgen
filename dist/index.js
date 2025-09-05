@@ -1586,7 +1586,9 @@ app.get('/utility', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 }));
 app.get('/download-db', (req, res) => {
     // *** MODIFICA QUI: 'dati.db' diventa 'logs.db' ***
-    const dbPath = path.join("./", 'logs.db'); // Il tuo database si chiama logs.db
+    //const dbPath = path.join("./", 'logs.db'); // Il tuo database si chiama logs.db
+    //const dbPath = process.env.DB_PATH || (process.env.RENDER ? '/tmp/logs.db' : path.join('./', 'logs.db'));
+    const dbPath = process.env.DB_PATH;
     //__dirname
     res.download(dbPath, 'logs.db', (err) => {
         if (err) {
@@ -2524,7 +2526,9 @@ app.post('/upload-db', upload.single('logsdb'), (req, res) => {
         }
         // Percorsi
         const tempPath = req.file.path; // file temporaneo creato da Multer in ./uploads
-        const targetPath = path.join('./', 'logs.db');
+        const DB_PATH = process.env.DB_PATH || '/tmp/logs.db';
+        //const targetPath = path.join('./', 'logs.db');
+        const targetPath = path.join(DB_PATH);
         const backupPath = path.join('./', `logs.backup.${Date.now()}.db`);
         // Salva una copia persistente del file caricato in ./uploads con nome timestamp
         const keepCopyPath = path.join(uploadsDir, `logs.upload.${Date.now()}.db`);

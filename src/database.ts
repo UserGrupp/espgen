@@ -32,13 +32,13 @@ export interface TagOwner {
   created_at?: string;      // Data di creazione
   updated_at?: string;      // Data di ultimo aggiornamento
 }
-
+const DB_PATH = process.env.DB_PATH || '/tmp/logs.db';
 class Database {
   private db: sqlite3.Database;
   private attivaLog: boolean = false; // Flag per controllare se memorizzare i log
   public Nrecords:number=0;
   constructor() {
-    this.db = new sqlite3.Database('./logs.db');
+    this.db = new sqlite3.Database(DB_PATH);
     this.initDatabase();
   }
 
