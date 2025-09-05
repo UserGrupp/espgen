@@ -895,6 +895,7 @@ class Database {
                                 currentTotalCredits += spesa;
                             }
                             operations.push({
+                                DEVICE: row.DEVICE,
                                 timestamp: row.timestamp,
                                 datetime: row.datetime,
                                 credito_precedente: row.credito_precedente,

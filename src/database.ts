@@ -33,6 +33,7 @@ export interface TagOwner {
   updated_at?: string;      // Data di ultimo aggiornamento
 }
 const DB_PATH = process.env.DB_PATH || '/tmp/logs.db';
+
 class Database {
   private db: sqlite3.Database;
   private attivaLog: boolean = false; // Flag per controllare se memorizzare i log
@@ -862,6 +863,7 @@ class Database {
     spendingOperations: number;
     averageSpentPerSpending: number;
     operations: Array<{
+      DEVICE:string;
       timestamp: number;
       datetime: string;
       credito_precedente: number;
@@ -925,6 +927,7 @@ class Database {
           let currentTotalSpent = 0;
           let currentTotalCredits = 0;
           const operations: Array<{
+            DEVICE:string;
             timestamp: number;
             datetime: string;
             credito_precedente: number;
@@ -954,6 +957,7 @@ class Database {
             }
             
             operations.push({
+              DEVICE: row.DEVICE,
               timestamp: row.timestamp,
               datetime: row.datetime,
               credito_precedente: row.credito_precedente,

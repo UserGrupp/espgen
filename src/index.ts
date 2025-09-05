@@ -1079,6 +1079,7 @@ function generateSpendingDashboard(spendingData: {
   spendingOperations: number;
   averageSpentPerSpending: number;
   operations: Array<{
+    DEVICE:string;
     timestamp: number;
     datetime: string;
     credito_precedente: number;
@@ -1099,6 +1100,7 @@ function generateSpendingDashboard(spendingData: {
   const operationsRows = spendingData.operations.map(op => {
     return `
       <tr>
+        <td>${op.DEVICE}</td>
         <td>${op.datetime}</td>
         <td>${Number(op.credito_precedente).toFixed(2)}€</td>
         <td>${Number(op.credito_attuale).toFixed(2)}€</td>

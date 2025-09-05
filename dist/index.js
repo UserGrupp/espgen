@@ -937,6 +937,7 @@ function generateSpendingDashboard(spendingData, pagination, filters) {
     const operationsRows = spendingData.operations.map(op => {
         return `
       <tr>
+        <td>${op.DEVICE}</td>
         <td>${op.datetime}</td>
         <td>${Number(op.credito_precedente).toFixed(2)}€</td>
         <td>${Number(op.credito_attuale).toFixed(2)}€</td>
