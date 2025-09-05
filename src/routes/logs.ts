@@ -153,6 +153,7 @@ function generateLogsTable(data: any): string {
             <table>
                 <thead>
                     <tr>
+                        <td>DEVICE</td>
                         <th>ID Utente</th>
                         <th>Azione</th>
                         <th>Data/Ora</th>

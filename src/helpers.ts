@@ -490,6 +490,51 @@ export function generateSearchSection(searchId: string, placeholder: string, cle
   `;
 }
 
+
+export function generateTastierinoNumerico(
+  targetInputId: string,           // ID della textbox numerica a cui il tastierino deve scrivere
+  confirmFunction: string,         // Funzione JavaScript da chiamare quando si clicca "Conferma"
+  addFunction: string,             // Funzione JavaScript da chiamare quando si clicca "Aggiungi"
+  removeFunction: string,          // Funzione JavaScript da chiamare quando si clicca "Togli"
+  causaleInputId: string = "causaleInput", // ID della textbox per la causale
+  causalePlaceholder: string = "Inserisci causale" // Placeholder per la textbox causale
+): string {
+  return `
+  <div class="numeric-keypad-container">
+      <div class="causale-section">
+          <input type="text" id="${causaleInputId}" placeholder="${causalePlaceholder}" class="causale-input">
+      </div>
+
+      <div class="keypad-display">
+          <input type="text" id="${targetInputId}" class="keypad-input" value="0" readonly>
+          <button class="clear-display-btn" onclick="clearKeypadDisplay('${targetInputId}')">C</button>
+      </div>
+      
+      <div class="keypad-grid">
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '1')">1</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '2')">2</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '3')">3</button>
+          <button class="keypad-action-btn action-add" onclick="${addFunction}">+</button>
+
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '4')">4</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '5')">5</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '6')">6</button>
+          <button class="keypad-action-btn action-remove" onclick="${removeFunction}">-</button>
+
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '7')">7</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '8')">8</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '9')">9</button>
+          <button class="keypad-action-btn action-confirm" onclick="${confirmFunction}">Conferma</button>
+
+          <button class="keypad-btn double-width" onclick="appendToKeypadDisplay('${targetInputId}', '0')">0</button>
+          <button class="keypad-btn" onclick="appendToKeypadDisplay('${targetInputId}', '.')">.</button>
+          <button class="keypad-backspace-btn" onclick="backspaceKeypadDisplay('${targetInputId}')">&#x232b;</button> <!-- Backspace Unicode -->
+      </div>
+  </div>
+`;}
+
+
+
 export function disattivaScript(btnid:string,disattivaFunction:string):string {
 
 
@@ -566,8 +611,93 @@ export function generateSearchScript(searchId: string, clearFunction: string): s
     let searchTimeout;
     
     async function filterTable() {
-        const searchTerm = document.getElementById('${searchId}').value.toLowerCase();
+        //const searchTerm = document.getElementById('${searchId}').value.toLowerCase();
+         const rawValue = document.getElementById('${searchId}').value;
+        const searchTerm = (rawValue || '').toLowerCase();
         
+        // Se il campo è vuoto, ripristina automaticamente lo stato iniziale
+        if (!rawValue || rawValue.trim() === '') {
+           // try { ${clearFunction}(); } catch (e) { window.location.reload(); }
+            
+          try {
+                const currentPath = window.location.pathname;
+                let endpoint = '';
+                const url = new URL(window.location.href);
+                const page = url.searchParams.get('page') || '1';
+                const limit = url.searchParams.get('limit') || (currentPath.includes('/sensor-data') ? '50' : '10');
+                try {
+                const currentPath = window.location.pathname;
+                let endpoint = '';
+                const url = new URL(window.location.href);
+                const page = url.searchParams.get('page') || '1';
+                const limit = url.searchParams.get('limit') || (currentPath.includes('/sensor-data') ? '50' : '10');
+                if (currentPath.includes('/spending-dashboard') && !currentPath.includes('/spending-dashboard/')) {
+                    endpoint = '/api/spending-stats?page=' + page + '&pageSize=' + limit;
+                } 
+
+             try {
+                const currentPath = window.location.pathname;
+                let endpoint = '';
+                const url = new URL(window.location.href);
+                const page = url.searchParams.get('page') || '1';
+                const limit = url.searchParams.get('limit') || (currentPath.includes('/sensor-data') ? '50' : '10');
+                if (currentPath.includes('/spending-dashboard') && !currentPath.includes('/spending-dashboard/')) {
+                    endpoint = '/api/spending-stats?page=' + page + '&pageSize=' + limit;
+                } 
+                    else if (currentPath.includes('/tag-owners')) {
+                    endpoint = '/api/tag-owners?page=' + page + '&pageSize=' + limit;
+                }
+                     else if (currentPath.includes('/sensor-data')) {
+                    endpoint = '/api/sensor-data?page=' + page + '&pageSize=' + limit;
+                }
+                if (endpoint) {
+                    const response = await fetch(endpoint);
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        updateTableWithFilteredData(result.data, '', currentPath);
+                    }
+                } else {
+                    // Per pagine non supportate, fallback locale
+                    filterTableLocal();
+                }
+            } catch (e) {
+                // Fallback finale
+                filterTableLocal();
+            }
+
+                if (endpoint) {
+                    const response = await fetch(endpoint);
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        updateTableWithFilteredData(result.data, '', currentPath);
+                    }
+                } else {
+                    // Per pagine non supportate, fallback locale
+                    filterTableLocal();
+                }
+            } catch (e) {
+                // Fallback finale
+                filterTableLocal();
+            }
+                if (endpoint) {
+                    const response = await fetch(endpoint);
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        updateTableWithFilteredData(result.data, '', currentPath);
+                    }
+                } else {
+                    // Per pagine non supportate, fallback locale
+                    filterTableLocal();
+                }
+            } catch (e) {
+                // Fallback finale
+                filterTableLocal();
+            }
+
+
+           
+            return;
+        }
         // Cancella il timeout precedente per evitare troppe chiamate
         if (searchTimeout) {
             clearTimeout(searchTimeout);
@@ -709,6 +839,7 @@ export function generateSearchScript(searchId: string, clearFunction: string): s
         \`;
         
         return \`
+            
             <td>\${uidCell}</td>
             <td>\${stat.creditoAttuale ? stat.creditoAttuale.toFixed(2) + '€' : '0.00€'}\${stat.fromBackup ? ' 📊' : ''}</td>
             <td>\${stat.totalSpent ? stat.totalSpent.toFixed(2) + '€' : '0.00€'}</td>
@@ -773,7 +904,9 @@ export function generateSearchScript(searchId: string, clearFunction: string): s
         \`;
         
         return \`
-            <tr>
+            <tr> 
+
+               <td>\${record.DEVICE}</td>
                 <td>\${uidCell}</td>
                 <td>\${record.datetime}</td>
                 <td>\${Number(record.credito_precedente).toFixed(2)}€</td>

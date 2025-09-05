@@ -14,6 +14,7 @@ export interface UserLog {
 
 // Interfaccia per i dati dei sensori
 export interface SensorRecord {
+  DEVICE: string;
   uid: string;              // UID univoco ricevuto dal lettore NFC PN532
   timestamp: number;
   datetime: string;
@@ -60,6 +61,7 @@ class Database {
      const createSensorDataTable = `
        CREATE TABLE IF NOT EXISTS sensor_data (
          id INTEGER PRIMARY KEY AUTOINCREMENT,
+         DEVICE TEXT ,
          uid TEXT NOT NULL,
          timestamp INTEGER NOT NULL,
          datetime TEXT NOT NULL,
@@ -329,10 +331,11 @@ class Database {
     return new Promise((resolve, reject) => {
       // Usa INSERT normale per aggiungere ogni operazione come nuovo record
       const sql = `
-        INSERT INTO sensor_data (uid, timestamp, datetime, credito_precedente, credito_attuale, status)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO sensor_data (DEVICE,uid, timestamp, datetime, credito_precedente, credito_attuale, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
       `;
       this.db.run(sql, [
+        record.DEVICE,
         record.uid,           // Usa l'UID ricevuto dal JSON
         record.timestamp,
         record.datetime,
@@ -481,6 +484,7 @@ class Database {
           } else {
                          // Converti i record per mantenere la compatibilità con l'interfaccia
              const records = rows.map((row: any) => ({
+               DEVICE: row.DEVICE,
                uid: row.uid,
                timestamp: row.timestamp,
                datetime: row.datetime,
@@ -513,6 +517,7 @@ class Database {
           reject(err);
         } else {
           const records = rows.map((row: any) => ({
+            DEVICE:row.DEVICE,
             uid: row.uid,
             timestamp: row.timestamp,
             datetime: row.datetime,
@@ -544,6 +549,7 @@ class Database {
           resolve(null);
         } else {
           const record = {
+            DEVICE:row.DEVICE,
             uid: row.uid,
             timestamp: row.timestamp,
             datetime: row.datetime,
@@ -573,6 +579,7 @@ class Database {
           reject(err);
         } else {
           const records = rows.map((row: any) => ({
+            DEVICE:row.DEVICE,
             uid: row.uid,
             timestamp: row.timestamp,
             datetime: row.datetime,
@@ -975,6 +982,7 @@ class Database {
 
           // Prima e ultima operazione solo dai dati correnti
           const firstOperation: SensorRecord = { 
+            DEVICE:rows[rows.length - 1].DEVICE,
             uid: rows[rows.length - 1].uid,
             timestamp: rows[rows.length - 1].timestamp,
             datetime: rows[rows.length - 1].datetime,
@@ -984,6 +992,7 @@ class Database {
           };
 
           const lastOperation: SensorRecord = {
+            DEVICE:rows[0].DEVICE,
             uid: rows[0].uid,
             timestamp: rows[0].timestamp,
             datetime: rows[0].datetime,
@@ -1596,6 +1605,7 @@ class Database {
             });
           }
           const records = rows.map((row: any) => ({
+            DEVICE:row.DEVICE,
             uid: row.uid,
             timestamp: row.timestamp,
             datetime: row.datetime,
@@ -1848,6 +1858,7 @@ class Database {
 
           // Prima e ultima operazione solo dai dati correnti nell'intervallo
           const firstOperation: SensorRecord = { 
+            DEVICE:rows[rows.length - 1].DEVICE,
             uid: rows[rows.length - 1].uid,
             timestamp: rows[rows.length - 1].timestamp,
             datetime: rows[rows.length - 1].datetime,
@@ -1857,6 +1868,7 @@ class Database {
           };
 
           const lastOperation: SensorRecord = {
+            DEVICE: rows[0].DEVICE,
             uid: rows[0].uid,
             timestamp: rows[0].timestamp,
             datetime: rows[0].datetime,

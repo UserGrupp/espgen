@@ -11,7 +11,7 @@ import { userLogger, logUserAction } from './middleware/logger';
 import { basicAuth,conditionalBasicAuth } from './middleware/auth';
 import logsRouter from './routes/logs';
 import { database, SensorRecord, TagOwner } from './database';
-import { generateBaseHTML, generateSearchSection, generateSearchScript, generatePagination, generateStickyHeaderScript, generatePaginationScript, generateAutoRefreshScript, disattivaScript, checkServer, resetDatabaseScript, generateDateRangeControls, generateDateRangeScript, generateSearchSectionWithDateFilter, generateDateFilterIndicator } from './helpers';
+import { generateBaseHTML,generateTastierinoNumerico, generateSearchSection, generateSearchScript, generatePagination, generateStickyHeaderScript, generatePaginationScript, generateAutoRefreshScript, disattivaScript, checkServer, resetDatabaseScript, generateDateRangeControls, generateDateRangeScript, generateSearchSectionWithDateFilter, generateDateFilterIndicator } from './helpers';
 const WebSocket = require('ws')
 const http = require('http');
 const https = require('https');
@@ -142,11 +142,12 @@ server.on('connection', (socket) => {
 // Gestione connessioni WebSocket standard
 let ledState:boolean=false;
 wss.on('connection', ws => {
-  console.log('Un client si è connesso via WebSocket (standard)!'); // Log aggiornato
+//  console.log(`Un client si è connesso via WebSocket (standard)!${ws.id}`); // Log aggiornato
 
   ws.on('message', message => {
     const msgStr = message.toString(); // Converti il Buffer ricevuto in Stringa
-    console.log(`Ricevuto messaggio => ${msgStr}`);
+    console.log(`Ricevuto messaggio => ${msgStr} da ${ws.id}`);
+
 
     if (msgStr === "toggle") {
       // Implementa la tua logica di toggle qui
@@ -154,7 +155,7 @@ wss.on('connection', ws => {
       // let ledState = getLedState(); // Funzione per ottenere lo stato attuale
       // ledState = !ledState;         // Cambia lo stato
       // updateLedHardware(ledState);  // Aggiorna l'hardware
-      
+      ws.send('toggle_ack'); // Invia un ACK specifico al mittente se preferisci
       // Invia lo stato aggiornato a tutti i client connessi, incluso il mittente
       wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
@@ -163,12 +164,34 @@ wss.on('connection', ws => {
          client.send( (ledState) ? "1" : "0");
         }
       });
-      // ws.send('toggle_ack'); // Invia un ACK specifico al mittente se preferisci
+      
     }
+    if (JSON.parse(msgStr).type === "Nome") {
+      // Esegui JSON.parse una sola volta e memorizzalo in una variabile per efficienza e chiarezza
+      const messageData = JSON.parse(msgStr);
+      
+      // database.getTagOwnerByUID restituisce Promise<TagOwner | null>
+      database.getTagOwnerByUID(messageData.source)
+          .then((record: TagOwner | null) => { // Tipizza record come TagOwner O null
+              console.log("ricevuto il messaggio invio risposta");
+              if (record) { // Controlla se il record esiste (non è null)
+                  ws.send(JSON.stringify({ type: 'nomeUID', nome: record.nominativo, espId: "Server" }));
+              } else {
+                  // Se record è null (non trovato), invia una stringa vuota
+                  ws.send(JSON.stringify({ type: 'nomeUID', nome: "", espId: "Server" }));
+              }
+          })
+          .catch((error: any) => { // Tipizza l'errore (usa 'any' o un tipo di errore più specifico)
+              console.error("Errore durante il recupero del TagOwner:", error);
+              // In caso di errore (reject), invia una stringa vuota
+              ws.send(JSON.stringify({ type: 'nomeUID', nome: "", espId: "Server" }));
+          });
+  }
   });
 
   // Messaggio iniziale al client appena connesso
-  ws.send('Hello! Message From Server!!');
+  ws.send(JSON.stringify({ type: 'ack', message: 'OK', espId: "Server"}));
+  //ws.send({"type":"ack","meesage":'Hello! Message From Server!!'});
   // Se vuoi inviare lo stato iniziale del LED
   // ws.send(getLedState() ? "1" : "0");
 
@@ -269,6 +292,7 @@ function formatDateTimeIta(dateTime: string): string {
 
 
 interface recor {
+  DEVICE: string,
   uid: string,              // UID univoco ricevuto dal lettore NFC PN532
   timestamp: number,        // Timestamp Unix dall'ESP32
   datetime: string,         // Data e ora formattata dall'ESP32
@@ -286,7 +310,7 @@ app.post("/postjson", async (req, res) => {
     console.log("Headers:", req.headers);
     console.log("Body completo:", JSON.stringify(req.body, null, 2));
 
-    const { uid, timestamp, datetime, credito_precedente, credito_attuale, status } = req.body;
+    const { DEVICE, uid, timestamp, datetime, credito_precedente, credito_attuale, status } = req.body;
 
     // Validazione dei dati ricevuti
     if (!uid || !timestamp || !datetime || credito_precedente === undefined || credito_attuale === undefined || !status) {
@@ -294,12 +318,13 @@ app.post("/postjson", async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Dati mancanti o invalidi",
-        required: ["uid", "timestamp", "datetime", "credito_precedente", "credito_attuale", "status"]
+        required: ["DEVICE","uid", "timestamp", "datetime", "credito_precedente", "credito_attuale", "status"]
       });
     }
 
     const record: recor = req.body;
     console.log("Dati ricevuti:", {
+      DEVICE,
       uid,
       timestamp,
       datetime,
@@ -543,6 +568,7 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
     `;
     return `
         <tr>
+            <td>${record.DEVICE}</td>
             <td>${uidCell}</td>
             <td>${record.datetime}</td>
             <td>${Number(record.credito_precedente).toFixed(2)}€</td>
@@ -574,10 +600,11 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
   //     font-size: 16px;
   //   }
   // `;
-
+//${generateSearchScript('searchInput', 'clearSearch')}
   // Script aggiuntivi specifici per questa pagina
   const additionalScripts = `
-    ${generateSearchScript('searchInput', 'clearSearch')}
+    
+    ${generateSearchScript('searchOperations', 'clearOperationsSearch')}
     ${generateDateRangeScript('startDate', 'endDate', 'applyDateFilter')}
     ${disattivaScript('btn-a','disattiva')}
     ${checkServer('btn-a','checkServer')}
@@ -605,11 +632,13 @@ function generateSensorDataTable(records: recor[], tagOwnersMap?: Map<string, an
           </div>
         ` : ''} -->
             ${generateSearchSection('searchOperations', '🔍 Cerca per UID o nominativo possessore...', 'clearOperationsSearch()')}
-       
+         
+     
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
+                        <th>DEVICE</th>
                         <th>UID</th>
                         <th>Data/Ora</th>
                         <th>Credito Precedente</th>
@@ -1176,7 +1205,8 @@ function generateSpendingDashboard(spendingData: {
         <div class="table-container">
             <table>
                 <thead>
-                    <tr>
+                    <tr> 
+                        <th>DEVICE</th> 
                         <th>Data/Ora ESP32</th>
                         <th>Credito Precedente</th>
                         <th>Credito Attuale</th>
@@ -1198,6 +1228,7 @@ function generateSpendingDashboard(spendingData: {
 
 // Funzione per generare la dashboard generale delle spese
 function generateGeneralSpendingDashboard(stats: Array<{
+  
   uid: string;
   totalSpent: number;
   totalOperations: number;
@@ -1233,6 +1264,7 @@ function generateGeneralSpendingDashboard(stats: Array<{
 
     return `
       <tr>
+        
         <td>${uidCell}</td>
         <td>${stat.creditoAttuale.toFixed(2)}€${stat.fromBackup ? ' 📊' : ''}</td>
         <td>${stat.totalSpent.toFixed(2)}€</td>
@@ -1465,6 +1497,61 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
   const additionalScripts = `
     ${generateSearchScript('searchOperations', 'clearOperationsSearch')}
     
+    window.handleConferma = function() {
+    const value = document.getElementById('displayValue').value;
+    const causale = document.getElementById('causaleInput').value;
+    console.log(\`Conferma: \${value}, Causale: \${causale}\`);
+    // Invia al Node.js server via WebSocket
+    socket.emit('conferma_transazione', { value: value, causale: causale });
+    clearKeypadDisplay('displayValue'); // Resetta il display dopo l'invio
+    document.getElementById('causaleInput').value = ''; // Resetta la causale
+}
+
+window.handleAdd = function() {
+    const value = document.getElementById('displayValue').value;
+    const causale = document.getElementById('causaleInput').value;
+    console.log(\`Aggiungi: \${value}, Causale: \${causale}\`);
+    // Invia al Node.js server via WebSocket
+    socket.emit('aggiungi_voce', { value: value, causale: causale });
+    clearKeypadDisplay('displayValue');
+    document.getElementById('causaleInput').value = '';
+}
+
+window.handleRemove=function() {
+    const value = document.getElementById('displayValue').value;
+    const causale = document.getElementById('causaleInput').value;
+    console.log(\`Togli: \${value}, Causale: \${causale}\`);
+    // Invia al Node.js server via WebSocket
+    socket.emit('togli_voce', { value: value, causale: causale });
+    clearKeypadDisplay('displayValue');
+    document.getElementById('causaleInput').value = '';
+}
+     window.appendToKeypadDisplay=function(inputId, value)  {
+            const input = document.getElementById(inputId);
+            if (input.value === '0' && value !== '.') {
+                input.value = value;
+            } else if (value === '.' && input.value.includes('.')) {
+                // Non aggiungere un altro punto decimale
+            } else {
+                input.value += value;
+            }
+        }
+
+       window.clearKeypadDisplay = function(inputId) {
+            document.getElementById(inputId).value = '0';
+        }
+
+        window.backspaceKeypadDisplay=function(inputId) {
+            const input = document.getElementById(inputId);
+            if (input.value.length > 1) {
+                input.value = input.value.slice(0, -1);
+            } else {
+                input.value = '0';
+            }
+        }
+    
+    
+
     window.saveTagOwner = async function(uid) {
         const nominativo = document.getElementById('nominativo_' + uid).value.trim();
         const indirizzo = document.getElementById('indirizzo_' + uid).value.trim();
@@ -1648,7 +1735,13 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     // Inizializza il sticky header quando la pagina è caricata
     document.addEventListener('DOMContentLoaded', function() {
         initStickyHeader();
-    });
+         handleConferma();
+        handleAdd();
+        handleRemove();
+         appendToKeypadDisplay(inputId, value);
+        clearKeypadDisplay(inputId);
+        backspaceKeypadDisplay(inputId);
+        });
   `;
 
   // Contenuto della pagina
@@ -1657,9 +1750,9 @@ function generateTagOwnersTable(tagOwners: TagOwner[], pagination?: {
     <div class="container">
         <h1>Possessori Tag NFC</h1>
         <div id="statusMessage"></div>
-        
+        generateTastierinoNumerico
         ${generateSearchSection('searchOperations', '🔍 Cerca per UID, nominativo o indirizzo...', 'clearOperationsSearch()')}
-        
+        ${generateTastierinoNumerico("displayValue", "handleConferma()", "handleAdd()", "handleRemove()")}
         <button class="refresh-btn" onclick="location.reload()">🔄 Aggiorna</button>
         <div class="table-container">
             <table>
@@ -2056,7 +2149,18 @@ function generateUtilityPage(data: {
             </table>
              <p class="save-btn" style="text-align: center;">
                 <a href="/download-db" download="logs.db" class="button-link">Scarica database SQLite</a>
-            </p>
+            
+            <!-- <p class="save-btn" style="text-align: center; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <a href="/download-db" download="logs.db" class="button-link">Scarica database SQLite</a> -->
+        </p>
+        <p class="save-btn" style="text-align: center;">
+        <label class="button-link" style="cursor: pointer;">
+          Carica database SQLite
+          <input id="logsdbFile" type="file" accept=".db,.sqlite" style="display:none" />
+        </label>
+        </p>
+      <!--   <button id="uploadDbBtn" class="save-btn" eba>Carica</button> -->
+      
         </div>
         
         <!-- Sezione Controllo Logging -->
@@ -2154,6 +2258,35 @@ function generateUtilityPage(data: {
     </div>
 
     <script>
+ 
+          (function(){
+            const fileInput = document.getElementById('logsdbFile');
+            if (fileInput) {
+              fileInput.addEventListener('change', async function(){
+                if (!fileInput.files || fileInput.files.length === 0) return;
+                if (!confirm('⚠️ Stai per sostituire il database corrente. Procedere?')) return;
+                try {
+                  const formData = new FormData();
+                  formData.append('logsdb', fileInput.files[0]);
+                  const resp = await fetch('/upload-db', { method: 'POST', body: formData });
+                  const result = await resp.json();
+                  if (result.success) {
+                    alert('Database caricato con successo. ricarico.');
+                    location.reload();
+                  } else {
+                    alert('Errore: ' + (result.message || 'Upload fallito'));
+                  }
+                } catch (e) {
+                  alert('Errore durante l\\'upload del database');
+                } finally {
+                  fileInput.value = '';
+                }
+              });
+            }
+          })();
+         
+
+
         async function cleanupNow() {
             const daysToKeep = document.getElementById('daysToKeep').value;
             const btn = document.getElementById('cleanupBtn');
@@ -2407,12 +2540,20 @@ app.get('/api/sensor-data/search', async (req, res) => {
     const filteredRecords = result.records.filter(record => {
       const tagOwner = tagOwnersMap.get(record.uid);
       const searchFields = [
-        record.uid,
-        tagOwner?.nominativo || '',
-        record.datetime,
-        record.status,
-        record.credito_precedente.toString(),
-        record.credito_attuale.toString()
+        // record.DEVICE,
+        // record.uid,
+        // tagOwner?.nominativo || '',
+        // record.datetime,
+        // record.status,
+        // record.credito_precedente.toString(),
+        // record.credito_attuale.toString()
+        (record.DEVICE ?? '').toString(),
+        (record.uid ?? '').toString(),
+        (tagOwner?.nominativo ?? '').toString(),
+        (record.datetime ?? '').toString(),
+        (record.status ?? '').toString(),
+        (record.credito_precedente ?? '').toString(),
+        (record.credito_attuale ?? '').toString()
       ];
       
       return searchFields.some(field => 
@@ -2676,5 +2817,83 @@ app.get('/api/debug/date-filter', async (req, res) => {
   }
 });
 
+ // Upload del database SQLite
+const multer = require('multer');
+// Assicurati che la cartella uploads esista
+const uploadsDir = path.join('./', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+const upload = multer({ dest: uploadsDir });
+
+app.post('/upload-db', upload.single('logsdb'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'Nessun file caricato' });
+    }
+
+    // Percorsi
+    const tempPath = req.file.path; // file temporaneo creato da Multer in ./uploads
+    const targetPath = path.join('./', 'logs.db');
+    const backupPath = path.join('./', `logs.backup.${Date.now()}.db`);
+
+    // Salva una copia persistente del file caricato in ./uploads con nome timestamp
+    const keepCopyPath = path.join(uploadsDir, `logs.upload.${Date.now()}.db`);
+    fs.copyFileSync(tempPath, keepCopyPath);
+
+    // Effettua un backup dell'attuale DB se esiste
+    //if (fs.existsSync(targetPath)) {
+    //  fs.copyFileSync(targetPath, backupPath);
+    //}
+
+    // Sostituisci con il nuovo DB (move atomico se possibile)
+    try {
+      fs.renameSync(tempPath, targetPath);
+    } catch (e) {
+      // Fallback: copia e poi elimina il temporaneo
+      fs.copyFileSync(tempPath, targetPath);
+      try { fs.unlinkSync(tempPath); } catch {}
+    }
+
+    console.log('logs.db caricato e sostituito con successo');
+    return res.json({ success: true, message: 'Database aggiornato con successo', backup: fs.existsSync(backupPath) ? backupPath : null, keptCopy: keepCopyPath });
+  } catch (err) {
+    console.error('Errore durante l\'upload del database:', err);
+    return res.status(500).json({ success: false, message: 'Errore durante l\'upload del database' });
+  }
+});
  
- 
+/*  // Upload del database SQLite
+const multer = require('multer');
+const upload = multer({ dest: path.join('./', 'uploads') });
+
+app.post('/upload-db', upload.single('logsdb'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'Nessun file caricato' });
+    }
+
+    // Verifica nome file suggerito oppure accetta qualsiasi e rinomina a logs.db
+    const tempPath = req.file.path;
+    const targetPath = path.join('./', 'logs.db');
+    const backupPath = path.join('./', `logs.backup.${Date.now()}.db`);
+
+    // Effettua un backup dell'attuale DB se esiste
+    if (fs.existsSync(targetPath)) {
+      fs.copyFileSync(targetPath, backupPath);
+    }
+
+    // Sostituisci con il nuovo DB
+    fs.copyFileSync(tempPath, targetPath);
+
+    // Rimuovi il file temporaneo
+    fs.unlinkSync(tempPath);
+
+    console.log('logs.db caricato e sostituito con successo');
+    return res.json({ success: true, message: 'Database aggiornato con successo', backup: fs.existsSync(backupPath) ? backupPath : null });
+  } catch (err) {
+    console.error('Errore durante l\'upload del database:', err);
+    return res.status(500).json({ success: false, message: 'Errore durante l\'upload del database' });
+  }
+});
+ */

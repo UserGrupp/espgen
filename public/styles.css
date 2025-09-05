@@ -5,6 +5,9 @@
    Questo file contiene tutti gli stili per l'applicazione ARD Home Server.
    Organizzato in sezioni per facilitare la manutenzione e la comprensione.
    
+
+
+
    SEZIONI:
    1. FONT E TIPOGRAFIA
    2. LAYOUT BASE E BODY
@@ -1353,3 +1356,90 @@ input[disabled] {
   height: 60px;
   visibility: hidden;
 } 
+
+
+/* NUOVO TASTIERINO NUMERICO */
+.numeric-keypad-container {
+    width: 100%;
+    max-width: 300px; /* Larghezza massima del tastierino */
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+}
+.causale-section, .keypad-display {
+    margin-bottom: 10px;
+}
+.causale-input, .keypad-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.keypad-display {
+    display: flex;
+    align-items: center;
+}
+.keypad-input {
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 5px;
+    background-color: #eee;
+    font-size: 1.5em;
+}
+.clear-display-btn {
+    padding: 10px 15px;
+    font-size: 1.2em;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1; /* Allinea il testo nel pulsante */
+}
+.clear-display-btn:active {
+    background-color: #d32f2f;
+}
+
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne */
+    gap: 8px;
+}
+.keypad-btn, .keypad-action-btn, .keypad-backspace-btn {
+    padding: 15px 0;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    color: #333;
+    transition: background-color 0.1s;
+}
+.keypad-btn:active, .keypad-action-btn:active, .keypad-backspace-btn:active {
+    background-color: #bdbdbd;
+}
+.keypad-btn.double-width {
+    grid-column: span 2; /* Il tasto '0' occupa 2 colonne */
+}
+.keypad-action-btn {
+    background-color: #4CAF50; /* Verde per azioni */
+    color: white;
+}
+.keypad-action-btn.action-add {
+    background-color: #2196F3; /* Blu per aggiungi */
+}
+.keypad-action-btn.action-remove {
+    background-color: #f44336; /* Rosso per togli */
+}
+.keypad-action-btn.action-confirm {
+    background-color: #4CAF50; /* Verde per conferma */
+}
+.keypad-backspace-btn {
+    background-color: #ff9800; /* Arancione per backspace */
+    color: white;
+}
