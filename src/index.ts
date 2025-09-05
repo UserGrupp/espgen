@@ -2854,7 +2854,7 @@ app.post('/upload-db', upload.single('logsdb'), (req, res) => {
       fs.copyFileSync(tempPath, targetPath);
       try { fs.unlinkSync(tempPath); } catch {}
     }
-    try {
+    try { 
       fs.chmodSync(targetPath, 0o666); // Lettura e scrittura per tutti
     } catch (chmodErr) {
       console.warn('Impossibile impostare i permessi di scrittura:', chmodErr);
